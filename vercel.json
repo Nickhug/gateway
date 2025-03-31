@@ -17,8 +17,6 @@
     { "src": "/(.*)", "dest": "/public/$1" }
   ],
   "env": {
-    "DATAFINITI_API_TOKEN": "@datafiniti-api-token",
-    "TAVILY_API_KEY": "@tavily-api-key",
     "PLUGINS_INDEX_URL": "/index.json"
   }
 } 
