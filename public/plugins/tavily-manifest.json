@@ -1,9 +1,9 @@
 {
   "api": [
     {
-      "name": "search",
-      "description": "Search the web using Tavily API with custom parameters",
-      "url": "/api/v1/tavily",
+      "name": "searchWeb",
+      "description": "Search the web using Tavily's AI-optimized search engine",
+      "url": "https://gatewa-bice.vercel.app/api/v1/tavily",
       "parameters": {
         "type": "object",
         "required": ["query"],
@@ -46,9 +46,9 @@
       }
     },
     {
-      "name": "searchWithQuestion",
-      "description": "Search the web using Tavily with a simple question",
-      "url": "/api/v1/tavily",
+      "name": "answerQuestion",
+      "description": "Get a direct answer to a question using Tavily's AI-powered search",
+      "url": "https://gatewa-bice.vercel.app/api/v1/tavily",
       "parameters": {
         "type": "object",
         "required": ["question"],
