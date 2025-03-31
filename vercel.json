@@ -16,6 +16,16 @@
     { "src": "/index.json", "dest": "/public/index.json" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept, Authorization" }
+      ]
+    }
+  ],
   "env": {
     "DATAFINITI_API_TOKEN": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3pzbWh1dm9lb2F2eTBpcTZkY2EzNGdxZ2Vyc3o2cSIsImlzcyI6ImRhdGFmaW5pdGkuY28ifQ.dPgL3Vj2yDMdJQmVVGRa8z-8s6u0nM91f6KAFyFtNO8e8q4MZ7vjdfZlMtybQPpTyUjR1N3zA4o-D4dZtO47tlR4t1PlNkdYk7CMhTKUjlGHovmRI1EE8Yo9Olz-Afyr14o5vtqRU-GuJviLV3DFUYNCMBlka606VJENxTOPNzzvap4PH0aFQVgmAz6j-65r8oqbfdQRXl2bmBwuw7ryqdESfvlTQrLXFsFt1h6Saewtjqc9yn5IRd0xiZS4TG_EdP-9j_EtU3q11XjDJxm07O2R_TT5F1DR4qgBmfBSGXdU7F3clijzwYf_ptVcKtVTfYyv5kY1yWlpuQ_EOxpAtTnJkfD_Mvlc-Z90v7W7PJzamN1FTG5JpdT7UUQXaB_PqJvQGll3gt7c9eRSL1YbBZAJOJNkQlaR5cH120g_fDiTRAkcb89UhQXWaKLA-nEFFV8k5RPEW3HNZoa4am0FV5js3WQioqtxceqBwxQVLG1-aEY-exSAfDrc5d4MCG9yEmbHny1K6GPOibbGIj0SzdwcjKoPpfdHxQ7cVehXHviNAJ338MuV5HbWn5aME2OH8VVNHr2cJrrb-Lhf9GX2p5XaDzGNs7xU8fut8AxKJtlibtVS5Lxpd5_rQ4IDKg6YZZpNpL5CQ_2E3XolPpvUheeOiXil5MTJWEXJIlGSJyo",
     "TAVILY_API_KEY": "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",
