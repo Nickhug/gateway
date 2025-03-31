@@ -4,7 +4,7 @@
       "createAt": "2023-08-19",
       "homepage": "https://www.datafiniti.co/",
       "identifier": "datafiniti",
-      "manifest": "/plugins/datafiniti-manifest.json",
+      "manifest": "https://gatewa-bice.vercel.app/plugins/datafiniti-manifest.json",
       "meta": {
         "avatar": "📊",
         "description": "Access the Datafiniti API to search for business, product, and property data",
@@ -18,7 +18,7 @@
       "createAt": "2023-08-19",
       "homepage": "https://tavily.com/",
       "identifier": "tavily",
-      "manifest": "/plugins/tavily-manifest.json",
+      "manifest": "https://gatewa-bice.vercel.app/plugins/tavily-manifest.json",
       "meta": {
         "avatar": "🔍",
         "description": "Search the web with Tavily, a search engine optimized for AI assistants.",
