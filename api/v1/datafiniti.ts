@@ -13,6 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Invalid request body' });
     }
 
+    console.log(`API request received: ${apiName}`, req.body);
+    
     const parsedArgs = JSON.parse(args);
     const apiToken = process.env.DATAFINITI_API_TOKEN || '';
     
@@ -22,21 +24,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let result;
     switch (apiName) {
+      case 'searchProperties':
+        console.log('Executing searchProperties with query:', parsedArgs.query);
+        result = await datafinitiPlugin.searchProperties(parsedArgs, apiToken);
+        break;
+      case 'getPropertyById':
+        console.log('Executing getPropertyById with ID:', parsedArgs.propertyId);
+        result = await datafinitiPlugin.getPropertyById(parsedArgs.propertyId, apiToken);
+        break;
+      // For backward compatibility
       case 'searchBusinessData':
-        result = await datafinitiPlugin.searchBusinessData(parsedArgs, apiToken);
-        break;
-      case 'searchProductData':
-        result = await datafinitiPlugin.searchProductData(parsedArgs, apiToken);
-        break;
-      case 'getDownloadStatus':
-        result = await datafinitiPlugin.getDownloadStatus(parsedArgs.downloadId, apiToken);
+        console.log('Executing legacy searchBusinessData with query:', parsedArgs.query);
+        result = await datafinitiPlugin.searchProperties({
+          ...parsedArgs,
+          query: parsedArgs.query.includes('categories:') 
+            ? parsedArgs.query 
+            : `categories:"real estate" AND ${parsedArgs.query}`
+        }, apiToken);
         break;
       default:
         return res.status(400).json({ error: `Unknown API: ${apiName}` });
     }
 
+    console.log(`API response for ${apiName}: ${result ? 'success' : 'empty'}`);
     return res.status(200).json(result);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message || 'Internal server error' });
+    console.error('API handler error:', error);
+    const statusCode = error.statusCode || 500;
+    return res.status(statusCode).json({ 
+      error: error.message || 'Internal server error',
+      errorType: error.errorType 
+    });
   }
 } 

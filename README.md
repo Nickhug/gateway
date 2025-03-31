@@ -56,6 +56,100 @@ This customized version includes two additional plugins:
 1. **Datafiniti Plugin** - Provides access to business, product, and property data through the Datafiniti API
 2. **Tavily Plugin** - Enables web searches using the Tavily API optimized for LLMs
 
+# Real Estate Property Data Gateway Plugin
+
+This plugin provides a gateway to access comprehensive real estate property data for analysis and reporting. It specializes in retrieving detailed property information with extensive filtering capabilities.
+
+## Features
+
+- Search for properties with detailed filtering options
+- Get property information by ID
+- Download large datasets
+- Track download status
+
+## API Endpoints
+
+### 1. `searchProperties`
+
+Search for real estate properties using a variety of criteria.
+
+#### Parameters:
+
+- `query`: (Required) Search query using property-specific syntax
+- `format`: Response format ('JSON' or 'CSV')
+- `num_records`: Number of records to return (default: 10)
+- `view`: The view to use for the response (default: 'property_full')
+- `download`: Whether to initiate a download (default: false)
+- `fields`: Array of specific fields to include in the response
+
+#### Example Query Format:
+
+```
+country:US AND propertyType:"Single Family Dwelling" AND numBedroom:3 AND mostRecentPriceAmount:[300000 TO 500000]
+```
+
+### 2. `getPropertyById`
+
+Get detailed information about a specific property by ID.
+
+#### Parameters:
+
+- `propertyId`: (Required) The ID of the property to retrieve
+
+### 3. `getDownloadStatus`
+
+Get the status of an ongoing download.
+
+#### Parameters:
+
+- `downloadId`: (Required) The ID of the download to check
+
+## Query Formatting Rules
+
+1. Format boolean operators in UPPERCASE with spaces: "AND", "OR", "NOT"
+2. Format field names without quotes: `city:Austin`, `numBedroom:3`
+3. Only use quotes for values with spaces: `propertyType:"Single Family Dwelling"`
+4. Format date ranges as: `saleDate:[2023-01-01 TO 2023-12-31]`
+5. No quotes for numeric values or province codes: `province:TX`, `numBathroom:2`
+6. Use `mostRecentPriceAmount`, NOT prices: `mostRecentPriceAmount:[300000 TO 500000]`
+7. Format property status without quotes for Sold: `mostRecentStatus:Sold`
+8. For price ranges, format as: `mostRecentPriceAmount:[300000 TO 500000]`
+9. For any value field, use `[value TO *]` format for minimum values
+
+## Integration with AI Assistants
+
+This gateway is designed to be used as a plugin for AI assistants like ChatGPT or Claude. The plugin can be integrated by:
+
+1. Registering the plugin manifest URL in your AI assistant's configuration
+2. For LobeChat, provide the plugin manifest URL in the configuration
+
+## Setup (Development)
+
+1. Clone this repository
+2. Install dependencies: `npm install`
+3. Set up environment variables:
+   - Create a `.env.local` file with:
+     ```
+     DATAFINITI_API_TOKEN=your_api_token
+     ```
+4. Run the development server: `npm run dev`
+
+## Deployment
+
+Deploy using Vercel for the best experience:
+
+```bash
+vercel deploy
+```
+
+## Environment Variables
+
+- `DATAFINITI_API_TOKEN`: Your API token for accessing the property data API
+
+## License
+
+MIT
+
 <div align="right">
 
 [![][back-to-top]](#readme-top)

@@ -1,8 +1,8 @@
 {
   "api": [
     {
-      "name": "searchBusinessData",
-      "description": "Search for business data in the Datafiniti database",
+      "name": "searchProperties",
+      "description": "Search for real estate property data with detailed filtering",
       "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
       "parameters": {
         "type": "object",
@@ -10,7 +10,7 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query for businesses, e.g., 'categories:hotels AND country:US'"
+            "description": "Search query for properties using Datafiniti query syntax. Format boolean operators in UPPERCASE (AND, OR, NOT). Example: 'country:US AND propertyType:\"Single Family Dwelling\"'"
           },
           "format": {
             "type": "string",
@@ -25,20 +25,31 @@
           },
           "view": {
             "type": "string",
-            "default": "business_basic",
+            "default": "property_full",
             "description": "The view to use for the response"
-          },
-          "download": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether to initiate a download"
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "name": "Find houses in Santa Barbara",
+          "arguments": {
+            "query": "city:\"Santa Barbara\" AND province:CA AND propertyType:\"Single Family Dwelling\"",
+            "num_records": 5
+          }
+        },
+        {
+          "name": "Find apartments for rent in New York",
+          "arguments": {
+            "query": "city:\"New York\" AND province:NY AND propertyType:Apartment AND mostRecentStatus:\"For Rent\"",
+            "num_records": 5
+          }
+        }
+      ]
     },
     {
-      "name": "searchProductData",
-      "description": "Search for product data in the Datafiniti database",
+      "name": "searchBusinessData",
+      "description": "Legacy function - search for real estate agencies and brokers (redirects to searchProperties)",
       "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
       "parameters": {
         "type": "object",
@@ -46,28 +57,36 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query for products"
-          },
-          "format": {
-            "type": "string",
-            "enum": ["JSON", "CSV"],
-            "default": "JSON",
-            "description": "The response format"
+            "description": "Search query for real estate businesses. Example: 'categories:\"real estate\" AND city:\"Santa Barbara\" AND province:CA'"
           },
           "num_records": {
             "type": "number",
             "default": 10,
             "description": "Number of records to return"
-          },
-          "view": {
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "Find real estate agencies in Santa Barbara",
+          "arguments": {
+            "query": "categories:\"real estate\" AND city:\"Santa Barbara\" AND province:CA",
+            "num_records": 5
+          }
+        }
+      ]
+    },
+    {
+      "name": "getPropertyById",
+      "description": "Get detailed information about a specific property by ID",
+      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
+      "parameters": {
+        "type": "object",
+        "required": ["propertyId"],
+        "properties": {
+          "propertyId": {
             "type": "string",
-            "default": "product_basic",
-            "description": "The view to use for the response"
-          },
-          "download": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether to initiate a download"
+            "description": "The ID of the property to retrieve"
           }
         }
       }
@@ -90,15 +109,15 @@
   ],
   "identifier": "datafiniti",
   "meta": {
-    "avatar": "📊",
-    "description": "Access the Datafiniti API to search for business, product, and property data",
-    "title": "Datafiniti Data API"
+    "avatar": "🏡",
+    "description": "Access comprehensive real estate property data for analysis and reporting",
+    "title": "Real Estate Property Data API"
   },
   "settings": {
     "type": "object",
     "required": [],
     "properties": {}
   },
-  "systemRole": "You are a helpful AI assistant with access to the Datafiniti API, which provides business, product, property, and people data. Use this plugin to search for structured data when a user asks about businesses, products, properties, or people.",
+  "systemRole": "You are Propert, a helpful AI assistant with access to comprehensive real estate property data. When users ask about properties, use the searchProperties function with properly formatted queries following Datafiniti syntax. For example, to find houses in Santa Barbara use: query: 'city:\"Santa Barbara\" AND province:CA AND propertyType:\"Single Family Dwelling\"'",
   "version": "1"
 } 
