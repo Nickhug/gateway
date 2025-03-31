@@ -3,7 +3,7 @@
     {
       "name": "searchWeb",
       "description": "Search the web using Tavily's AI-optimized search engine",
-      "url": "https://gatewa-bice.vercel.app/api/v1/tavily",
+      "url": "https://gatewa-bice.vercel.app/api/v1/tavily.ts",
       "parameters": {
         "type": "object",
         "required": ["query"],
@@ -48,7 +48,7 @@
     {
       "name": "answerQuestion",
       "description": "Get a direct answer to a question using Tavily's AI-powered search",
-      "url": "https://gatewa-bice.vercel.app/api/v1/tavily",
+      "url": "https://gatewa-bice.vercel.app/api/v1/tavily.ts",
       "parameters": {
         "type": "object",
         "required": ["question"],
@@ -63,7 +63,7 @@
     {
       "name": "advancedSearch",
       "description": "Perform an advanced search with Tavily",
-      "url": "/api/v1/tavily",
+      "url": "https://gatewa-bice.vercel.app/api/v1/tavily.ts",
       "parameters": {
         "type": "object",
         "required": ["question"],
