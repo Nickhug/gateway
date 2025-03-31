@@ -3,7 +3,7 @@
     {
       "name": "searchBusinessData",
       "description": "Search for business data in the Datafiniti database",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti",
+      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
       "parameters": {
         "type": "object",
         "required": ["query"],
@@ -39,7 +39,7 @@
     {
       "name": "searchProductData",
       "description": "Search for product data in the Datafiniti database",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti",
+      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
       "parameters": {
         "type": "object",
         "required": ["query"],
@@ -75,7 +75,7 @@
     {
       "name": "getDownloadStatus",
       "description": "Get the status of a download",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti",
+      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
       "parameters": {
         "type": "object",
         "required": ["downloadId"],
