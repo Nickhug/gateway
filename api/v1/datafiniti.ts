@@ -1,38 +1,24 @@
-import { NextRequest } from 'next/server';
-import { createGatewayOnEdgeRuntime } from '../../src';
+import { NextApiRequest, NextApiResponse } from 'next';
 import datafinitiPlugin from '../../src/plugins/datafiniti';
 
-export const config = {
-  runtime: 'edge',
-};
-
-const pluginGateway = createGatewayOnEdgeRuntime();
-
-export default async function handler(req: NextRequest) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const body = await req.json();
-    const { arguments: args, name: apiName } = body;
+    const { arguments: args, name: apiName } = req.body;
 
     if (!apiName || !args) {
-      return new Response(JSON.stringify({ error: 'Invalid request body' }), {
-        status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      return res.status(400).json({ error: 'Invalid request body' });
     }
 
     const parsedArgs = JSON.parse(args);
-    const apiToken = process.env.DATAFINITI_API_TOKEN;
+    const apiToken = process.env.DATAFINITI_API_TOKEN || '';
+    
+    if (!apiToken) {
+      return res.status(500).json({ error: 'API token not configured' });
+    }
 
     let result;
     switch (apiName) {
@@ -46,26 +32,11 @@ export default async function handler(req: NextRequest) {
         result = await datafinitiPlugin.getDownloadStatus(parsedArgs.downloadId, apiToken);
         break;
       default:
-        return new Response(JSON.stringify({ error: `Unknown API: ${apiName}` }), {
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        return res.status(400).json({ error: `Unknown API: ${apiName}` });
     }
 
-    return new Response(JSON.stringify(result), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return res.status(200).json(result);
   } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return res.status(500).json({ error: error.message || 'Internal server error' });
   }
 } 
