@@ -1,0 +1,33 @@
+{
+  "plugins": [
+    {
+      "createAt": "2023-08-19",
+      "homepage": "https://www.datafiniti.co/",
+      "identifier": "datafiniti",
+      "manifest": "/plugins/datafiniti-manifest.json",
+      "meta": {
+        "avatar": "📊",
+        "description": "Access the Datafiniti API to search for business, product, and property data",
+        "tags": ["data", "business", "product", "property"],
+        "title": "Datafiniti Data API"
+      },
+      "name": "datafiniti",
+      "schemaVersion": "v1"
+    },
+    {
+      "createAt": "2023-08-19",
+      "homepage": "https://tavily.com/",
+      "identifier": "tavily",
+      "manifest": "/plugins/tavily-manifest.json",
+      "meta": {
+        "avatar": "🔍",
+        "description": "Search the web with Tavily, a search engine optimized for AI assistants.",
+        "tags": ["search", "web", "real-time"],
+        "title": "Tavily Web Search"
+      },
+      "name": "tavily",
+      "schemaVersion": "v1"
+    }
+  ],
+  "schemaVersion": "v1"
+} 

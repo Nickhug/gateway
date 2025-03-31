@@ -6,9 +6,9 @@
 <img height="120" src="https://gw.alipayobjects.com/zos/kitchen/qJ3l3EPsdW/split.svg">
 <img height="120" src="https://registry.npmmirror.com/@lobehub/assets-emoji/1.3.0/files/assets/door.webp">
 
-<h1>LobeChat Plugins Gateway</h1>
+<h1>LobeChat Plugins Gateway with Datafiniti & Tavily</h1>
 
-Plugin Gateway Service for Lobe Chat and Lobe Web
+Plugin Gateway Service for Lobe Chat and Lobe Web, with custom Datafiniti and Tavily plugins.
 
 [![][🤯-🧩-lobehub-shield]][🤯-🧩-lobehub-link]
 [![][npm-release-shield]][npm-release-link]
@@ -49,9 +49,12 @@ Plugin Gateway Service for Lobe Chat and Lobe Web
 
 ## 👋 Intro
 
-LobeChat Plugins Gateway is a backend service that provides a gateway for LobeChat plugins. We use [vercel](https://vercel.com/) to deploy this service. The main API `POST /api/v1/runner` is deployed as an [Edge Function](https://vercel.com/docs/functions/edge-functions).
+LobeChat Plugins Gateway is a backend service that provides a gateway for LobeChat plugins. We use vercel to deploy this service. The main API `POST /api/v1/runner` is deployed as an Edge Function.
 
-The gateway service fetches lobe plugins index from the [LobeChat Plugins](https://github.com/lobehub/lobe-chat-plugins), if you want to add your plugin to the index, please [submit a PR](https://github.com/lobehub/lobe-chat-plugins/pulls) to the LobeChat Plugins repository.
+This customized version includes two additional plugins:
+
+1. **Datafiniti Plugin** - Provides access to business, product, and property data through the Datafiniti API
+2. **Tavily Plugin** - Enables web searches using the Tavily API optimized for LLMs
 
 <div align="right">
 
@@ -65,8 +68,8 @@ The gateway service fetches lobe plugins index from the [LobeChat Plugins](https
 
 | Environment | URL                                            |
 | ----------- | ---------------------------------------------- |
-| `PROD`      | <https://chat-plugins-gateway.lobehub.com>     |
-| `DEV`       | <https://chat-plugins-gateway-dev.lobehub.com> |
+| PROD        | Your deployed Vercel URL                       |
+| DEV         | Local development server                       |
 
 ### POST Plugin Gateway
 
@@ -156,6 +159,30 @@ The gateway service fetches lobe plugins index from the [LobeChat Plugins](https
 
 See [API Document](https://apifox.com/apidoc/shared-c574e77f-4230-4727-9c05-c5c9988eed06) for more information.
 
+### Available Plugins
+
+#### Datafiniti API Plugin
+
+Access structured data about businesses, products, and properties.
+
+```json
+{
+  "arguments": "{ \"query\": \"categories:hotels AND country:US\" }",
+  "name": "searchBusinessData"
+}
+```
+
+#### Tavily Web Search Plugin
+
+Perform web searches optimized for AI assistants.
+
+```json
+{
+  "arguments": "{ \"question\": \"What are the latest developments in AI?\" }",
+  "name": "searchWithQuestion"
+}
+```
+
 <div align="right">
 
 [![][back-to-top]](#readme-top)
@@ -164,17 +191,23 @@ See [API Document](https://apifox.com/apidoc/shared-c574e77f-4230-4727-9c05-c5c9
 
 ## 🛳 Self Hosting
 
-If you want to deploy this service by yourself, you can follow the steps below.
+This fork includes custom plugins that require API keys.
 
 ### Deploy to Vercel
 
-Click button below to deploy your private plugins' gateway.
+1. Fork this repository
+2. Add your Datafiniti API token and Tavily API key to Vercel environment variables
+3. Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Fchat-plugins-gateway&project-name=chat-plugins-gateway&repository-name=chat-plugins-gateway)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYourUsername%2Fchat-plugins-gateway&env=DATAFINITI_API_TOKEN,TAVILY_API_KEY&envDescription=API%20keys%20required%20for%20the%20custom%20plugins&envLink=https%3A%2F%2Fgithub.com%2FYourUsername%2Fchat-plugins-gateway%23environment-variables)
 
-If you want to make some customization, you can add environment variable:
+### Environment Variables
 
-- `PLUGINS_INDEX_URL`: You can change the default plugins index url as your need.
+| Name                 | Required | Description                       |
+| -------------------- | -------- | --------------------------------- |
+| DATAFINITI_API_TOKEN | Yes      | Your Datafiniti API token         |
+| TAVILY_API_KEY       | Yes      | Your Tavily API key               |
+| PLUGINS_INDEX_URL    | No       | Custom plugins index URL (optional) |
 
 <div align="right">
 
@@ -208,7 +241,7 @@ Or clone it for local development:
 [![][bun-shield]][bun-link]
 
 ```bash
-$ git clone https://github.com/lobehub/chat-plugins-gateway.git
+$ git clone https://github.com/YourUsername/chat-plugins-gateway.git
 $ cd chat-plugins-gateway
 $ bun install
 $ bun dev
@@ -222,7 +255,7 @@ $ bun dev
 
 ## 🤝 Contributing
 
-Contributions of all types are more than welcome, if you are interested in contributing code, feel free to check out our GitHub [Issues][github-issues-link] to get stuck in to show us what you’re made of.
+Contributions of all types are more than welcome, if you are interested in contributing code, feel free to check out our GitHub Issues to get stuck in to show us what you're made of.
 
 [![][pr-welcome-shield]][pr-welcome-link]
 
@@ -236,8 +269,8 @@ Contributions of all types are more than welcome, if you are interested in contr
 
 ## 🔗 Links
 
-- **[🤖 Lobe Chat](https://github.com/lobehub/lobe-chat)** - An open-source, extensible (Function Calling), high-performance chatbot framework. It supports one-click free deployment of your private ChatGPT/LLM web application.
-- **[🧩 / 🏪 Plugin Index](https://github.com/lobehub/lobe-chat-plugins)** - This is the plugin index for LobeChat. It accesses index.json from this repository to display a list of available plugins for Function Calling to the user.
+- **🤖 [Lobe Chat](https://github.com/lobehub/lobe-chat)** - An open-source, extensible (Function Calling), high-performance chatbot framework. It supports one-click free deployment of your private ChatGPT/LLM web application.
+- **🧩 / 🏪 [Plugin Index](https://github.com/lobehub/lobe-chat-plugins)** - This is the plugin index for LobeChat. It accesses index.json from this repository to display a list of available plugins for Function Calling to the user.
 
 <div align="right">
 

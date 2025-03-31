@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": null,
+  "regions": ["iad1"],
+  "builds": [
+    { "src": "api/**/*.ts", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/v1/runner", "dest": "/api/v1/runner.ts" },
+    { "src": "/api/v1/datafiniti", "dest": "/api/v1/datafiniti.ts" },
+    { "src": "/api/v1/tavily", "dest": "/api/v1/tavily.ts" },
+    { "src": "/plugins/(.*)", "dest": "/public/plugins/$1" },
+    { "src": "/index.json", "dest": "/public/index.json" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ],
+  "env": {
+    "DATAFINITI_API_TOKEN": "@datafiniti-api-token",
+    "TAVILY_API_KEY": "@tavily-api-key",
+    "PLUGINS_INDEX_URL": "/index.json"
+  }
+} 

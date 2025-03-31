@@ -1,0 +1,108 @@
+{
+  "api": [
+    {
+      "name": "search",
+      "description": "Search the web using Tavily API with custom parameters",
+      "url": "/api/v1/tavily",
+      "parameters": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query"
+          },
+          "search_depth": {
+            "type": "string",
+            "enum": ["basic", "advanced"],
+            "default": "basic",
+            "description": "The depth of search, basic is faster but less comprehensive"
+          },
+          "include_domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of domains to include in the search"
+          },
+          "exclude_domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of domains to exclude from the search"
+          },
+          "include_answer": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to include a generated answer in the response"
+          },
+          "max_results": {
+            "type": "number",
+            "default": 5,
+            "description": "Maximum number of results to return"
+          }
+        }
+      }
+    },
+    {
+      "name": "searchWithQuestion",
+      "description": "Search the web using Tavily with a simple question",
+      "url": "/api/v1/tavily",
+      "parameters": {
+        "type": "object",
+        "required": ["question"],
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The question to search for"
+          }
+        }
+      }
+    },
+    {
+      "name": "advancedSearch",
+      "description": "Perform an advanced search with Tavily",
+      "url": "/api/v1/tavily",
+      "parameters": {
+        "type": "object",
+        "required": ["question"],
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The question to search for"
+          },
+          "includeAnswer": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to include a generated answer in the response"
+          },
+          "searchDepth": {
+            "type": "string",
+            "enum": ["basic", "advanced"],
+            "default": "advanced",
+            "description": "The depth of search"
+          },
+          "maxResults": {
+            "type": "number",
+            "default": 10,
+            "description": "Maximum number of results to return"
+          }
+        }
+      }
+    }
+  ],
+  "identifier": "tavily",
+  "meta": {
+    "avatar": "🔍",
+    "description": "Search the web with Tavily, a search engine optimized for AI assistants.",
+    "title": "Tavily Web Search"
+  },
+  "settings": {
+    "type": "object",
+    "required": [],
+    "properties": {}
+  },
+  "systemRole": "You are a helpful AI assistant with access to the Tavily search API, which provides real-time internet search capability. Use this plugin when users need up-to-date information from the web.",
+  "version": "1"
+} 

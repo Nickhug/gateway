@@ -1,0 +1,104 @@
+{
+  "api": [
+    {
+      "name": "searchBusinessData",
+      "description": "Search for business data in the Datafiniti database",
+      "url": "/api/v1/datafiniti",
+      "parameters": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query for businesses, e.g., 'categories:hotels AND country:US'"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["JSON", "CSV"],
+            "default": "JSON",
+            "description": "The response format"
+          },
+          "num_records": {
+            "type": "number",
+            "default": 10,
+            "description": "Number of records to return"
+          },
+          "view": {
+            "type": "string",
+            "default": "business_basic",
+            "description": "The view to use for the response"
+          },
+          "download": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to initiate a download"
+          }
+        }
+      }
+    },
+    {
+      "name": "searchProductData",
+      "description": "Search for product data in the Datafiniti database",
+      "url": "/api/v1/datafiniti",
+      "parameters": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query for products"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["JSON", "CSV"],
+            "default": "JSON",
+            "description": "The response format"
+          },
+          "num_records": {
+            "type": "number",
+            "default": 10,
+            "description": "Number of records to return"
+          },
+          "view": {
+            "type": "string",
+            "default": "product_basic",
+            "description": "The view to use for the response"
+          },
+          "download": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to initiate a download"
+          }
+        }
+      }
+    },
+    {
+      "name": "getDownloadStatus",
+      "description": "Get the status of a download",
+      "url": "/api/v1/datafiniti",
+      "parameters": {
+        "type": "object",
+        "required": ["downloadId"],
+        "properties": {
+          "downloadId": {
+            "type": "string",
+            "description": "The ID of the download to check"
+          }
+        }
+      }
+    }
+  ],
+  "identifier": "datafiniti",
+  "meta": {
+    "avatar": "📊",
+    "description": "Access the Datafiniti API to search for business, product, and property data",
+    "title": "Datafiniti Data API"
+  },
+  "settings": {
+    "type": "object",
+    "required": [],
+    "properties": {}
+  },
+  "systemRole": "You are a helpful AI assistant with access to the Datafiniti API, which provides business, product, property, and people data. Use this plugin to search for structured data when a user asks about businesses, products, properties, or people.",
+  "version": "1"
+} 
