@@ -77,8 +77,8 @@ export const searchProperties = async (params: PropertySearchParams, apiToken: s
 
   const { 
     format = 'JSON', 
-    num_records = 10, 
-    view = 'property_full'
+    num_records = 5, 
+    view = 'default'
   } = params;
 
   try {
