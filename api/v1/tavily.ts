@@ -113,10 +113,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           
           return res.status(200).json(result);
         } catch (error: any) {
-          console.error('Failed to call Tavily search:', error);
-          return res.status(500).json({ 
+          console.error('Failed to call Tavily search (fallback):', error);
+          return res.status(500).json({
             error: 'Failed to call Tavily search',
-            details: error.message
+            details: error?.message || 'Unknown error during Tavily fallback search'
           });
         }
       }
