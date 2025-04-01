@@ -14,7 +14,6 @@
           },
           "num_records": {
             "type": "number",
-            "default": 5,
             "description": "Number of properties to return (default: 5)"
           }
         }
