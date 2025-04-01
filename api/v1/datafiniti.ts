@@ -25,35 +25,157 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     // Log the entire request for debugging
-    console.log('Full request body received:', JSON.stringify(req.body, null, 2));
+    console.log('Full request body received:', typeof req.body, JSON.stringify(req.body, null, 2));
     console.log('Query parameters:', JSON.stringify(req.query, null, 2));
     console.log('Request URL:', req.url);
     
+    // First, ensure req.body is an object - if it's a string, parse it
+    let parsedBody = req.body;
+    if (typeof req.body === 'string') {
+      try {
+        parsedBody = JSON.parse(req.body);
+        console.log('Parsed request body from string:', parsedBody);
+      } catch (e) {
+        console.error('Failed to parse request body string:', e);
+      }
+    }
+    
+    // Extract API name from URL path if present
+    let apiNameFromUrl = null;
+    if (req.url) {
+      const urlPath = req.url.split('?')[0];
+      // If URL contains a segment like /api/v1/datafiniti/searchBusinessData
+      const pathSegments = urlPath.split('/');
+      const lastSegment = pathSegments[pathSegments.length - 1];
+      const secondLastSegment = pathSegments[pathSegments.length - 2]; 
+      
+      // If it looks like /datafiniti/searchBusinessData or ends with /searchBusinessData
+      if (secondLastSegment === 'datafiniti' && lastSegment) {
+        apiNameFromUrl = lastSegment;
+      } else if (lastSegment.includes('search') || lastSegment.includes('get')) {
+        apiNameFromUrl = lastSegment;
+      }
+    }
+    
+    // For raw POST data without JSON parsing, try to identify API by examining the request
+    let fallbackApiName = null;
+    if (typeof req.body === 'string') {
+      if (req.body.includes('Santa Barbara') || req.body.includes('property')) {
+        fallbackApiName = 'searchBusinessData';
+      }
+    }
+    
     // Extract API name and arguments based on LobeChat plugin format
     // Try various possible formats from the LobeChat plugin request
-    const apiName = req.body.name || 
-                   req.body.apiName ||
+    const apiName = parsedBody.name || 
+                   parsedBody.apiName ||
+                   apiNameFromUrl ||
                    req.query.name || 
-                   (req.body.arguments && req.body.arguments.api) || 
-                   req.body.api ||
+                   (parsedBody.arguments && parsedBody.arguments.api) || 
+                   parsedBody.api ||
+                   fallbackApiName ||
                    (req.url && req.url.includes('searchBusinessData') ? 'searchBusinessData' : null) ||
                    (req.url && req.url.includes('searchProductData') ? 'searchProductData' : null);
                    
     console.log('Extracted API name:', apiName);
     
     // Try various possible formats for arguments
-    const args = req.body.arguments || 
-                req.body || 
+    const args = parsedBody.arguments || 
+                parsedBody || 
                 {};
                 
     console.log('Extracted arguments:', typeof args, args);
 
     if (!apiName) {
+      // Final fallback - if it looks like a property query, use searchBusinessData
+      if (typeof req.body === 'string') {
+        const bodyStr = req.body.toLowerCase();
+        if (bodyStr.includes('property') || 
+            bodyStr.includes('house') || 
+            bodyStr.includes('home') || 
+            bodyStr.includes('city') || 
+            bodyStr.includes('santa barbara')) {
+          console.log('Using fallback API name searchBusinessData based on request content');
+          // Instead of recursive call, just set apiName and continue
+          const forcedApiName = 'searchBusinessData';
+          
+          // Continue with forcedApiName instead of apiName
+          // Prepare the search query
+          let query = '';
+          if (parsedBody && parsedBody.query) {
+            query = parsedBody.query;
+          } else if (typeof req.body === 'string') {
+            try {
+              const bodyObj = JSON.parse(req.body);
+              query = bodyObj.query || '';
+            } catch (e) {
+              // If body isn't parseable JSON, use it as-is if it looks like a query
+              if (req.body.includes(':') || req.body.includes('AND')) {
+                query = req.body;
+              }
+            }
+          }
+          
+          // Apply standard formatting for boolean operators
+          query = query
+            .replace(/\b(and)\b/gi, 'AND')
+            .replace(/\b(or)\b/gi, 'OR')
+            .replace(/\b(not)\b/gi, 'NOT');
+            
+          console.log('Formatted query from fallback:', query);
+          
+          // Determine the endpoint and prepare request body
+          let endpoint = 'https://api.datafiniti.co/v4/properties/search';
+          let requestBody: PropertySearchBody = {
+            query: query,
+            format: 'JSON',
+            num_records: 10,
+            download: false,
+            view: 'property_preview'
+          };
+          
+          console.log(`Making request to ${endpoint} with body:`, JSON.stringify(requestBody, null, 2));
+          
+          // Make the API call
+          const apiToken = process.env.DATAFINITI_API_TOKEN;
+          const fetchOptions = {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${apiToken}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody)
+          };
+          
+          const response = await fetch(endpoint, fetchOptions);
+          const responseText = await response.text();
+          
+          if (!response.ok) {
+            return res.status(response.status).json({
+              error: `API error: ${response.status}`,
+              message: responseText
+            });
+          }
+          
+          // Parse and return the response
+          try {
+            const data = JSON.parse(responseText);
+            return res.status(200).json(data);
+          } catch (error: any) {
+            return res.status(500).json({
+              error: 'Failed to parse API response',
+              rawResponse: responseText.substring(0, 1000)
+            });
+          }
+        }
+      }
+      
       console.error('Missing API name');
       return res.status(400).json({ 
         error: 'Missing API name in request body',
         debug: {
-          body: req.body,
+          rawBody: typeof req.body === 'string' ? req.body : JSON.stringify(req.body),
+          parsedBody: parsedBody,
           query: req.query,
           url: req.url
         }
