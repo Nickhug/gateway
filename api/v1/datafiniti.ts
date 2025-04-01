@@ -10,6 +10,15 @@ interface PropertySearchBody {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Allow GET requests for debugging
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      status: 'API is working',
+      message: 'This endpoint expects POST requests with a specific format',
+      documentation: 'See the plugin manifest for required parameters'
+    });
+  }
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -17,12 +26,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Log the entire request for debugging
     console.log('Full request body received:', JSON.stringify(req.body, null, 2));
+    console.log('Query parameters:', JSON.stringify(req.query, null, 2));
     
-    const { arguments: args, name: apiName } = req.body;
+    // Extract API name and arguments based on LobeChat plugin format
+    // Try various possible formats from the LobeChat plugin request
+    const apiName = req.body.name || 
+                   req.query.name || 
+                   (req.body.arguments && req.body.arguments.api) || 
+                   req.body.api ||
+                   (req.url && req.url.includes('searchBusinessData') ? 'searchBusinessData' : null) ||
+                   (req.url && req.url.includes('searchProductData') ? 'searchProductData' : null);
+                   
+    console.log('Extracted API name:', apiName);
+    
+    // Try various possible formats for arguments
+    const args = req.body.arguments || 
+                req.body || 
+                {};
 
     if (!apiName) {
       console.error('Missing API name');
-      return res.status(400).json({ error: 'Missing API name in request body' });
+      return res.status(400).json({ 
+        error: 'Missing API name in request body',
+        debug: {
+          body: req.body,
+          query: req.query,
+          url: req.url
+        }
+      });
     }
     
     if (!args) {
@@ -48,7 +79,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Prepare the search query
     let query = '';
-    if (apiName === 'searchProperties' || apiName === 'searchBusinessData') {
+    if (apiName === 'searchProperties' || apiName === 'searchBusinessData' || apiName === 'searchProductData') {
       query = parsedArgs.query || '';
       
       // Apply standard formatting for boolean operators
