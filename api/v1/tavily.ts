@@ -32,6 +32,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
     
+    // Add logging here to inspect parsedBody just before apiName extraction
+    console.log('Inspecting parsedBody before apiName extraction:', JSON.stringify(parsedBody, null, 2));
+    
     // Extract API name from URL path if present
     let apiNameFromUrl = null;
     if (req.url) {
@@ -116,7 +119,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           console.error('Failed to call Tavily search (fallback):', error);
           return res.status(500).json({
             error: 'Failed to call Tavily search',
-            details: error?.message || 'Unknown error during Tavily fallback search'
+            // Log the full error object for detailed diagnostics
+            details: error ? JSON.stringify(error) : 'Unknown error object during Tavily fallback search'
           });
         }
       }
@@ -205,7 +209,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Unhandled error in Tavily API handler:', error);
     return res.status(500).json({ 
       error: 'Internal server error', 
-      message: error.message 
+      // Log the full error object for detailed diagnostics
+      details: error ? JSON.stringify(error) : 'Unknown error object in main handler' 
     });
   }
 } 
