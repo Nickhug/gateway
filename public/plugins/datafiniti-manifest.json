@@ -47,35 +47,6 @@
       ]
     },
     {
-      "name": "searchBusinessData",
-      "description": "Legacy function - search for real estate agencies and brokers (redirects to searchProperties)",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
-      "parameters": {
-        "type": "object",
-        "required": ["query"],
-        "properties": {
-          "query": {
-            "type": "string",
-            "description": "Search query for real estate businesses. Example: 'categories:\"real estate\" AND city:\"Santa Barbara\" AND province:CA'"
-          },
-          "num_records": {
-            "type": "number",
-            "default": 10,
-            "description": "Number of records to return"
-          }
-        }
-      },
-      "examples": [
-        {
-          "name": "Find real estate agencies in Santa Barbara",
-          "arguments": {
-            "query": "categories:\"real estate\" AND city:\"Santa Barbara\" AND province:CA",
-            "num_records": 5
-          }
-        }
-      ]
-    },
-    {
       "name": "getPropertyById",
       "description": "Get detailed information about a specific property by ID",
       "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
