@@ -27,10 +27,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Log the entire request for debugging
     console.log('Full request body received:', JSON.stringify(req.body, null, 2));
     console.log('Query parameters:', JSON.stringify(req.query, null, 2));
+    console.log('Request URL:', req.url);
     
     // Extract API name and arguments based on LobeChat plugin format
     // Try various possible formats from the LobeChat plugin request
     const apiName = req.body.name || 
+                   req.body.apiName ||
                    req.query.name || 
                    (req.body.arguments && req.body.arguments.api) || 
                    req.body.api ||
@@ -43,6 +45,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const args = req.body.arguments || 
                 req.body || 
                 {};
+                
+    console.log('Extracted arguments:', typeof args, args);
 
     if (!apiName) {
       console.error('Missing API name');
@@ -70,7 +74,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Parse arguments - handle both string and object formats
     let parsedArgs;
     try {
-      parsedArgs = typeof args === 'string' ? JSON.parse(args) : args;
+      // If args is a string, parse it as JSON
+      // If args.arguments is a string (from LobeChat), parse that
+      if (typeof args === 'string') {
+        parsedArgs = JSON.parse(args);
+      } else if (args.arguments && typeof args.arguments === 'string') {
+        parsedArgs = JSON.parse(args.arguments);
+      } else {
+        parsedArgs = args;
+      }
+      
       console.log('Parsed arguments:', JSON.stringify(parsedArgs, null, 2));
     } catch (error) {
       console.error('Failed to parse arguments:', error);
