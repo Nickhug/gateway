@@ -15,6 +15,7 @@
     "build:watch": "father dev",
     "ci": "npm run lint && npm run type-check && npm run doctor",
     "doctor": "father doctor",
+    "generate-index": "ts-node src/scripts/generateIndex.ts",
     "lint": "eslint \"{src,api,docs}/**/*.{js,jsx,ts,tsx}\" --fix",
     "lint:md": "remark . --quiet --frail --output",
     "prepare": "husky install",
@@ -74,6 +75,7 @@
     "remark": "^14",
     "remark-cli": "^11",
     "semantic-release": "^21",
+    "ts-node": "^10.9.2",
     "typescript": "^5",
     "vercel": "^32.7.2",
     "vitest": "0.34.6"

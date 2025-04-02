@@ -13,6 +13,8 @@
     { "source": "/api/v1/datafiniti", "destination": "/api/v1/datafiniti" },
     { "source": "/api/v1/tavily", "destination": "/api/v1/tavily" },
     { "source": "/api/manifest", "destination": "/api/manifest" },
+    { "source": "/api/index.json", "destination": "/api/index.json" },
+    { "source": "/index.:locale.json", "destination": "/public/index.:locale.json" },
     { "source": "/plugins/(.*)", "destination": "/public/plugins/$1" },
     { "source": "/index.json", "destination": "/public/index.json" },
     { "source": "/(.*)", "destination": "/public/$1" }
@@ -24,7 +26,8 @@
         { "key": "Content-Type", "value": "application/json" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept, Authorization" }
+        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept, Authorization" },
+        { "key": "Cache-Control", "value": "s-maxage=600, stale-while-revalidate=60" }
       ]
     },
     {
