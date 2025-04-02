@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let fallbackApiName = null;
     if (typeof req.body === 'string') {
       if (req.body.includes('Santa Barbara') || req.body.includes('property')) {
-        fallbackApiName = 'searchBusinessData';
+        fallbackApiName = 'searchProperties';
       }
     }
     
@@ -74,7 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                    (parsedBody.arguments && parsedBody.arguments.api) || 
                    parsedBody.api ||
                    fallbackApiName ||
-                   (req.url && req.url.includes('searchBusinessData') ? 'searchBusinessData' : null) ||
+                   (req.url && req.url.includes('searchBusinessData') ? 'searchProperties' : null) ||
                    (req.url && req.url.includes('searchProductData') ? 'searchProductData' : null);
                    
     console.log('Extracted API name:', apiName);
@@ -87,7 +87,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('Extracted arguments:', typeof args, args);
 
     if (!apiName) {
-      // Final fallback - if it looks like a property query, use searchBusinessData
+      // Final fallback - if it looks like a property query, use searchProperties
       if (typeof req.body === 'string') {
         const bodyStr = req.body.toLowerCase();
         if (bodyStr.includes('property') || 
@@ -95,9 +95,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             bodyStr.includes('home') || 
             bodyStr.includes('city') || 
             bodyStr.includes('santa barbara')) {
-          console.log('Using fallback API name searchBusinessData based on request content');
+          console.log('Using fallback API name searchProperties based on request content');
           // Instead of recursive call, just set apiName and continue
-          const forcedApiName = 'searchBusinessData';
+          const forcedApiName = 'searchProperties';
           
           // Continue with forcedApiName instead of apiName
           // Prepare the search query
