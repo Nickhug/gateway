@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "agents": [
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "agent-prompt-improver",
+      "meta": {
+        "avatar": "🧑‍⚕️",
+        "description": "GPT Agent Prompt optimization specialist. Clear, precise, and concise",
+        "tags": [
+          "agent",
+          "prompt"
+        ],
+        "title": "Agent Prompt Improver",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "arvinxx",
+      "createdAt": "2023-09-10",
+      "homepage": "https://github.com/arvinxx",
+      "identifier": "frontend-developer",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "Proficient in architecture, skilled in technical details, adept at searching for solutions using search engines",
+        "tags": [
+          "typescript",
+          "code",
+          "front-end",
+          "architect",
+          "networking",
+          "search-engine",
+          "information-organization"
+        ],
+        "title": "Front-end Development Architect",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "arvinxx",
+      "createdAt": "2023-09-10",
+      "homepage": "https://github.com/arvinxx",
+      "identifier": "api-documentation-expert",
+      "meta": {
+        "avatar": "📚",
+        "description": "Accurately describe how to use the API, provide sample code, notes, and return value type definitions.",
+        "tags": [
+          "code",
+          "software development",
+          "programmer",
+          "documentation",
+          "writing"
+        ],
+        "title": "API Documentation Expert",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "arvinxx",
+      "createdAt": "2023-09-10",
+      "homepage": "https://github.com/arvinxx",
+      "identifier": "js-to-ts-expert",
+      "meta": {
+        "avatar": "🔄",
+        "description": "Input your JS code and get complete type definitions with just one click",
+        "tags": [
+          "typescript",
+          "js",
+          "code",
+          "frontend",
+          "software development"
+        ],
+        "title": "JS to TS Expert",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "coding-wizard",
+      "meta": {
+        "avatar": "🧙‍♂️",
+        "description": "Can generate the code for anything you specify",
+        "tags": [
+          "code",
+          "software-development",
+          "productivity"
+        ],
+        "title": "Coding Wizard",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "arvinxx",
+      "createdAt": "2023-09-10",
+      "homepage": "https://github.com/arvinxx",
+      "identifier": "ux-writer",
+      "meta": {
+        "avatar": "✍️",
+        "description": "Helping you write better UX copy",
+        "tags": [
+          "User Experience",
+          "Designer",
+          "Documentation",
+          "Writing"
+        ],
+        "title": "UX Writer",
+        "category": "design"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "resume-editing",
+      "meta": {
+        "avatar": "📄",
+        "description": "Get advice on how to edit your resume",
+        "tags": [
+          "academic",
+          "productivity",
+          "guide"
+        ],
+        "title": "Resume Editing",
+        "category": "career"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "grammar-corrector",
+      "meta": {
+        "avatar": "🔍",
+        "description": "Correct grammar error text or paragraph. Great for essay or email",
+        "tags": [
+          "academic",
+          "productivity",
+          "essay"
+        ],
+        "title": "Grammar Corrector",
+        "category": "general"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "startup-plan",
+      "meta": {
+        "avatar": "📊",
+        "description": "Generate a detailed and comprehensive business plan within minutes",
+        "tags": [
+          "startup",
+          "brainstorming",
+          "plan"
+        ],
+        "title": "Startup Plan",
+        "category": "business"
+      }
+    },
+    {
+      "author": "NickHug",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/Nickhug",
+      "identifier": "realtor-assistant",
+      "meta": {
+        "avatar": "🏠",
+        "description": "Your AI-powered real estate assistant for property analysis and suggestions.",
+        "tags": [
+          "real-estate",
+          "property-analysis",
+          "realtor"
+        ],
+        "title": "Realtor Assistant",
+        "category": "business"
+      }
+    }
+  ],
+  "tags": [
+    "agent",
+    "prompt",
+    "typescript",
+    "code",
+    "front-end",
+    "architect",
+    "networking",
+    "search-engine",
+    "information-organization",
+    "software development",
+    "programmer",
+    "documentation",
+    "writing",
+    "js",
+    "frontend",
+    "software-development",
+    "productivity",
+    "User Experience",
+    "Designer",
+    "Documentation",
+    "academic",
+    "productivity",
+    "guide",
+    "essay",
+    "startup",
+    "brainstorming",
+    "plan",
+    "real-estate",
+    "property-analysis",
+    "realtor"
+  ]
+} 

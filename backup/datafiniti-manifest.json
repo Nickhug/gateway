@@ -10,7 +10,7 @@
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query using property search syntax. Use AND/OR between conditions. For example: 'city:\"Santa Barbara\" AND province:CA AND propertyType:\"Single Family Dwelling\"'"
+            "description": "Search query using Datafiniti syntax. Use AND/OR between conditions. For example: 'city:\"Santa Barbara\" AND province:CA AND propertyType:\"Single Family Dwelling\"'"
           },
           "num_records": {
             "type": "number",
@@ -76,7 +76,7 @@
       }
     }
   ],
-  "identifier": "property",
+  "identifier": "datafiniti",
   "meta": {
     "avatar": "🏡",
     "description": "Search for real estate properties with detailed filtering",

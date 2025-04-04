@@ -4,14 +4,14 @@
     {
       "author": "NickHug",
       "createdAt": "2023-08-19",
-      "homepage": "https://www.datafiniti.co/",
-      "identifier": "datafiniti",
+      "homepage": "https://propertydata.com/",
+      "identifier": "property",
       "manifest": "https://gatewa-bice.vercel.app/plugins/datafiniti-manifest.json",
       "meta": {
-        "avatar": "📊",
-        "description": "Access the Datafiniti API to search for business, product, and property data",
-        "tags": ["data", "business", "product", "property"],
-        "title": "Datafiniti Data API",
+        "avatar": "🏡",
+        "description": "Search for real estate properties with detailed filtering options",
+        "tags": ["property", "real-estate", "homes", "search"],
+        "title": "Property Search API",
         "category": "tools"
       },
       "schemaVersion": 1
@@ -32,5 +32,5 @@
       "schemaVersion": 1
     }
   ],
-  "tags": ["data", "business", "product", "property", "search", "web", "real-time"]
+  "tags": ["property", "real-estate", "homes", "search", "web", "real-time"]
 } 

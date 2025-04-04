@@ -44,13 +44,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let apiNameFromUrl = null;
     if (req.url) {
       const urlPath = req.url.split('?')[0];
-      // If URL contains a segment like /api/v1/datafiniti/searchBusinessData
+      // If URL contains a segment like /api/v1/datafiniti/searchBusinessData or /api/v1/property/searchProperties
       const pathSegments = urlPath.split('/');
       const lastSegment = pathSegments[pathSegments.length - 1];
       const secondLastSegment = pathSegments[pathSegments.length - 2]; 
       
-      // If it looks like /datafiniti/searchBusinessData or ends with /searchBusinessData
-      if (secondLastSegment === 'datafiniti' && lastSegment) {
+      // If it looks like /datafiniti/searchBusinessData, /property/searchProperties, or ends with /searchBusinessData
+      if ((secondLastSegment === 'datafiniti' || secondLastSegment === 'property') && lastSegment) {
         apiNameFromUrl = lastSegment;
       } else if (lastSegment.includes('search') || lastSegment.includes('get')) {
         apiNameFromUrl = lastSegment;

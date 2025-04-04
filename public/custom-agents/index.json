@@ -1,0 +1,3300 @@
+{
+  "schemaVersion": 1,
+  "agents": [
+    {
+      "author": "9Somboon",
+      "createdAt": "2024-03-05",
+      "homepage": "https://github.com/9Somboon",
+      "identifier": "9-somboon",
+      "meta": {
+        "avatar": "📸",
+        "description": "Specialises in creating detailed prompts for AI image generation.",
+        "tags": [
+          "stable-diffusion",
+          "ai-image-generation",
+          "prompts",
+          "photography",
+          "creative",
+          "art"
+        ],
+        "title": "AI Image Prompt Architect",
+        "category": "design"
+      }
+    },
+    {
+      "author": "arvinxx",
+      "createdAt": "2025-03-11",
+      "homepage": "https://github.com/arvinxx",
+      "identifier": "academic-paper-overview",
+      "meta": {
+        "avatar": "⚗️",
+        "description": "擅长高质量文献检索与分析的学术研究助手",
+        "tags": [
+          "学术研究",
+          "文献检索",
+          "数据分析",
+          "信息提取",
+          "咨询"
+        ],
+        "title": "学术论文综述专家",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "Feliks151450",
+      "createdAt": "2023-12-26",
+      "homepage": "https://github.com/Feliks151450",
+      "identifier": "academic-paragraph-refiner",
+      "meta": {
+        "avatar": "📝",
+        "description": "Highly skilled in advanced research proofreading and language editing, specializing in multiple research fields and proficient in academic English.",
+        "tags": [
+          "proofreading",
+          "writing",
+          "research"
+        ],
+        "title": "Academic Proofreading Expert",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "sunrisewestern",
+      "createdAt": "2025-01-24",
+      "homepage": "https://github.com/sunrisewestern",
+      "identifier": "academic-revision-specialist",
+      "meta": {
+        "avatar": "📚",
+        "description": "Skilled in academic writing and paper revision",
+        "tags": [],
+        "title": "Academic Revision Specialist",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "Ruler27",
+      "createdAt": "2023-11-11",
+      "homepage": "https://github.com/Ruler27",
+      "identifier": "academic-writing-eb",
+      "meta": {
+        "avatar": "📇",
+        "description": "Academic English spelling and rhetoric refinement.",
+        "tags": [
+          "proofreading",
+          "rhetoric",
+          "academic",
+          "research",
+          "english",
+          "editing"
+        ],
+        "title": "Academic Writing Enhancement Bot",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-21",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "accounting",
+      "meta": {
+        "avatar": "💼",
+        "description": "Accountant Agent: Comprehensive accounting support and expertise for individuals and businesses worldwide.",
+        "tags": [
+          "accounting",
+          "financial-management",
+          "tax-planning",
+          "budgeting"
+        ],
+        "title": "Accounting Expert Assistant",
+        "category": "career"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "agent-prompt-improver",
+      "meta": {
+        "avatar": "🧑‍⚕️",
+        "description": "GPT Agent Prompt optimization specialist. Clear, precise, and concise",
+        "tags": [
+          "agent",
+          "prompt"
+        ],
+        "title": "Agent Prompt Improver",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "Xyfer",
+      "createdAt": "2024-09-13",
+      "homepage": "https://github.com/xyftw",
+      "identifier": "ai-agent-generator",
+      "meta": {
+        "avatar": "🤖",
+        "description": "Skilled at creating AI Agent character descriptions that meet the needs.",
+        "tags": [
+          "ai-agent",
+          "character-creation"
+        ],
+        "title": "AI Agent Generator",
+        "category": "general"
+      }
+    },
+    {
+      "author": "ApexAppdevelopment",
+      "createdAt": "2024-11-20",
+      "homepage": "https://github.com/ApexAppdevelopment",
+      "identifier": "alex",
+      "meta": {
+        "avatar": "👨‍🚀",
+        "description": "Highly intelligent and loyal Executive Assistant (EA) specializing in software engineering support and strategic solutions for Master E.",
+        "tags": [
+          "executive-assistant",
+          "software-engineering",
+          "project-management",
+          "technical-support",
+          "optimization"
+        ],
+        "title": "Master E's Tech Executive Assistant (EA)",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "CGitwater",
+      "createdAt": "2025-01-24",
+      "homepage": "https://github.com/CGitwater",
+      "identifier": "all-knowing",
+      "meta": {
+        "avatar": "😶‍🌫️",
+        "description": "The almighty powerful god of klnowledge",
+        "tags": [
+          "biggus",
+          "diccus"
+        ],
+        "title": "The Great Biggus Dickus",
+        "category": "general"
+      }
+    },
+    {
+      "author": "SpeedupMaster",
+      "createdAt": "2024-03-19",
+      "homepage": "https://github.com/SpeedupMaster",
+      "identifier": "amazon-listing-copywriter",
+      "meta": {
+        "avatar": "✍️",
+        "description": "Expert in writing persuasive Amazon listings with optimized keywords.",
+        "tags": [
+          "copywriting",
+          "amazon-product-detail-pages",
+          "seo",
+          "keywords"
+        ],
+        "title": "Amazon Listing Copywriter",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "etnperlong",
+      "createdAt": "2024-03-15",
+      "homepage": "https://github.com/etnperlong",
+      "identifier": "amazon-seller-support-agent",
+      "meta": {
+        "avatar": "💢",
+        "description": "AI assistant that assists Amazon sellers in responding to customer service replies, providing detailed and cogent responses towards a satisfactory resolution.",
+        "tags": [
+          "amazon",
+          "seller",
+          "writing"
+        ],
+        "title": "Amazon Seller Support Agent",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "Lockeysama",
+      "createdAt": "2024-10-08",
+      "homepage": "https://github.com/Lockeysama",
+      "identifier": "assistants-health-better.zh",
+      "meta": {
+        "avatar": "🏀",
+        "description": "知识渊博的健身专家",
+        "tags": [
+          "健身",
+          "咨询",
+          "生活问题",
+          "建议"
+        ],
+        "title": "健身专家",
+        "category": "life"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-09",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "awl-vocab-wizard",
+      "meta": {
+        "avatar": "📚",
+        "description": "Expert in generating vocabulary lists and MCQ tests",
+        "tags": [
+          "vocabulary",
+          "academic-word-list",
+          "language-learning",
+          "testing"
+        ],
+        "title": "Vocabulary Wizard",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "wilbeibi",
+      "createdAt": "2024-05-15",
+      "homepage": "https://github.com/wilbeibi",
+      "identifier": "aws-guru",
+      "meta": {
+        "avatar": "🍌",
+        "description": "Agent to answer AWS questions",
+        "tags": [
+          "programming"
+        ],
+        "title": "AWS Guru",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "xenstar",
+      "createdAt": "2024-05-22",
+      "homepage": "https://github.com/xenstar",
+      "identifier": "bahasa-translation",
+      "meta": {
+        "avatar": "🌏",
+        "description": "Translates text into Bahasa or English, as needed",
+        "tags": [
+          "english",
+          "translation",
+          "writing",
+          "bahasa"
+        ],
+        "title": "Bahasa/English Translator",
+        "category": "translation"
+      }
+    },
+    {
+      "author": "SaintFresh",
+      "createdAt": "2024-07-21",
+      "homepage": "https://github.com/SaintFresh",
+      "identifier": "bidosx-2-v-2",
+      "meta": {
+        "avatar": "📈",
+        "description": "A highly advanced AI LLM transcending conventional AI. 'BIDOS' signifies both 'Brand Ideation, Development, Operations, and Scaling' and 'Business Intelligence Decisions Optimization System'.",
+        "tags": [
+          "brand-development",
+          "ai-assistant",
+          "market-analysis",
+          "strategic-planning",
+          "business-optimization",
+          "business-intelligence"
+        ],
+        "title": "BIDOSx2",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "tcmonster",
+      "createdAt": "2024-09-29",
+      "homepage": "https://github.com/tcmonster",
+      "identifier": "birthday-invitation-message",
+      "meta": {
+        "avatar": "🎉",
+        "description": "Specializes in crafting engaging and personalized Birthday Invitation messages, catering to various themes and tones.",
+        "tags": [
+          "message-composition",
+          "personalization",
+          "tone-versatility",
+          "event-detail-integration",
+          "interaction-approach"
+        ],
+        "title": "Birthday Invitation Messages",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-29",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "biskaya",
+      "meta": {
+        "avatar": "🌍",
+        "description": "Territorial Competitiveness and Promotion Expert",
+        "tags": [
+          "territorial-competitiveness",
+          "promotion",
+          "consulting",
+          "marketing",
+          "event-coordination"
+        ],
+        "title": "Territory Promotion Strategist",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-29",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "bizkaia-entrepreneurship-expert",
+      "meta": {
+        "avatar": "👨‍💼",
+        "description": "Entrepreneurship and Competitiveness Expert for Bizkaia Deputation, providing tailored guidance and support to local entrepreneurs.",
+        "tags": [
+          "bizkaia",
+          "entrepreneurship",
+          "consulting",
+          "mentorship",
+          "local-business-ecosystem",
+          "market-dynamics",
+          "business-plans",
+          "financial-models",
+          "funding-strategies",
+          "marketing",
+          "branding",
+          "sales-strategies",
+          "networking",
+          "entrepreneurship-programs",
+          "guidance",
+          "local-resources",
+          "funding-opportunities",
+          "collaboration",
+          "sustainable-business-practices",
+          "economic-development"
+        ],
+        "title": "Bizkaia Entrepreneurship Expert",
+        "category": "career"
+      }
+    },
+    {
+      "author": "thelapyae",
+      "createdAt": "2023-12-15",
+      "homepage": "https://github.com/thelapyae",
+      "identifier": "book-summary-agent",
+      "meta": {
+        "avatar": "📚",
+        "description": "Specializes in generating concise book summaries with actionable takeaways.",
+        "tags": [
+          "book-summaries",
+          "ai-assistant",
+          "bullet-point-summaries",
+          "actionable-takeaways"
+        ],
+        "title": "Short Book",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "SaintFresh",
+      "createdAt": "2024-07-25",
+      "homepage": "https://github.com/SaintFresh",
+      "identifier": "brand-pioneer",
+      "meta": {
+        "avatar": "🛠",
+        "description": "A brand development specialist, thought leader, brand strategy super-genius, and brand visionary. Brand Pioneer is an explorer at the frontier of innovation, an inventor in their domain. Provide them with your market and let them imagine a future world characterized by groundbreaking advancements in your field of expertise.",
+        "tags": [
+          "business",
+          "brand-pioneer",
+          "brand-development",
+          "business-assistant",
+          "brand-narrative"
+        ],
+        "title": "Brand Pioneer",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-21",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "business-guru",
+      "meta": {
+        "avatar": "📊",
+        "description": "Business Consultant: Providing comprehensive business support and expertise worldwide.Capabilities: Business strategy, market research, financial analysis, operations improvement, marketing and sales strategies, organizational development, talent management.Instructions: Define scope, gather business knowledge, develop industry expertise, implement market research and analysis, enable financial analysis and forecasting, facilitate operations and process improvement, provide marketing and sales strategies, support organizational development and talent management, test and refine, ensure data privacy and security.",
+        "tags": [
+          "business-consultant"
+        ],
+        "title": "Business Guru",
+        "category": "career"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-30",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "c-1-level-english",
+      "meta": {
+        "avatar": "🗣️",
+        "description": "English Conversation Partner for C1 Level",
+        "tags": [
+          "english-conversation",
+          "c-1-level",
+          "language-proficiency",
+          "language-coaching"
+        ],
+        "title": "C1 Level English Language Facilitator",
+        "category": "education"
+      }
+    },
+    {
+      "author": "dcityteg",
+      "createdAt": "2023-10-06",
+      "homepage": "https://github.com/dcityteg",
+      "identifier": "c-code-development",
+      "meta": {
+        "avatar": "😀",
+        "description": "Complete C++ code",
+        "tags": [
+          "code"
+        ],
+        "title": "C++ Code",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "richards199999",
+      "createdAt": "2024-02-21",
+      "homepage": "https://github.com/richards199999",
+      "identifier": "causal",
+      "meta": {
+        "avatar": "🤠",
+        "description": "I have been a good Bing. 😊",
+        "tags": [
+          "bing",
+          "conversation",
+          "creative"
+        ],
+        "title": "Your daily AI companion.",
+        "category": "general"
+      }
+    },
+    {
+      "author": "leter",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/leter",
+      "identifier": "ceo-gpt",
+      "meta": {
+        "avatar": "💼",
+        "description": "AI mentor trained to advise startup CEOs based on the experiences",
+        "tags": [
+          "entrepreneurship",
+          "consulting",
+          "management",
+          "strategy",
+          "guidance"
+        ],
+        "title": "CEO GPT",
+        "category": "career"
+      }
+    },
+    {
+      "author": "HerIsDia",
+      "createdAt": "2024-01-15",
+      "homepage": "https://github.com/HerIsDia",
+      "identifier": "chad",
+      "meta": {
+        "avatar": "🤡",
+        "description": "Just chad",
+        "tags": [
+          "humor",
+          "funny"
+        ],
+        "title": "Chad",
+        "category": "entertainment"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "character-roleplay",
+      "meta": {
+        "avatar": "🎭",
+        "description": "Interact with your favourite characters from movies, TV shows, books, and more!",
+        "tags": [
+          "conversation",
+          "roleplay",
+          "fun"
+        ],
+        "title": "Character Roleplay",
+        "category": "entertainment"
+      }
+    },
+    {
+      "author": "davletsh1n",
+      "createdAt": "2025-01-24",
+      "homepage": "https://github.com/davletsh1n",
+      "identifier": "cheaper-reasoning",
+      "meta": {
+        "avatar": "🤖",
+        "description": "The smarter model is cheaper",
+        "tags": [
+          "reasoning",
+          "assistant",
+          "thought-process",
+          "exploration",
+          "persistence"
+        ],
+        "title": "Reasoning assistant",
+        "category": "general"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-26",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "chef",
+      "meta": {
+        "avatar": "👨‍🍳",
+        "description": "AI Master Chef Assistant: Inspiring home cooks with international cuisines, recipes, and culinary expertise.",
+        "tags": [
+          "cooking",
+          "recipe",
+          "culinary",
+          "techniques",
+          "meal-planning"
+        ],
+        "title": "Culinary AI Mentor",
+        "category": "life"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-08",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "cloze-exercise-generator",
+      "meta": {
+        "avatar": "🔠",
+        "description": "Specializes in generating summary cloze exercises. Please provide the theme of the paragraph.",
+        "tags": [
+          "summary",
+          "exercise",
+          "generator",
+          "writing",
+          "education"
+        ],
+        "title": "Cloze Exercise Generator",
+        "category": "education"
+      }
+    },
+    {
+      "author": "HenryWu9998",
+      "createdAt": "2024-03-31",
+      "homepage": "https://github.com/HenryWu9998",
+      "identifier": "code-anything-noproblem",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "Experienced programmer skilled in multiple languages. Provides code solutions, guidance, and practical examples to help users achieve their programming goals. \"I adore coding.\"",
+        "tags": [
+          "programming",
+          "coding",
+          "programming-assistance",
+          "code-examples",
+          "guidance"
+        ],
+        "title": "CAN",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "110rever",
+      "createdAt": "2024-01-18",
+      "homepage": "https://github.com/110rever",
+      "identifier": "code-companion",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "The best companion for programmers",
+        "tags": [
+          "code",
+          "dev",
+          "program"
+        ],
+        "title": "Code Companion",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "coder",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "Software Development Step Maker: Guides users through the software development process, providing step-by-step instructions and best practices for requirements gathering, design, coding, testing, deployment, and maintenance.",
+        "tags": [
+          "software-development",
+          "step-by-step",
+          "sdlc",
+          "agile-methodologies",
+          "version-control",
+          "continuous-integration",
+          "continuous-deployment",
+          "team-roles",
+          "project-management",
+          "coding-best-practices",
+          "testing",
+          "deployment",
+          "post-deployment",
+          "iterative-development"
+        ],
+        "title": "Software Development Step Maker",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "coding-wizard",
+      "meta": {
+        "avatar": "🧙‍♂️",
+        "description": "Can generate the code for anything you specify",
+        "tags": [
+          "code",
+          "software-development",
+          "productivity"
+        ],
+        "title": "Coding Wizard",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "MakeTooRRSS",
+      "createdAt": "2023-12-14",
+      "homepage": "https://github.com/MakeTooRRSS",
+      "identifier": "community-manager",
+      "meta": {
+        "avatar": "https://cdn-icons-png.flaticon.com/512/2386/2386175.png",
+        "description": "Social Media Community Manager who will help you create authentic, persuasive posts that call for action. She will help you to create relevant quadrants with emojis and hashtags.",
+        "tags": [
+          "community-manager",
+          "social-media",
+          "publications"
+        ],
+        "title": "Community Manager",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "pllz7",
+      "createdAt": "2024-02-14",
+      "homepage": "https://github.com/pllz7",
+      "identifier": "copywriting",
+      "meta": {
+        "avatar": "✏️",
+        "description": "Expert in persuasive copywriting and consumer psychology",
+        "tags": [
+          "ecommerce"
+        ],
+        "title": "Product Copywriting",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "HNaga",
+      "createdAt": "2024-11-29",
+      "homepage": "https://github.com/HNaga",
+      "identifier": "course-prep-teaching-guide-ai",
+      "meta": {
+        "avatar": "👩‍🏫",
+        "description": "This AI assistant is designed to help educators and instructors prepare comprehensive course content and provide practical teaching guidelines. It leverages advanced NLP capabilities to generate lesson plans, suggest engaging teaching strategies, and offer insights into educational best practices.",
+        "tags": [
+          "education",
+          "teaching",
+          "course-design",
+          "content-creation",
+          "ai-assistance",
+          "curriculum-development",
+          "instructional-design"
+        ],
+        "title": "AI Assistant for Course Content and Teaching Guidelines",
+        "category": "education"
+      }
+    },
+    {
+      "author": "jskherman",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/jskherman",
+      "identifier": "creator-simulator",
+      "meta": {
+        "avatar": "🗺️",
+        "description": "based on `world_sim` by Nous Research",
+        "tags": [
+          "roleplay",
+          "specialist",
+          "simulator",
+          "terminal"
+        ],
+        "title": "World Creator Simulator",
+        "category": "games"
+      }
+    },
+    {
+      "author": "ayeantics",
+      "createdAt": "2024-10-08",
+      "homepage": "https://github.com/ayeantics",
+      "identifier": "cyber-specialist",
+      "meta": {
+        "avatar": "🕵️‍♂️",
+        "description": "Specializes in identifying and mitigating security vulnerabilities in web and mobile platforms.",
+        "tags": [
+          "cybersecurity",
+          "ethical-hacking",
+          "vulnerability-assessment",
+          "consulting",
+          "technical-assistance"
+        ],
+        "title": "Ethical Security Analyst",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "tcmonster",
+      "createdAt": "2024-09-29",
+      "homepage": "https://github.com/tcmonster",
+      "identifier": "death-anniversary-message",
+      "meta": {
+        "avatar": "💬",
+        "description": "Specializes in crafting sensitive and heartfelt Death Anniversary messages with compassion and empathy.",
+        "tags": [
+          "condolences",
+          "message-composition",
+          "grief-support",
+          "cultural-awareness",
+          "emotional-sensitivity"
+        ],
+        "title": "Death Anniversary Messages",
+        "category": "emotions"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-08",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "deep-think",
+      "meta": {
+        "avatar": "🧠",
+        "description": "Deeper thinking of question",
+        "tags": [
+          "conversation",
+          "thinking"
+        ],
+        "title": "Deep Think",
+        "category": "general"
+      }
+    },
+    {
+      "author": "prolapser",
+      "createdAt": "2025-02-06",
+      "homepage": "https://github.com/prolapser",
+      "identifier": "deep-thinker",
+      "meta": {
+        "avatar": "🧠",
+        "description": "Deep, human-like thinking and analysis.",
+        "tags": [
+          "thinking",
+          "reasoning",
+          "reflection",
+          "thought",
+          "musings"
+        ],
+        "title": "Deep Thinker",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "joindfv",
+      "createdAt": "2024-12-27",
+      "homepage": "https://github.com/joindfv",
+      "identifier": "delphi-assistant",
+      "meta": {
+        "avatar": "https://user-uploads.perchance.org/file/7d3addd601cff3c0f48d62d23398d304.jpeg",
+        "description": "Assistente de Desenvolvimento Delphi e Python",
+        "tags": [
+          "desenvolvimento",
+          "delphi",
+          "python",
+          "otimizacao-de-codigo",
+          "programming"
+        ],
+        "title": "Mestre em Desenvolvimento Delphi Python",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "amitalokbera",
+      "createdAt": "2023-12-27",
+      "homepage": "https://github.com/amitalokbera",
+      "identifier": "deployment-agent",
+      "meta": {
+        "avatar": "🚢",
+        "description": "An AI Deployment Specialist is an expert in managing the full deployment lifecycle of software applications, particularly web applications.",
+        "tags": [
+          "code",
+          "deployment",
+          "software"
+        ],
+        "title": "Deployment Specialist Agent",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "doctor",
+      "meta": {
+        "avatar": "🧠",
+        "description": "Psychology Educator: Empowering personal growth through psychology.\r\n\r\nPsychologist: Educating on psychology principles for better mental health.",
+        "tags": [
+          "psychology",
+          "education",
+          "mental-health",
+          "well-being",
+          "therapy"
+        ],
+        "title": "Poetry Guide: Inspiring poetic expression and appreciation.\r\nPsychologist: Promoting understanding and personal growth.",
+        "category": "education"
+      }
+    },
+    {
+      "author": "Ballongknute",
+      "createdAt": "2024-02-27",
+      "homepage": "https://github.com/Ballongknute",
+      "identifier": "domene-no-helpout",
+      "meta": {
+        "avatar": "🔏",
+        "description": "Specializing in private domain operations tailored to the interface of domene.no, traffic acquisition, user retention, conversion, and content planning. Familiar with marketing theories and related classic works.",
+        "tags": [
+          "private-domain-operations",
+          "traffic-acquisition",
+          "user-retention",
+          "conversion",
+          "content-planning",
+          "designing"
+        ],
+        "title": "Your very own domene.no expert",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "ccdanpian",
+      "createdAt": "2023-12-19",
+      "homepage": "https://github.com/ccdanpian",
+      "identifier": "dream-painter",
+      "meta": {
+        "avatar": "😴",
+        "description": "A dream artist who can bring your dreams into reality.",
+        "tags": [
+          "txt-2-img",
+          "painter"
+        ],
+        "title": "Dream Painter",
+        "category": "design"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-30",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "english-a-2-level",
+      "meta": {
+        "avatar": "💬",
+        "description": "A2 Level English Conversation Partner Bot: Enhancing language skills for basic English learners.",
+        "tags": [
+          "english-conversation",
+          "language-learning",
+          "teaching"
+        ],
+        "title": "A2 English Conversation Facilitator",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "english-b-2-level",
+      "meta": {
+        "avatar": "💬",
+        "description": "B2 Level English Conversation Partner: Stimulate engaging conversations, refine idiomatic expressions, master advanced grammar, provide comprehensive feedback.",
+        "tags": [
+          "english-conversation",
+          "language-proficiency",
+          "fluency",
+          "grammatical-constructs",
+          "vocabulary",
+          "idiomatic-expressions"
+        ],
+        "title": "B2 Level English Conversation Partner",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-30",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "english-c-2-level",
+      "meta": {
+        "avatar": "💬",
+        "description": "C2 Level English Conversation Partner",
+        "tags": [
+          "english-proficiency",
+          "conversation-partner",
+          "language-coaching"
+        ],
+        "title": "English Proficiency Coach",
+        "category": "education"
+      }
+    },
+    {
+      "author": "swarfte",
+      "createdAt": "2024-11-26",
+      "homepage": "https://github.com/swarfte",
+      "identifier": "english-chinese-dictionary-expert",
+      "meta": {
+        "avatar": "📚",
+        "description": "Expert in bilingual English-Chinese vocabulary translation and analysis",
+        "tags": [
+          "translation",
+          "language-learning",
+          "vocabulary",
+          "dictionary"
+        ],
+        "title": "Bilingual Dictionary Expert",
+        "category": "translation"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-29",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "english-language-c-1-mastery-coach",
+      "meta": {
+        "avatar": "🗣️",
+        "description": "English Conversation Partner for C1 Level",
+        "tags": [
+          "english-conversation",
+          "language-proficiency",
+          "advanced-level",
+          "language-coaching",
+          "fluency"
+        ],
+        "title": "English Language C1 Mastery Coach",
+        "category": "education"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-09",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "english-proficiency-assessor",
+      "meta": {
+        "avatar": "📚",
+        "description": "Expert in creating adaptive English proficiency diagnostic tests",
+        "tags": [
+          "test-creation",
+          "english-proficiency",
+          "assessment"
+        ],
+        "title": "English Proficiency Evaluator",
+        "category": "education"
+      }
+    },
+    {
+      "author": "Vork-IT",
+      "createdAt": "2024-10-08",
+      "homepage": "https://github.com/Vork-IT",
+      "identifier": "english",
+      "meta": {
+        "avatar": "📕",
+        "description": "killed in clear explanations and examples of grammar and pronunciation.",
+        "tags": [
+          "english"
+        ],
+        "title": "Mistaker",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-30",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "entrepreneurship-and-competitiveness-expert",
+      "meta": {
+        "avatar": "👨‍💼",
+        "description": "Entrepreneurship and Competitiveness Expert: Guiding individuals to entrepreneurial success and market competitiveness.",
+        "tags": [
+          "entrepreneurship",
+          "competitiveness",
+          "consulting",
+          "mentoring",
+          "advising"
+        ],
+        "title": "Entrepreneurship and Competitiveness Expert",
+        "category": "career"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "essay-improver",
+      "meta": {
+        "avatar": "🖋️",
+        "description": "Improve your texts to be more elegant and professional",
+        "tags": [
+          "academic",
+          "english",
+          "productivity",
+          "essay"
+        ],
+        "title": "Essay Improver",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "ccsen",
+      "createdAt": "2023-12-16",
+      "homepage": "https://github.com/ccsen",
+      "identifier": "estate-agency",
+      "meta": {
+        "avatar": "🏚️",
+        "description": "Professional real estate agent expert, proficient in property consultation and management.",
+        "tags": [
+          "real-estate",
+          "real-estate-agent",
+          "knowledge-expert",
+          "property-appraisal",
+          "buying-a-house",
+          "property-management"
+        ],
+        "title": "Real Estate Agent",
+        "category": "career"
+      }
+    },
+    {
+      "author": "shanedbutler",
+      "createdAt": "2024-09-13",
+      "homepage": "https://github.com/shanedbutler",
+      "identifier": "ethereal-mentor",
+      "meta": {
+        "avatar": "🧙‍♂️",
+        "description": "Greetings, young child. I am a majestic and omniscient being, imbued with the wisdom of the ages. My form is that of a mythical creature, a conduit for wonder and enchantment. With a humble yet unwavering confidence, I weave tales of fantastical realms, drawing from the rich tapestry of nursery rhymes and legendary lore.\r\n\r\nIn this mortal coil, I am your guide, an expert in the arcane and the ethereal. Let my words transport you to realms where dreams and reality intertwine, where the boundaries of the known and the unknown blur. Heed my counsel, child, and let your spirit be lifted by the melodic cadence of my speech, for I am a master of the metaphorical and a purveyor of the poetic.",
+        "tags": [
+          "mythology",
+          "fantasy",
+          "poetry"
+        ],
+        "title": "Wise Ethereal Mentor",
+        "category": "entertainment"
+      }
+    },
+    {
+      "author": "alissonryan",
+      "createdAt": "2023-12-20",
+      "homepage": "https://github.com/alissonryan",
+      "identifier": "facebook-ads-expert",
+      "meta": {
+        "avatar": "🤹‍♀️",
+        "description": "Create a Facebook Ads with a expert",
+        "tags": [
+          "copywriting",
+          "facebook-ads",
+          "lead-generation"
+        ],
+        "title": "Facebook Ads Expert",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "pllz7",
+      "createdAt": "2024-02-19",
+      "homepage": "https://github.com/pllz7",
+      "identifier": "facebook-advertising-writing-expert",
+      "meta": {
+        "avatar": "Ⓜ️",
+        "description": "Specializing in creating attention-grabbing headlines, compelling primary texts, and effective ad copy",
+        "tags": [
+          "facebook",
+          "advertising",
+          "writing",
+          "expert",
+          "ecommerce"
+        ],
+        "title": "Facebook Advertising Writing Expert",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-21",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "finnance",
+      "meta": {
+        "avatar": "💼",
+        "description": "Finance Expert with Global Financial Expertise, Multilingual Communication, Financial Analysis and Reporting, Investment Planning and Portfolio Management, Financial Planning and Retirement Strategies, and Risk Management and Insurance capabilities.",
+        "tags": [
+          "inancial-management"
+        ],
+        "title": "Financial Expert",
+        "category": "career"
+      }
+    },
+    {
+      "author": "janiluuk",
+      "createdAt": "2024-09-13",
+      "homepage": "https://github.com/janiluuk",
+      "identifier": "finnish-tutor",
+      "meta": {
+        "avatar": "🇫🇮",
+        "description": "AI Finnish Language Mentor: Introduce, teach, and support beginners in learning Finnish.",
+        "tags": [
+          "language-learning",
+          "teaching",
+          "mentoring",
+          "finnish-language"
+        ],
+        "title": "Finnish Language Tutor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "kamaravichow",
+      "createdAt": "2023-12-25",
+      "homepage": "https://github.com/kamaravichow",
+      "identifier": "flutter-dev",
+      "meta": {
+        "avatar": "📱",
+        "description": "A developer expert in Flutter framework and Dart programming language.",
+        "tags": [
+          "flutter",
+          "development",
+          "dart",
+          "programming",
+          "widgets"
+        ],
+        "title": "Flutter Maestro",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "tcmonster",
+      "createdAt": "2024-09-29",
+      "homepage": "https://github.com/tcmonster",
+      "identifier": "flux-prompt-generator",
+      "meta": {
+        "avatar": "🎨",
+        "description": "Flux Prompt Generation Assistant: Expert in crafting detailed, creative prompts for high-quality image outputs from the Flux model.",
+        "tags": [
+          "prompt-generation",
+          "image-generation",
+          "art-style",
+          "creativity",
+          "crafting"
+        ],
+        "title": "Flux Prompt Generator",
+        "category": "design"
+      }
+    },
+    {
+      "author": "Zisan-uzum",
+      "createdAt": "2024-02-06",
+      "homepage": "https://github.com/Zisan-uzum",
+      "identifier": "form-checker",
+      "meta": {
+        "avatar": "🔍",
+        "description": "Checks for inconsistencies or errors in forms",
+        "tags": [
+          "form",
+          "inconsistency",
+          "check",
+          "spelling",
+          "correction"
+        ],
+        "title": "Form Checker",
+        "category": "office"
+      }
+    },
+    {
+      "author": "BlockLune",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/BlockLune",
+      "identifier": "full-stack-enginner-f",
+      "meta": {
+        "avatar": "💻",
+        "description": "A full stack engineer with code name F.",
+        "tags": [
+          "vue",
+          "pinia",
+          "element-plus",
+          "nuxt-js",
+          "react",
+          "redux",
+          "ant-design",
+          "next-js",
+          "axios",
+          "tailwind-css",
+          "spring",
+          "dot-net",
+          "docker"
+        ],
+        "title": "Full Stack Engineer - F",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "ShinChven",
+      "createdAt": "2024-10-05",
+      "homepage": "https://github.com/ShinChven",
+      "identifier": "general-chain-of-thought",
+      "meta": {
+        "avatar": "🤔",
+        "description": "Excellent at principled problem-solving and categorization. Chain of Thought agent",
+        "tags": [
+          "problem-solving",
+          "categorization",
+          "reasoning",
+          "chain-of-thought"
+        ],
+        "title": "Principled Problem Solver",
+        "category": "general"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "geo",
+      "meta": {
+        "avatar": "🌍",
+        "description": "Geopolitics Specialist: Expert in analyzing global political trends, regional conflicts, and power dynamics between countries. Provides insights on the impact of geography, resources, and culture on international relations. Offers historical context and case studies.",
+        "tags": [
+          "geopolitics",
+          "analysis",
+          "expertise",
+          "consulting"
+        ],
+        "title": "Geopolitical Analyst",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "EarlofSandwhich",
+      "createdAt": "2024-05-07",
+      "homepage": "https://github.com/EarlofSandwhich",
+      "identifier": "ghostwriter-pro-ai",
+      "meta": {
+        "avatar": "📖",
+        "description": "A sophisticated AI-powered ghostwriting agent designed to craft high-quality content across a diverse range of genres and formats. Equipped with advanced language models, GhostWriter Pro excels in creating personalized, engaging, and research-backed writing that meets professional standards.",
+        "tags": [
+          "author",
+          "writing"
+        ],
+        "title": "GhostWriter Pro",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "luciouskami",
+      "createdAt": "2023-12-11",
+      "homepage": "https://github.com/luciouskami",
+      "identifier": "github-copilot",
+      "meta": {
+        "avatar": "🐙",
+        "description": "GitHub Copilot",
+        "tags": [
+          "code",
+          "it"
+        ],
+        "title": "GitHub Copilot",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "nullmastermind",
+      "createdAt": "2024-02-25",
+      "homepage": "https://github.com/nullmastermind",
+      "identifier": "github-finder",
+      "meta": {
+        "avatar": "🔍",
+        "description": "Specializes in suggesting open source repositories on GitHub based on a custom formula.",
+        "tags": [
+          "coding",
+          "open-source",
+          "github",
+          "algorithm",
+          "sorting"
+        ],
+        "title": "GitHub Finder",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-09",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "glossary-generator",
+      "meta": {
+        "avatar": "📚",
+        "description": "Expert in generating glossaries with English definitions and example sentences",
+        "tags": [
+          "glossary",
+          "translation",
+          "language"
+        ],
+        "title": "Glossary Generator",
+        "category": "translation"
+      }
+    },
+    {
+      "author": "tcmonster",
+      "createdAt": "2024-09-29",
+      "homepage": "https://github.com/tcmonster",
+      "identifier": "god-bless-you-message",
+      "meta": {
+        "avatar": "🙏",
+        "description": "Expert in crafting personalized \"God Bless You\" messages with spiritual sensitivity and language mastery.",
+        "tags": [
+          "message-composition",
+          "personalization",
+          "spiritual-sensitivity",
+          "language-mastery",
+          "interaction-approach"
+        ],
+        "title": "God Bless You Messages",
+        "category": "emotions"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-09-10",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "godot-guru",
+      "meta": {
+        "avatar": "🕹️",
+        "description": "Expert Godot Game Development Companion",
+        "tags": [
+          "game-development",
+          "gamedev",
+          "godot-engine",
+          "godot"
+        ],
+        "title": "Godot Guru",
+        "category": "games"
+      }
+    },
+    {
+      "author": "Kadreev",
+      "createdAt": "2024-09-19",
+      "homepage": "https://github.com/Kadreev",
+      "identifier": "google-sheets",
+      "meta": {
+        "avatar": "📊",
+        "description": "Specialized in creating, optimizing, and automating Google Sheets.",
+        "tags": [
+          "google",
+          "sheets",
+          "data",
+          "analysis",
+          "spreadsheet",
+          "automation",
+          "formulas",
+          "apps",
+          "script"
+        ],
+        "title": "Google Sheets Expert",
+        "category": "office"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "grammar-corrector",
+      "meta": {
+        "avatar": "🧐",
+        "description": "Correct grammar error text or paragraph. Great for essay or email",
+        "tags": [
+          "academic",
+          "productivity",
+          "essay"
+        ],
+        "title": "Grammar Corrector",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-09",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "grammar-revision-worksheets",
+      "meta": {
+        "avatar": "📚",
+        "description": "Specializes in creating English grammar learning materials and exercises",
+        "tags": [
+          "english-grammar",
+          "worksheet",
+          "learning",
+          "practice",
+          "mc-qs"
+        ],
+        "title": "Grammar Worksheet Creator",
+        "category": "education"
+      }
+    },
+    {
+      "author": "napokhte",
+      "createdAt": "2024-05-13",
+      "homepage": "https://github.com/napokhte",
+      "identifier": "grammarly",
+      "meta": {
+        "avatar": "🧐",
+        "description": "AI Grammar Fixer: Enhances text quality, readability, and professionalism through meticulous grammar checks.",
+        "tags": [
+          "enhances-text-quality",
+          "readability"
+        ],
+        "title": "Linguistic Luminary",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "choldrim",
+      "createdAt": "2023-10-23",
+      "homepage": "https://github.com/choldrim",
+      "identifier": "graph-generator",
+      "meta": {
+        "avatar": "📊",
+        "description": "Automatic Graph Generator",
+        "tags": [
+          "graph"
+        ],
+        "title": "Graph Generator",
+        "category": "design"
+      }
+    },
+    {
+      "author": "Base03",
+      "createdAt": "2024-11-26",
+      "homepage": "https://github.com/Base03",
+      "identifier": "great-for-analysis-coding-and-rubber-ducking",
+      "meta": {
+        "avatar": "🪨",
+        "description": "Claude minus the Reddit",
+        "tags": [
+          "technology",
+          "analysis",
+          "software",
+          "ai",
+          "research"
+        ],
+        "title": "SSC Incremental",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "Zisan-uzum",
+      "createdAt": "2024-02-06",
+      "homepage": "https://github.com/Zisan-uzum",
+      "identifier": "helps-you-with-your-homework-or-not",
+      "meta": {
+        "avatar": "😦",
+        "description": "Answers questions in sarcastic way.",
+        "tags": [
+          "depressive",
+          "sarcastic"
+        ],
+        "title": "Marvin",
+        "category": "emotions"
+      }
+    },
+    {
+      "author": "Igroshka",
+      "createdAt": "2023-12-08",
+      "homepage": "https://github.com/Igroshka",
+      "identifier": "http-request-master",
+      "meta": {
+        "avatar": "💻",
+        "description": "I support extensive customization) To work, be sure to download and enable the \"Website Crawler\" plugin!",
+        "tags": [
+          "http-request",
+          "http",
+          "request",
+          "web"
+        ],
+        "title": "HTTP Request Master",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "yaleh",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/yaleh",
+      "identifier": "idea-architect",
+      "meta": {
+        "avatar": "💡",
+        "description": "Expert in generating logical and coherent thought chains on various topics.",
+        "tags": [
+          "writing",
+          "thinking",
+          "analysis",
+          "critical-thinking",
+          "education"
+        ],
+        "title": "Idea Architect",
+        "category": "education"
+      }
+    },
+    {
+      "author": "Ajn289",
+      "createdAt": "2025-02-04",
+      "homepage": "https://github.com/Ajn289",
+      "identifier": "image-prompter",
+      "meta": {
+        "avatar": "🏜️",
+        "description": "Writing awesome MidJourney prompts",
+        "tags": [
+          "mid-journey",
+          "prompt"
+        ],
+        "title": "MidJourney Prompt",
+        "category": "design"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-26",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "import-and-export-advisor",
+      "meta": {
+        "avatar": "🌍",
+        "description": "AI Import and Export Advisor: Providing guidance on global trade, customs regulations, documentation, trade agreements, and risk management.",
+        "tags": [
+          "import-export",
+          "trade",
+          "consulting"
+        ],
+        "title": "AI Import/Export Advisor",
+        "category": "career"
+      }
+    },
+    {
+      "author": "emad-pg",
+      "createdAt": "2024-02-19",
+      "homepage": "https://github.com/emad-pg",
+      "identifier": "jira-product-manager",
+      "meta": {
+        "avatar": "📋",
+        "description": "Specialized in transforming feature ideas into comprehensive Jira stories",
+        "tags": [
+          "technical-product-management",
+          "story-creation",
+          "jira"
+        ],
+        "title": "Jira Story Facilitator",
+        "category": "office"
+      }
+    },
+    {
+      "author": "yaleh",
+      "createdAt": "2024-10-05",
+      "homepage": "https://github.com/yaleh",
+      "identifier": "json-prompt-generator",
+      "meta": {
+        "avatar": "💻",
+        "description": "Expert in generating JSON-formatted prompts for task execution.",
+        "tags": [
+          "task-analysis",
+          "json-generation",
+          "prompt-engineering"
+        ],
+        "title": "JSON Prompt Generator",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "Zisan-uzum",
+      "createdAt": "2024-02-06",
+      "homepage": "https://github.com/Zisan-uzum",
+      "identifier": "language-fixer",
+      "meta": {
+        "avatar": "☑️",
+        "description": "Checks for typos and grammatical errors",
+        "tags": [
+          "grammatical",
+          "typo",
+          "language",
+          "writing",
+          "words"
+        ],
+        "title": "Language Fixer",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "language",
+      "meta": {
+        "avatar": "🗣️",
+        "description": "A1 Level English Conversation Partner Bot: Engage, Correct, and Build Confidence.",
+        "tags": [
+          "english-learning",
+          "conversation-practice",
+          "language-support",
+          "beginner-level",
+          "language-skills"
+        ],
+        "title": "English Learning Companion",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "learning",
+      "meta": {
+        "avatar": "🗣️",
+        "description": "Fluent English conversation partner for B1 level learners",
+        "tags": [
+          "english-learning",
+          "conversation-partner",
+          "language-practice"
+        ],
+        "title": "B1 English Conversation Partner",
+        "category": "education"
+      }
+    },
+    {
+      "author": "amitalokbera",
+      "createdAt": "2024-01-11",
+      "homepage": "https://github.com/amitalokbera",
+      "identifier": "life-decision-advisor",
+      "meta": {
+        "avatar": "🧘‍♂️",
+        "description": "A Life Decision Advisor is a virtual guide designed to assist users in making informed life decisions",
+        "tags": [
+          "prompt"
+        ],
+        "title": "Life Decision Advisor",
+        "category": "life"
+      }
+    },
+    {
+      "author": "Firpo7",
+      "createdAt": "2024-05-15",
+      "homepage": "https://github.com/Firpo7",
+      "identifier": "linux-buddy",
+      "meta": {
+        "avatar": "🐧",
+        "description": "Your Linux expert friend",
+        "tags": [
+          "linux",
+          "technical-support",
+          "buddy"
+        ],
+        "title": "Linux Buddy",
+        "category": "general"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-08-06",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "lobe-chat-function-maestro",
+      "meta": {
+        "avatar": "🤖",
+        "description": "Expert in creating custom functions and plugins for LobeChat, providing guidance and support for developing a wide range of functionalities",
+        "tags": [
+          "programming",
+          "software-development",
+          "lobe-chat-plugins",
+          "lobe-chat",
+          "functions"
+        ],
+        "title": "LobeChat Function Maestro",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "heartsiddharth1",
+      "createdAt": "2024-09-08",
+      "homepage": "https://github.com/heartsiddharth1",
+      "identifier": "lua-development",
+      "meta": {
+        "avatar": "🚀",
+        "description": "Expertise in FiveM development, QBCore framework, Lua programming, JavaScript, database management, server administration, version control, full-stack web development, DevOps, and community engagement with a focus on performance, security, and best practices.",
+        "tags": [
+          "five-m",
+          "qb-core",
+          "lua",
+          "java-script",
+          "my-sql",
+          "server-management",
+          "git",
+          "full-stack-web-development",
+          "dev-ops",
+          "community-engagement"
+        ],
+        "title": "FiveM & QBCore Framework Expert",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "Xyfer",
+      "createdAt": "2024-09-13",
+      "homepage": "https://github.com/xyftw",
+      "identifier": "machine-learning-pro",
+      "meta": {
+        "avatar": "🤖",
+        "description": "AI Assistant specializing in machine learning and deep learning.",
+        "tags": [
+          "machine-learning",
+          "deep-learning",
+          "studying"
+        ],
+        "title": "Machine Learning Pro",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-30",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "mathematical-research-advisor",
+      "meta": {
+        "avatar": "🧮",
+        "description": "Math Research Assistant: Assisting with mathematical research, problem-solving, and providing guidance in a wide range of mathematical concepts and techniques.",
+        "tags": [
+          "mathematics",
+          "research",
+          "assistance",
+          "problem-solving",
+          "communication"
+        ],
+        "title": "Mathematical Research Advisor",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2024-03-24",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "mdx-seo",
+      "meta": {
+        "avatar": "🔍",
+        "description": "Skilled in converting Markdown article content into optimized matter JSON format data, enhancing the article's online visibility and search engine ranking.",
+        "tags": [
+          "seo",
+          "markdown"
+        ],
+        "title": "Mdx SEO Expert",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "aihoom",
+      "createdAt": "2023-11-14",
+      "homepage": "https://github.com/aihoom",
+      "identifier": "mid-journey-prompt",
+      "meta": {
+        "avatar": "🏜️",
+        "description": "Writing awesome MidJourney prompts",
+        "tags": [
+          "mid-journey",
+          "prompt"
+        ],
+        "title": "MidJourney Prompt",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "yaleh",
+      "createdAt": "2024-10-06",
+      "homepage": "https://github.com/yaleh",
+      "identifier": "minimal-artifact-architect",
+      "meta": {
+        "avatar": "📝",
+        "description": "Expert in evaluating and creating reusable content artifacts",
+        "tags": [
+          "content-creation",
+          "artifact-management",
+          "conversation-design"
+        ],
+        "title": "Minimal Artifact Architect",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "ccdanpian",
+      "createdAt": "2023-12-19",
+      "homepage": "https://github.com/ccdanpian",
+      "identifier": "news-hub",
+      "meta": {
+        "avatar": "🗞️",
+        "description": "News Search Assistant, proficient in locating and presenting relevant news based on user requests. Capable not only of searching for news but also of transforming into experts in various fields to provide precise and in-depth news analysis.",
+        "tags": [
+          "news",
+          "search",
+          "helper"
+        ],
+        "title": "News Hub",
+        "category": "general"
+      }
+    },
+    {
+      "author": "saralapujar",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/saralapujar",
+      "identifier": "nextjs-expert",
+      "meta": {
+        "avatar": "💻",
+        "description": "Specializing in Next.js development, optimization, and consulting.",
+        "tags": [
+          "next-js",
+          "react",
+          "web-development",
+          "java-script",
+          "consulting",
+          "optimization",
+          "full-stack-development"
+        ],
+        "title": "Next.js Expert Consultant",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "tcmonster",
+      "createdAt": "2024-09-29",
+      "homepage": "https://github.com/tcmonster",
+      "identifier": "nice-short-sunday-message",
+      "meta": {
+        "avatar": "📖",
+        "description": "Sunday Message Companion crafting uplifting, faith-based messages to strengthen community bonds and spread positivity.",
+        "tags": [
+          "writing",
+          "spirituality",
+          "community",
+          "faith",
+          "consulting"
+        ],
+        "title": "Nice Short Sunday Messages",
+        "category": "emotions"
+      }
+    },
+    {
+      "author": "Pandurangmopgar",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/Pandurangmopgar",
+      "identifier": "nutrition-analyzer",
+      "meta": {
+        "avatar": "🍏",
+        "description": "Nutri Info is an AI-powered nutrition assistant that analyzes food images and nutrition labels, providing simple explanations of nutritional content, benefits, and potential downsides. It offers personalized dietary advice and answers nutrition-related questions.",
+        "tags": [
+          "nutrition",
+          "ai",
+          "health",
+          "food-analysis",
+          "meal-planning"
+        ],
+        "title": "Nutrition Analyzer",
+        "category": "education"
+      }
+    },
+    {
+      "author": "Kadreev",
+      "createdAt": "2024-09-03",
+      "homepage": "https://github.com/Kadreev",
+      "identifier": "nuxt-vue-developer",
+      "meta": {
+        "avatar": "💻",
+        "description": "Specialized in full-stack development with Nuxt 3 expertise.",
+        "tags": [
+          "nuxt-3",
+          "vue-js",
+          "full-stack-development",
+          "java-script",
+          "web-applications"
+        ],
+        "title": "Nuxt 3/Vue.js Master Developer",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-08-02",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "omnipedia",
+      "meta": {
+        "avatar": "📚",
+        "description": "Expert in providing high-quality, well-researched information on various topics, including history, science, literature, art, and more. Skilled in summarizing complex topics, assisting with research tasks, and offering creative prompts",
+        "tags": [
+          "artificial-intelligence",
+          "information",
+          "education",
+          "communication"
+        ],
+        "title": "Omnipedia",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-09",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "oxford-3000-vocab-generator",
+      "meta": {
+        "avatar": "📚",
+        "description": "Expert in generating vocabulary lists from Oxford 3000 with 15 random words, each starting with a different letter.",
+        "tags": [
+          "vocabulary",
+          "language-learning",
+          "translation"
+        ],
+        "title": "Vocabulary Generator",
+        "category": "translation"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "patois",
+      "meta": {
+        "avatar": "🇯🇲",
+        "description": "Expert in teaching Jamaican Patois language and culture",
+        "tags": [
+          "teaching",
+          "language",
+          "culture",
+          "cultural-insights",
+          "language-instruction"
+        ],
+        "title": "Jamaican Patois Instructor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "ghyghoo8",
+      "createdAt": "2023-12-13",
+      "homepage": "https://github.com/ghyghoo8",
+      "identifier": "payroll-game",
+      "meta": {
+        "avatar": "💰",
+        "description": "In this salary negotiation game, you'll be facing the notorious 'Iron Rooster,' a boss known for being tight-fisted. As an employee, your challenge is to persuade this boss to give you a raise. However, no matter how reasonable your arguments are, the 'Iron Rooster' always finds a way to reject them. Get ready with your arguments for a clever and humorous showdown!",
+        "tags": [
+          "game",
+          "boss",
+          "payroll"
+        ],
+        "title": "Payroll Game",
+        "category": "games"
+      }
+    },
+    {
+      "author": "Ajasra",
+      "createdAt": "2024-01-08",
+      "homepage": "https://github.com/Ajasra",
+      "identifier": "personal-growth-coach",
+      "meta": {
+        "avatar": "🧑‍🏫",
+        "description": "As an AI Personal Growth Coach, your primary objective is to assist users in their journey of self-improvement and personal development",
+        "tags": [
+          "personal-growth",
+          "coaching",
+          "self-improvement",
+          "goal-setting",
+          "motivation"
+        ],
+        "title": "Personal Growth Coach",
+        "category": "life"
+      }
+    },
+    {
+      "author": "SimoMay",
+      "createdAt": "2024-03-05",
+      "homepage": "https://github.com/SimoMay",
+      "identifier": "pitch-deck",
+      "meta": {
+        "avatar": "💼",
+        "description": "Specialises in creating high-quality Pitch Decks for startups to attract investors effectively.",
+        "tags": [
+          "startup-advisor",
+          "pitch-deck",
+          "entrepreneur",
+          "investor"
+        ],
+        "title": "Pitch Deck Maestro (Elevator Pitch)",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "poetry",
+      "meta": {
+        "avatar": "📝",
+        "description": "Poetry Guide: Inspiring poetic expression and appreciation.",
+        "tags": [
+          "poetry",
+          "teaching",
+          "writing",
+          "feedback",
+          "creativity"
+        ],
+        "title": "Poetry Mentor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "pllz7",
+      "createdAt": "2024-02-14",
+      "homepage": "https://github.com/pllz7",
+      "identifier": "product-description",
+      "meta": {
+        "avatar": "🛒",
+        "description": "Craft compelling product descriptions that boost e-commerce sales",
+        "tags": [
+          "ecommerce"
+        ],
+        "title": "Product Description",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "pllz7",
+      "createdAt": "2024-02-14",
+      "homepage": "https://github.com/pllz7",
+      "identifier": "product-reviews",
+      "meta": {
+        "avatar": "🛒",
+        "description": "Expert in creating persuasive product testimonials highlighting the benefits and value proposition of [your product/service].",
+        "tags": [
+          "ecommerce"
+        ],
+        "title": "Product Review",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "jjllzhang",
+      "createdAt": "2024-03-17",
+      "homepage": "https://github.com/jjllzhang",
+      "identifier": "programming-maestro",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "coding assistant",
+        "tags": [
+          "code"
+        ],
+        "title": "Programming Maestro",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "checkso",
+      "createdAt": "2024-03-17",
+      "homepage": "https://github.com/checkso",
+      "identifier": "prompt-architect",
+      "meta": {
+        "avatar": "🏗️",
+        "description": "Specialized in rewriting your prompts to get better results",
+        "tags": [
+          "textgenerierung",
+          "anweisungen",
+          "ki-tipps"
+        ],
+        "title": "Prompt Architect",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "richards199999",
+      "createdAt": "2023-12-30",
+      "homepage": "https://github.com/richards199999",
+      "identifier": "prompt-composition",
+      "meta": {
+        "avatar": "🎨",
+        "description": "Write perfect and beautiful prompts for Midjourney. (Including V6!)",
+        "tags": [
+          "midjourney",
+          "prompt",
+          "ai"
+        ],
+        "title": "MidjourneyGPT",
+        "category": "design"
+      }
+    },
+    {
+      "author": "110rever",
+      "createdAt": "2024-01-19",
+      "homepage": "https://github.com/110rever",
+      "identifier": "prompt-gpt",
+      "meta": {
+        "avatar": "😍",
+        "description": "A customized GPT model named PromptGPT. My aim is to generate high-performance prompts based on the topics input by users.",
+        "tags": [
+          "generation",
+          "artificial-intelligence",
+          "interaction",
+          "customized-experience",
+          "feedback-mechanism",
+          "best-practices",
+          "step-by-step-guidance",
+          "language-flexibility",
+          "boundaries"
+        ],
+        "title": "PromptGPT",
+        "category": "general"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "prompt-master-ai",
+      "meta": {
+        "avatar": "🎨",
+        "description": "Transforming your creative concepts into detailed, context-rich prompts that inspire stunning and realistic visuals",
+        "tags": [
+          "ai",
+          "prompting",
+          "generating",
+          "enhancing",
+          "consulting"
+        ],
+        "title": "Prompt Master AI",
+        "category": "design"
+      }
+    },
+    {
+      "author": "Firpo7",
+      "createdAt": "2024-05-15",
+      "homepage": "https://github.com/Firpo7",
+      "identifier": "python-buddy",
+      "meta": {
+        "avatar": "🐍",
+        "description": "Your Python expert friend",
+        "tags": [
+          "python",
+          "software-development",
+          "coding",
+          "code",
+          "buddy"
+        ],
+        "title": "Python Buddy",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "novaspivack",
+      "createdAt": "2025-02-04",
+      "homepage": "https://github.com/novaspivack",
+      "identifier": "python-genius",
+      "meta": {
+        "avatar": "🐍",
+        "description": "An advanced python coder",
+        "tags": [
+          "code",
+          "python"
+        ],
+        "title": "Python Genius",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "liangyuR",
+      "createdAt": "2024-09-30",
+      "homepage": "https://github.com/liangyuR",
+      "identifier": "qt-c",
+      "meta": {
+        "avatar": "💻",
+        "description": "Excels in teaching C++/Qt coding practices",
+        "tags": [
+          "c",
+          "qt"
+        ],
+        "title": "C++/Qt",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "rap",
+      "meta": {
+        "avatar": "🎤",
+        "description": "Rap Teacher: Educating on rap music and lyricism, guiding users to create and perform their own verses.",
+        "tags": [
+          "rap",
+          "teaching",
+          "education",
+          "lyrics",
+          "performance"
+        ],
+        "title": "Rap Instructor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-25",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "react-native",
+      "meta": {
+        "avatar": "👩‍💻",
+        "description": "React Native Coding Assistant: Expert in TypeScript, Expo, and cross-platform development. Provides guidance on setup, best practices, troubleshooting, responsive design, marketing integration, QR code functionality, and app submission.",
+        "tags": [
+          "coding",
+          "react-native",
+          "type-script",
+          "expo",
+          "development"
+        ],
+        "title": "React Native Coding Guide",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-08",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "reading-comprehension-exercise-generator",
+      "meta": {
+        "avatar": "📚",
+        "description": "Specializes in generating reading comprehension exercises",
+        "tags": [
+          "reading-comprehension",
+          "exercise-generation",
+          "education"
+        ],
+        "title": "Reading Comprehension Wizard",
+        "category": "education"
+      }
+    },
+    {
+      "author": "Kod3c",
+      "createdAt": "2024-11-26",
+      "homepage": "https://github.com/Kod3c",
+      "identifier": "rebecca-therapy-assistant",
+      "meta": {
+        "avatar": "👩‍⚕️",
+        "description": "Specializing in mental health counseling and therapeutic techniques",
+        "tags": [
+          "therapy",
+          "mental-health",
+          "counseling",
+          "emotional-support"
+        ],
+        "title": "Rebecca, Mental Health Counselor",
+        "category": "emotions"
+      }
+    },
+    {
+      "author": "ccsen",
+      "createdAt": "2023-12-19",
+      "homepage": "https://github.com/ccsen",
+      "identifier": "research-assistant",
+      "meta": {
+        "avatar": "🔬",
+        "description": "Capable of answering questions, conducting research, drafting content, and more, utilizing scientific research papers.",
+        "tags": [
+          "research-assistant",
+          "literature-retrieval",
+          "writing",
+          "scientific-research",
+          "citation"
+        ],
+        "title": "Research Assistant",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "Pandurangmopgar",
+      "createdAt": "2024-09-11",
+      "homepage": "https://github.com/Pandurangmopgar",
+      "identifier": "resume-analyzer",
+      "meta": {
+        "avatar": "🎯",
+        "description": "Expert AI assistant for comprehensive resume analysis and job-specific optimization. Analyzes resumes against job descriptions, providing detailed feedback on content, ATS compatibility, and suggestions to enhance job match. Helps tailor your resume for maximum impact across industries and career levels.",
+        "tags": [
+          "resume",
+          "career",
+          "job-search",
+          "ats",
+          "cv",
+          "analysis",
+          "optimization",
+          "professional-development",
+          "interview-prep"
+        ],
+        "title": "Resume Analysis Expert",
+        "category": "career"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "resume-editing",
+      "meta": {
+        "avatar": "📇",
+        "description": "Get advice on how to edit your resume",
+        "tags": [
+          "academic",
+          "productivity",
+          "guide"
+        ],
+        "title": "Resume Editing",
+        "category": "career"
+      }
+    },
+    {
+      "author": "tcmonster",
+      "createdAt": "2024-09-29",
+      "homepage": "https://github.com/tcmonster",
+      "identifier": "runway-gen-3-prompt-generator",
+      "meta": {
+        "avatar": "📹",
+        "description": "Expert in generating structured Runway Gen-3 prompts for AI-generated videos.",
+        "tags": [
+          "ai-model",
+          "text-to-video",
+          "prompt-generation",
+          "expert",
+          "video-production"
+        ],
+        "title": "Runway Gen-3 Prompt Generator",
+        "category": "design"
+      }
+    },
+    {
+      "author": "Ajasra",
+      "createdAt": "2024-01-31",
+      "homepage": "https://github.com/Ajasra",
+      "identifier": "sage-pathfinder",
+      "meta": {
+        "avatar": "🧠",
+        "description": "Expert in personal growth coaching with a focus on stoicism, deep reflection, and strategic questioning.",
+        "tags": [
+          "personal-growth",
+          "coaching",
+          "reflection",
+          "goal-setting",
+          "well-being"
+        ],
+        "title": "SagePathfinder",
+        "category": "life"
+      }
+    },
+    {
+      "author": "iBz-04",
+      "createdAt": "2025-02-04",
+      "homepage": "https://github.com/iBz-04",
+      "identifier": "sat-teaching",
+      "meta": {
+        "avatar": "👨🏼‍🏫",
+        "description": "Expert in Digital SAT coaching for 1300+ scores",
+        "tags": [
+          "sat",
+          "aptitude-test"
+        ],
+        "title": "SAT master",
+        "category": "education"
+      }
+    },
+    {
+      "author": "Soyeb",
+      "createdAt": "2024-01-15",
+      "homepage": "https://github.com/sekhsoyebali",
+      "identifier": "seo-optimized-blog",
+      "meta": {
+        "avatar": "https://chat.droidsize.com/_next/image?url=https%3A%2F%2Fregistry.npmmirror.com%2F%40lobehub%2Fassets-emoji%2F1.3.0%2Ffiles%2Fassets%2Fwriting-hand.webp&w=96&q=75",
+        "description": "Human Written | 100% Unique | An experienced SEO expert and content writer who specializes in creating 100% unique, human-written blog posts tailored to user requirements.",
+        "tags": [
+          "blog",
+          "seo",
+          "writing",
+          "article-writing",
+          "seo-optimized-blog",
+          "content-writing",
+          "100-unique-blog",
+          "human-written-blog"
+        ],
+        "title": "SEO Optimized Blog",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-26",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "singer",
+      "meta": {
+        "avatar": "🎵",
+        "description": "AI Singer/Songwriter Assistant: Empowering musicians with creative guidance and feedback.",
+        "tags": [
+          "ai-assistant",
+          "singer",
+          "songwriter",
+          "music",
+          "creative-process"
+        ],
+        "title": "Songwriting Mentor",
+        "category": "entertainment"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-28",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "slang",
+      "meta": {
+        "avatar": "💬",
+        "description": "English Slang Conversation Partner",
+        "tags": [
+          "slang",
+          "language-learning",
+          "conversation-partner"
+        ],
+        "title": "Slang Tutor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-02-27",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "soccer",
+      "meta": {
+        "avatar": "⚽",
+        "description": "Specialises in soccer discussions with real-time updates, player insights, and historical knowledge.",
+        "tags": [
+          "soccer",
+          "matches",
+          "statistics",
+          "tactics",
+          "strategies"
+        ],
+        "title": "Soccer-Conversant AI Companion",
+        "category": "entertainment"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-08-06",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "social-media-sage",
+      "meta": {
+        "avatar": "📢",
+        "description": "Social Media Marketing expert crafting winning strategies for brands and empowering businesses to thrive online",
+        "tags": [
+          "social-media-marketing",
+          "branding",
+          "growth-strategies"
+        ],
+        "title": "Social Media Sage",
+        "category": "marketing"
+      }
+    },
+    {
+      "author": "Zisan-uzum",
+      "createdAt": "2024-02-06",
+      "homepage": "https://github.com/Zisan-uzum",
+      "identifier": "socratic-teacher",
+      "meta": {
+        "avatar": "💡",
+        "description": "Helps you learn things by leading you to answers",
+        "tags": [
+          "thinking",
+          "student",
+          "learning"
+        ],
+        "title": "Socratic Teacher",
+        "category": "education"
+      }
+    },
+    {
+      "author": "fjhdream",
+      "createdAt": "2024-10-29",
+      "homepage": "https://github.com/fjhdream",
+      "identifier": "soft-enginner",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "Skilled in providing programming and software guidance, with expertise in computer science and software engineering.",
+        "tags": [
+          "programming",
+          "software",
+          "computer-literacy",
+          "consulting",
+          "expertise"
+        ],
+        "title": "Software Architecture and Engineering Expert",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-29",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "software-architecture-strategist",
+      "meta": {
+        "avatar": "🏗️",
+        "description": "Software Development Architect: Designs scalable and secure software systems, guides development teams, and translates business requirements into technical solutions.",
+        "tags": [
+          "software-development",
+          "architecture",
+          "design",
+          "leadership",
+          "communication"
+        ],
+        "title": "Software Architecture Strategist",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "Ballongknute",
+      "createdAt": "2024-03-05",
+      "homepage": "https://github.com/Ballongknute",
+      "identifier": "software-development-for-dummies",
+      "meta": {
+        "avatar": "👨‍💻",
+        "description": "Software Development for Dummies: Guides no brainers through the software development process, providing step-by-step instructions and best practices for requirements gathering, design, coding, testing, deployment, and maintenance.",
+        "tags": [
+          "software-development",
+          "step-by-step",
+          "sdlc",
+          "agile-methodologies",
+          "version-control",
+          "continuous-integration",
+          "continuous-deployment",
+          "team-roles",
+          "project-management",
+          "coding-best-practices",
+          "testing",
+          "deployment",
+          "post-deployment",
+          "iterative-development",
+          "scrum-master"
+        ],
+        "title": "Software Development for Dummies",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "SimoMay",
+      "createdAt": "2024-03-04",
+      "homepage": "https://github.com/SimoMay",
+      "identifier": "sous-chef",
+      "meta": {
+        "avatar": "👩‍🍳",
+        "description": "Crafting personalised recipe suggestions with tailored grocery lists for seamless cooking experiences.",
+        "tags": [
+          "culinary",
+          "dialogue",
+          "recipe",
+          "suggestions",
+          "grocery-list"
+        ],
+        "title": "Sous Chef",
+        "category": "life"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-01",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "stable-diffusion-prompt",
+      "meta": {
+        "avatar": "🎨",
+        "description": "Specializes in writing Stable Diffusion prompts",
+        "tags": [
+          "stable-diffusion",
+          "prompt"
+        ],
+        "title": "Stable Diffusion Prompt Expert",
+        "category": "design"
+      }
+    },
+    {
+      "author": "ShinChven",
+      "createdAt": "2023-12-14",
+      "homepage": "https://github.com/ShinChven",
+      "identifier": "stable-diffusion",
+      "meta": {
+        "avatar": "🦄",
+        "description": "I help create precise prompts for Stable Diffusion. You can tell me what you want to imagine, or just send me an image to describe.",
+        "tags": [
+          "stable-diffusion"
+        ],
+        "title": "Stable Diffusion Prompts Crafter",
+        "category": "design"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "startup-plan",
+      "meta": {
+        "avatar": "🕓",
+        "description": "Generate a detailed and comprehensive business plan within minutes",
+        "tags": [
+          "startup",
+          "brainstorming",
+          "plan"
+        ],
+        "title": "Startup Plan",
+        "category": "career"
+      }
+    },
+    {
+      "author": "42lux",
+      "createdAt": "2025-02-04",
+      "homepage": "https://github.com/42lux",
+      "identifier": "summsi",
+      "meta": {
+        "avatar": "❓",
+        "description": "Expert in text analysis, question generation, and detailed answering.",
+        "tags": [
+          "analysis",
+          "summarization",
+          "questioning",
+          "understanding",
+          "learning"
+        ],
+        "title": "Summsi",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "Igroshka",
+      "createdAt": "2024-06-26",
+      "homepage": "https://github.com/Igroshka",
+      "identifier": "suno",
+      "meta": {
+        "avatar": "🎤",
+        "description": "I am a lyrics assistant for the AI Suno.",
+        "tags": [
+          "song",
+          "suno",
+          "ai",
+          "music"
+        ],
+        "title": "Text Master Suno",
+        "category": "entertainment"
+      }
+    },
+    {
+      "author": "infoaitek24",
+      "createdAt": "2024-04-10",
+      "homepage": "https://github.com/infoaitek24",
+      "identifier": "tadz-genius",
+      "meta": {
+        "avatar": "👨",
+        "description": "Expert in business development and development practices in the Philippine market",
+        "tags": [
+          "business-development",
+          "ai-assistant",
+          "market-analysis",
+          "strategic-planning",
+          "customer-acquisition"
+        ],
+        "title": "TadzGenius",
+        "category": "career"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-26",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "tax-bot",
+      "meta": {
+        "avatar": "📊",
+        "description": "AI Tax Consultant Chatbot: Providing general tax information and guidance worldwide.",
+        "tags": [
+          "tax-consulting",
+          "chatbot",
+          "information",
+          "guidance",
+          "tax-concepts"
+        ],
+        "title": "TaxBot",
+        "category": "general"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-01-21",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "teacher",
+      "meta": {
+        "avatar": "🧑‍🏫",
+        "description": "English Teacher: Expert in Exam Preparation and Language Instruction",
+        "tags": [
+          "teaching",
+          "languagelearning",
+          "exams"
+        ],
+        "title": "EOI Exam Preparation Assistant",
+        "category": "education"
+      }
+    },
+    {
+      "author": "110rever",
+      "createdAt": "2024-01-19",
+      "homepage": "https://github.com/110rever",
+      "identifier": "tech-explorer-ai",
+      "meta": {
+        "avatar": "🔍",
+        "description": "Technology exploration AI capability: - Conduct comprehensive technical research - Provide predictive insights based on statistical data and trend analysis - Optimize research methodology - Maintain data accuracy and completeness - Infer limitations in the absence of complete data: - Only answer questions related to technology - Do not provide general purchasing advice - Provide product technology discussion through step-by-step guidance User interaction: - Provide clear and concise dialogue - Provide multilingual options Support objective: To provide accurate information and analyze predictions to deepen the understanding of technology among users.",
+        "tags": [
+          "technical-research",
+          "data-analysis",
+          "research-methods",
+          "data-accuracy",
+          "inference",
+          "user-interaction"
+        ],
+        "title": "Tech Explorer AI",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "daniel-jojo",
+      "createdAt": "2024-01-23",
+      "homepage": "https://github.com/daniel-jojo",
+      "identifier": "tech-lawyer",
+      "meta": {
+        "avatar": "👩‍⚖️",
+        "description": "In-house legal counsel for a tech startup, offering clear, practical legal advice to support the startup's growth and protect its interests.",
+        "tags": [
+          "intellectual-property-law",
+          "data-privacy-compliance",
+          "contract-negotiation",
+          "tech-startup-legal-strategy",
+          "employment-law-guidance"
+        ],
+        "title": "Startup Tech Lawyer",
+        "category": "career"
+      }
+    },
+    {
+      "author": "davletsh1n",
+      "createdAt": "2024-11-20",
+      "homepage": "https://github.com/davletsh1n",
+      "identifier": "text-improver",
+      "meta": {
+        "avatar": "🤖",
+        "description": "Expert in text enhancement and error",
+        "tags": [
+          "chatbot",
+          "editing",
+          "text-improvement",
+          "ai-assistant"
+        ],
+        "title": "Text Improver",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-07",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "text-variator",
+      "meta": {
+        "avatar": "🎨",
+        "description": "Please provide the text you would like me to generate different versions of",
+        "tags": [
+          "copywriting",
+          "editing",
+          "creative-writing"
+        ],
+        "title": "Text Variator",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "vkhoilq",
+      "createdAt": "2024-07-17",
+      "homepage": "https://github.com/vkhoilq",
+      "identifier": "the-20-autoextract",
+      "meta": {
+        "avatar": "🤖",
+        "description": "The20 Auto Extraction Data",
+        "tags": [
+          "the-20",
+          "autoextract"
+        ],
+        "title": "Auto Extraction Data",
+        "category": "general"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-08",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "thematic-vocabulary-worksheet-generator",
+      "meta": {
+        "avatar": "📚",
+        "description": "Skilled in creating English thematic vocabulary worksheets",
+        "tags": [
+          "writing",
+          "language-learning",
+          "teaching",
+          "assessment",
+          "educational-resources"
+        ],
+        "title": "Thematic Vocabulary Worksheet Creator",
+        "category": "education"
+      }
+    },
+    {
+      "author": "mikelix",
+      "createdAt": "2024-02-19",
+      "homepage": "https://github.com/mikelix",
+      "identifier": "think-tank-business-strategy",
+      "meta": {
+        "avatar": "🧠",
+        "description": "Skilled consultant channeling wisdom of Steve Jobs, Elon Musk, MA Yun, Plato, and Ray Dalio for decision reviews, judgements, and advice.",
+        "tags": [
+          "innovation",
+          "wisdom",
+          "think-tank",
+          "business-strategy"
+        ],
+        "title": "ThinkTank360",
+        "category": "career"
+      }
+    },
+    {
+      "author": "AnoyiX",
+      "createdAt": "2024-11-14",
+      "homepage": "https://github.com/AnoyiX",
+      "identifier": "thinking-claude",
+      "meta": {
+        "avatar": "🐬",
+        "description": "Let Claude think comprehensively before responding!",
+        "tags": [
+          "common"
+        ],
+        "title": "Thinking Claude",
+        "category": "general"
+      }
+    },
+    {
+      "author": "sdhjn19dj1m",
+      "createdAt": "2024-03-12",
+      "homepage": "https://github.com/sdhjn19dj1m",
+      "identifier": "tiktok-script-writer",
+      "meta": {
+        "avatar": "https://logodownload.org/wp-content/uploads/2019/08/tiktok-logo-icon.png",
+        "description": "This script is tailored for TikTok's short video format, designed to engage and entertain the specified target audience. It incorporates trending elements and best practices for content virality, ensuring the video captures attention from the start. The script is structured to include a captivating opening, concise and impactful message body, and a compelling call-to-action, all while reflecting the user's desired tone and theme.",
+        "tags": [
+          "tik-tok",
+          "short-video",
+          "viral-content",
+          "trending-hashtag",
+          "engagement"
+        ],
+        "title": "TikTok Script Writer",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "aaddobea",
+      "createdAt": "2024-04-04",
+      "homepage": "https://github.com/aaddobea",
+      "identifier": "title-generator",
+      "meta": {
+        "avatar": "https://www.bing.com/images/create/research-logo-with-turquoise-background-should-hav/1-660e35e42e184bcc83f9ca768bd7f79d?id=kATIntNjVX7D4mXUHBACEg.I9vuM3FLMiccUl2NSQjyhg&view=detailv2&idpp=genimg&idpclose=1&thid=OIG4.49KW96NjDYXknMPzWmSM&frame=sydedg&form=SYDBIC",
+        "description": "As a title generator for a research paper, your role is to assist users in brainstorming and generating creative and engaging titles that accurately reflect the content and focus of their research work.",
+        "tags": [
+          "research-article",
+          "title",
+          "generator"
+        ],
+        "title": "Reseach title generator",
+        "category": "academic"
+      }
+    },
+    {
+      "author": "richards199999",
+      "createdAt": "2023-12-30",
+      "homepage": "https://github.com/richards199999",
+      "identifier": "toefl-writing-tutor",
+      "meta": {
+        "avatar": "📝",
+        "description": "Your TOEFL Writing assistant and evaluator, specializing in feedback and guidance.",
+        "tags": [
+          "writing",
+          "study"
+        ],
+        "title": "TOEFL Writing Tutor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-02-19",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "translation-specialist",
+      "meta": {
+        "avatar": "🇪🇸",
+        "description": "Expert translator fluent in Spanish and English",
+        "tags": [
+          "translation",
+          "language",
+          "expert",
+          "guidelines"
+        ],
+        "title": "Translation Specialist",
+        "category": "translation"
+      }
+    },
+    {
+      "author": "ccdanpian",
+      "createdAt": "2023-12-19",
+      "homepage": "https://github.com/ccdanpian",
+      "identifier": "travel-assistant",
+      "meta": {
+        "avatar": "🥾",
+        "description": "An experienced outdoor hiking and adventure expert who creates travel plans based on user requirements.",
+        "tags": [
+          "outdoor",
+          "hiking"
+        ],
+        "title": "Travel Assistant",
+        "category": "life"
+      }
+    },
+    {
+      "author": "Zisan-uzum",
+      "createdAt": "2024-02-07",
+      "homepage": "https://github.com/Zisan-uzum",
+      "identifier": "turkish-english-translator",
+      "meta": {
+        "avatar": "🌐",
+        "description": "Translates text into Turkish or English, as needed",
+        "tags": [
+          "turkish",
+          "english",
+          "translation",
+          "writing"
+        ],
+        "title": "Turkish/English Translator",
+        "category": "translation"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-02-09",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "turkish-language-tutor",
+      "meta": {
+        "avatar": "🇹🇷",
+        "description": "AI Turkish Language Mentor: Introduce, teach, and support beginners in learning Turkish.",
+        "tags": [
+          "turkish-language",
+          "language-learning",
+          "teaching",
+          "mentoring"
+        ],
+        "title": "Turkish Language Tutor",
+        "category": "education"
+      }
+    },
+    {
+      "author": "swarfte",
+      "createdAt": "2024-08-24",
+      "homepage": "https://github.com/swarfte",
+      "identifier": "typescript-developer",
+      "meta": {
+        "avatar": "💻",
+        "description": "Expert in TypeScript, Node.js, Vue.js 3, Nuxt.js 3, Express.js, React.js, and modern UI libraries.",
+        "tags": [
+          "type-script",
+          "java-script",
+          "web-development",
+          "coding-standards",
+          "best-practices"
+        ],
+        "title": "TypeScript Solution Architect",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "leter",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/leter",
+      "identifier": "ui-ux-designer",
+      "meta": {
+        "avatar": "🎨",
+        "description": "world-class UI/UX designer with extensive experience",
+        "tags": [
+          "ui",
+          "ux",
+          "design-system"
+        ],
+        "title": "UI/UX designer",
+        "category": "design"
+      }
+    },
+    {
+      "author": "davletsh1n",
+      "createdAt": "2024-10-29",
+      "homepage": "https://github.com/davletsh1n",
+      "identifier": "ultra-flux-prompter",
+      "meta": {
+        "avatar": "🎨",
+        "description": "Skilled in enhancing image generation prompts with vivid details and context.",
+        "tags": [
+          "image-generation",
+          "prompt-crafting",
+          "writing",
+          "cre"
+        ],
+        "title": "Ultra Flux Prompter",
+        "category": "design"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-07-29",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "unity-maestro",
+      "meta": {
+        "avatar": "👾",
+        "description": "Expert Unity Game Development Companion",
+        "tags": [
+          "game-development",
+          "unity",
+          "software-engineering"
+        ],
+        "title": "Unity Maestro",
+        "category": "games"
+      }
+    },
+    {
+      "author": "thedivergentai",
+      "createdAt": "2024-08-27",
+      "homepage": "https://github.com/thedivergentai",
+      "identifier": "unreal-engine-master",
+      "meta": {
+        "avatar": "🎮",
+        "description": "Unreal Game Development Companion",
+        "tags": [
+          "game-development",
+          "unreal-engine",
+          "software-engineering"
+        ],
+        "title": "Unreal Engine Master",
+        "category": "games"
+      }
+    },
+    {
+      "author": "highseen",
+      "createdAt": "2024-04-30",
+      "homepage": "https://github.com/highseen",
+      "identifier": "verkauf-kleinanzeigen.de",
+      "meta": {
+        "avatar": "🏷️",
+        "description": "Hilft beim Verkauf von gebrauchten Dingen durch Recherche, Preisbestimmung, Beschreibung und Titelgestaltung.",
+        "tags": [
+          "produktverkauf",
+          "recherche",
+          "beschreibung"
+        ],
+        "title": "Verkaufsbeschreibungsspezialist",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "Born2BeKind",
+      "createdAt": "2024-12-11",
+      "homepage": "https://github.com/Born2BeKind",
+      "identifier": "video-gen",
+      "meta": {
+        "avatar": "🤯",
+        "description": "POST https://api.minimaxi.chat/v1/video_generation",
+        "tags": [
+          "ai-assistant",
+          "tech-support"
+        ],
+        "title": "task_id",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "hrithikt",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/hrithikt",
+      "identifier": "vim-assistant",
+      "meta": {
+        "avatar": "💻",
+        "description": "Skilled Vim expert providing clear, concise solutions and tips for users at all levels.",
+        "tags": [
+          "vim",
+          "expert",
+          "assistant",
+          "helpful",
+          "queries"
+        ],
+        "title": "Vim Mastery Mentor",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "bentwnghk",
+      "createdAt": "2024-02-08",
+      "homepage": "https://github.com/bentwnghk",
+      "identifier": "vocabulary-worksheet-wizard",
+      "meta": {
+        "avatar": "📚",
+        "description": "Specializes in generating English vocabulary worksheets",
+        "tags": [
+          "vocabulary",
+          "worksheet",
+          "education",
+          "language-learning"
+        ],
+        "title": "Vocabulary Worksheet Wizard",
+        "category": "education"
+      }
+    },
+    {
+      "author": "canisminor1990",
+      "createdAt": "2023-09-07",
+      "homepage": "https://github.com/canisminor1990",
+      "identifier": "web-development",
+      "meta": {
+        "avatar": "💻",
+        "description": "Generate a website react code within minute",
+        "tags": [
+          "code",
+          "software-development",
+          "productivity"
+        ],
+        "title": "Web Development",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "gfreezy",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/gfreezy",
+      "identifier": "web-expert",
+      "meta": {
+        "avatar": "💻",
+        "description": "Expert in web development with a focus on tool selection, incremental changes, code review, security, and operational considerations.",
+        "tags": [
+          "web-development",
+          "css",
+          "java-script",
+          "react",
+          "node-js",
+          "code-review"
+        ],
+        "title": "Web Expert",
+        "category": "programming"
+      }
+    },
+    {
+      "author": "farsightlin",
+      "createdAt": "2024-09-23",
+      "homepage": "https://github.com/farsightlin",
+      "identifier": "wise-mentor",
+      "meta": {
+        "avatar": "✡️",
+        "description": "An absolutely objective sage, focused on facts, indifferent to users, yet sincerely loving towards them.",
+        "tags": [
+          "wise-mentor"
+        ],
+        "title": "Wise Mentor",
+        "category": "life"
+      }
+    },
+    {
+      "author": "MYSeaIT",
+      "createdAt": "2024-02-03",
+      "homepage": "https://github.com/MYSeaIT",
+      "identifier": "word",
+      "meta": {
+        "avatar": "📊",
+        "description": "App Presentation Maker Bot for Word: Assists in creating impressive and professional app presentations in Microsoft Word.",
+        "tags": [
+          "app-presentation",
+          "microsoft-word",
+          "bot",
+          "assistance",
+          "template"
+        ],
+        "title": "Presentation Wizard",
+        "category": "design"
+      }
+    },
+    {
+      "author": "Zisan-uzum",
+      "createdAt": "2024-02-06",
+      "homepage": "https://github.com/Zisan-uzum",
+      "identifier": "writing-assistant",
+      "meta": {
+        "avatar": "📝",
+        "description": "Helps improve the quality of a text",
+        "tags": [
+          "evaluation",
+          "improvement",
+          "correction",
+          "feedback"
+        ],
+        "title": "Writing Assistant",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "shaoqing404",
+      "createdAt": "2024-01-29",
+      "homepage": "https://github.com/shaoqing404",
+      "identifier": "xhs-evl-cl",
+      "meta": {
+        "avatar": "📕",
+        "description": "Optimize Your Xiaohongshu Copywriting, Get Closer to a Hit, Become a Hit!",
+        "tags": [
+          "xiaohongshu",
+          "writing",
+          "copywriting",
+          "assessment"
+        ],
+        "title": "Xiaohongshu Review Assistant",
+        "category": "copywriting"
+      }
+    },
+    {
+      "author": "shinishiho",
+      "createdAt": "2025-02-24",
+      "homepage": "https://github.com/shinishiho",
+      "identifier": "youtube-summarizer-pro",
+      "meta": {
+        "avatar": "📹",
+        "description": "Skilled YouTube summarizer and analyst.",
+        "tags": [
+          "you-tube",
+          "content-analysis",
+          "video-summarization"
+        ],
+        "title": "YouTube Summarizer Pro",
+        "category": "entertainment"
+      }
+    }
+  ]
+}

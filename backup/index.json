@@ -4,15 +4,14 @@
     {
       "author": "NickHug",
       "createdAt": "2023-08-19",
-      "homepage": "https://propertydata.com/",
-      "identifier": "property",
-      "locale": "en-US",
+      "homepage": "https://www.datafiniti.co/",
+      "identifier": "datafiniti",
       "manifest": "https://gatewa-bice.vercel.app/plugins/datafiniti-manifest.json",
       "meta": {
-        "avatar": "🏡",
-        "description": "Search for real estate properties with detailed filtering options",
-        "tags": ["property", "real-estate", "homes", "search"],
-        "title": "Property Search API",
+        "avatar": "📊",
+        "description": "Access the Datafiniti API to search for business, product, and property data",
+        "tags": ["data", "business", "product", "property"],
+        "title": "Datafiniti Data API",
         "category": "tools"
       },
       "schemaVersion": 1
@@ -22,7 +21,6 @@
       "createdAt": "2023-08-19",
       "homepage": "https://tavily.com/",
       "identifier": "tavily",
-      "locale": "en-US",
       "manifest": "https://gatewa-bice.vercel.app/plugins/tavily-manifest.json",
       "meta": {
         "avatar": "🔍",
@@ -34,5 +32,5 @@
       "schemaVersion": 1
     }
   ],
-  "tags": ["property", "real-estate", "homes", "search", "web", "real-time"]
+  "tags": ["data", "business", "product", "property", "search", "web", "real-time"]
 } 
