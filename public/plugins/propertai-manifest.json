@@ -3,7 +3,7 @@
     {
       "name": "searchProperties",
       "description": "Search for real estate properties with various criteria like location, price, bedrooms, etc.",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
+      "url": "https://gatewa-bice.vercel.app/api/v1/propertai.ts",
       "parameters": {
         "type": "object",
         "required": ["query"],
@@ -48,7 +48,7 @@
     {
       "name": "getPropertyById",
       "description": "Get detailed information about a specific property by ID",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
+      "url": "https://gatewa-bice.vercel.app/api/v1/propertai.ts",
       "parameters": {
         "type": "object",
         "required": ["propertyId"],
@@ -63,7 +63,7 @@
     {
       "name": "getDownloadStatus",
       "description": "Get the status of a download",
-      "url": "https://gatewa-bice.vercel.app/api/v1/datafiniti.ts",
+      "url": "https://gatewa-bice.vercel.app/api/v1/propertai.ts",
       "parameters": {
         "type": "object",
         "required": ["downloadId"],
