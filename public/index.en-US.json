@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "plugins": [
     {
-      "author": "NickHug",
+      "author": "Propert AI",
       "createdAt": "2023-08-19",
       "homepage": "https://www.datafiniti.co/",
       "identifier": "propertai",
@@ -18,7 +18,7 @@
       "schemaVersion": 1
     },
     {
-      "author": "NickHug",
+      "author": "Propert AI",
       "createdAt": "2023-08-19",
       "homepage": "https://tavily.com/",
       "identifier": "tavily",

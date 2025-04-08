@@ -15,7 +15,7 @@ const extractAllTags = (plugins: any[]) => {
 // Convert legacy plugin format to Lobe Chat format
 const convertToLobeFormat = (plugins: any[]) => {
   return plugins.map((plugin) => ({
-    author: plugin.author || 'NickHug',
+    author: plugin.author || 'Propert AI',
     createdAt: plugin.createdAt || plugin.createAt,
     homepage: plugin.homepage,
     identifier: plugin.identifier,

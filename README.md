@@ -301,7 +301,7 @@ This fork includes custom plugins that require API keys.
 | -------------------- | -------- | --------------------------------- |
 | DATAFINITI_API_TOKEN | Yes      | Your Datafiniti API token         |
 | TAVILY_API_KEY       | Yes      | Your Tavily API key               |
-| PLUGINS_INDEX_URL    | No       | Custom plugins index URL (optional) |
+| PLUGINS_INDEX_URL    | No       | Custom plugins index URL (opt ional) |
 
 <div align="right">
 
