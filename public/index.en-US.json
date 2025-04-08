@@ -5,9 +5,9 @@
       "author": "NickHug",
       "createdAt": "2023-08-19",
       "homepage": "https://www.datafiniti.co/",
-      "identifier": "datafiniti",
+      "identifier": "propertai",
       "locale": "en-US",
-      "manifest": "https://gatewa-bice.vercel.app/plugins/datafiniti-manifest.json",
+      "manifest": "https://gatewa-bice.vercel.app/plugins/propertai-manifest.json",
       "meta": {
         "avatar": "📊",
         "description": "Access the Datafiniti API to search for business, product, and property data",
