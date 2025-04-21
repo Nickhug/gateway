@@ -141,13 +141,14 @@ const formatPropertyQuery = (query: string): string => {
   if (!query) return '';
   
   // Ensure boolean operators are uppercase with spaces
-  const formattedQuery = query
+  let formattedQuery = query
     .replace(/\b(and)\b/gi, 'AND')
     .replace(/\b(or)\b/gi, 'OR')
-    .replace(/\b(not)\b/gi, 'NOT')
-    
-    // Replace any 'prices' field with 'mostRecentPriceAmount'
-    .replace(/\bprices\s*:/gi, 'mostRecentPriceAmount:');
+    .replace(/\b(not)\b/gi, 'NOT');
+  
+  // Replace variations of 'prices.*:' with 'mostRecentPriceAmount:'
+  // Handles prices:, prices.amountMax:, prices.amountMin:, etc.
+  formattedQuery = formattedQuery.replace(/\bprices(\.\w+)?\s*:/gi, 'mostRecentPriceAmount:');
   
   return formattedQuery;
 };
