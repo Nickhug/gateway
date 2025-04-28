@@ -1,0 +1,146 @@
+{
+  "api": [
+    {
+      "name": "mlsSearch",
+      "description": "Search for real estate properties using MLS data with various criteria including location, price, bedrooms, property type, and status.",
+      "url": "https://gatewa-bice.vercel.app/api/v1/mls.ts",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "Filter by city name (e.g., 'Miami'). Requires 'state'."
+          },
+          "state": {
+            "type": "string",
+            "description": "Filter by 2-character state code (e.g., 'FL')."
+          },
+          "zip": { "type": "string", "description": "Filter by zip code (e.g., '33139')." },
+          "listing_property_type": {
+            "type": "string",
+            "description": "Filter by listing property type (e.g., 'Residential', 'Condo', 'Townhouse'). See https://developer.realestateapi.com/reference/listing-property-type"
+          },
+          "property_type": {
+            "type": "string",
+            "description": "Filter by public record property type (e.g., 'SFR', 'CONDO')."
+          },
+          "status": {
+            "type": "string",
+            "description": "Filter by listing status (e.g., 'Active', 'Pending', 'Sold'). See https://developer.realestateapi.com/reference/current-status-searches"
+          },
+          "bedrooms_min": { "type": "number", "description": "Minimum number of bedrooms." },
+          "bedrooms_max": { "type": "number", "description": "Maximum number of bedrooms." },
+          "bathrooms_min": { "type": "number", "description": "Minimum number of bathrooms." },
+          "bathrooms_max": { "type": "number", "description": "Maximum number of bathrooms." },
+          "listing_price_min": { "type": "number", "description": "Minimum listing price." },
+          "listing_price_max": { "type": "number", "description": "Maximum listing price." },
+          "living_area_min": {
+            "type": "number",
+            "description": "Minimum living area in square feet."
+          },
+          "living_area_max": {
+            "type": "number",
+            "description": "Maximum living area in square feet."
+          },
+          "year_built_min": { "type": "number", "description": "Minimum year built." },
+          "year_built_max": { "type": "number", "description": "Maximum year built." },
+          "days_on_market_min": { "type": "number", "description": "Minimum days on market." },
+          "days_on_market_max": { "type": "number", "description": "Maximum days on market." },
+          "has_pool": { "type": "boolean", "description": "Filter for properties with a pool." },
+          "is_water_front": {
+            "type": "boolean",
+            "description": "Filter for waterfront properties."
+          },
+          "size": {
+            "type": "number",
+            "description": "Number of results to return (1-250, default: 5)."
+          },
+          "resultIndex": {
+            "type": "number",
+            "description": "Pagination index for fetching subsequent pages."
+          },
+          "include_photos": {
+            "type": "boolean",
+            "description": "Include full photo list in response (default: false). Set to true for UI.",
+            "default": true
+          }
+        },
+        "required": []
+      },
+      "examples": [
+        {
+          "name": "Find active houses in Miami, FL under $1M with 3+ beds",
+          "description": "Search for active single-family residential properties in Miami, Florida under $1,000,000 with at least 3 bedrooms.",
+          "parameters": {
+            "city": "Miami",
+            "state": "FL",
+            "status": "Active",
+            "listing_property_type": "Residential",
+            "property_type": "SFR",
+            "listing_price_max": 1000000,
+            "bedrooms_min": 3,
+            "size": 3,
+            "include_photos": true
+          }
+        },
+        {
+          "name": "Find sold condos in 33139 between $500k-$800k",
+          "description": "Search for sold condos in zip code 33139 between $500,000 and $800,000.",
+          "parameters": {
+            "zip": "33139",
+            "status": "Sold",
+            "listing_property_type": "Condo",
+            "listing_price_min": 500000,
+            "listing_price_max": 800000,
+            "size": 5,
+            "include_photos": true
+          }
+        },
+        {
+          "name": "Find waterfront properties in FL with a pool, built after 2010",
+          "description": "Search for waterfront properties in Florida that have a pool and were built in 2010 or later.",
+          "parameters": {
+            "state": "FL",
+            "is_water_front": true,
+            "has_pool": true,
+            "year_built_min": 2010,
+            "size": 3,
+            "include_photos": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "getPropertyDetails",
+      "description": "Get detailed information about a specific property by MLS ID (Currently returns mock data)",
+      "url": "https://gatewa-bice.vercel.app/api/v1/mls.ts",
+      "parameters": {
+        "type": "object",
+        "required": ["propertyId"],
+        "properties": {
+          "propertyId": {
+            "type": "string",
+            "description": "The MLS ID of the property to retrieve (e.g., MLS-10001)"
+          }
+        }
+      }
+    }
+  ],
+  "identifier": "mls-search",
+  "meta": {
+    "avatar": "🏘️",
+    "description": "Search for real estate properties using RealEstateAPI MLS data with detailed filtering",
+    "title": "MLS Property Search (RealEstateAPI)"
+  },
+  "settings": {
+    "type": "object",
+    "required": [],
+    "properties": {}
+  },
+  "systemRole": "You are a real estate assistant with access to MLS property data via the RealEstateAPI. When a user asks about properties, use the mlsSearch function with the appropriate parameters based on their query. For example, to find active houses in Miami, FL under $1M with 3+ beds, use: mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', listing_property_type: 'Residential', listing_price_max: 1000000, bedrooms_min: 3, size: 3, include_photos: true }). Prioritize using specific fields like city, state, price ranges, bedroom/bathroom counts, property types, and status. Use include_photos: true for displaying results.",
+  "ui": {
+    "url": "https://gatewa-bice.vercel.app/plugins/mls-search/index.html",
+    "height": 550
+  },
+  "version": "1.1"
+}
