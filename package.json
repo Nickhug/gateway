@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "father build",
+    "build": "father build && npm run build:ui:mls-search",
     "build:ui:mls-search": "vite build",
     "build:watch": "father dev",
     "ci": "npm run lint && npm run type-check && npm run doctor",
