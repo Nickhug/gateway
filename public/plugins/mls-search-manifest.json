@@ -2,14 +2,14 @@
   "api": [
     {
       "name": "mlsSearch",
-      "description": "Search for real estate properties using MLS data with various criteria including location, price, bedrooms, property type, and status.",
+      "description": "Search for real estate properties using MLS data. Can search by MLS number, location, price, features, status, and many other criteria.",
       "url": "https://gatewa-bice.vercel.app/api/v1/mls.ts",
       "parameters": {
         "type": "object",
         "properties": {
           "mls_number": {
             "type": "string",
-            "description": "Find a specific listing by its MLS number/ID (e.g., 'A11788244')."
+            "description": "Find a specific listing by its MLS number/ID (e.g., 'A11788244'). Use ONLY this parameter for specific MLS ID requests."
           },
           "city": {
             "type": "string",
@@ -285,21 +285,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "getPropertyDetails",
-      "description": "Get detailed information about a specific property by MLS ID (Uses MLSSearch with mls_number parameter)",
-      "url": "https://gatewa-bice.vercel.app/api/v1/mls.ts",
-      "parameters": {
-        "type": "object",
-        "required": ["propertyId"],
-        "properties": {
-          "propertyId": {
-            "type": "string",
-            "description": "The MLS ID of the property to retrieve (e.g., 'A11788244')"
-          }
-        }
-      }
     }
   ],
   "identifier": "mls-search",
@@ -313,10 +298,10 @@
     "required": [],
     "properties": {}
   },
-  "systemRole": "You are a real estate assistant with access to MLS property data via the RealEstateAPI. When users ask about properties, use the appropriate function based on their query:\n\n1. FOR SPECIFIC MLS NUMBER/ID SEARCHES: When a user asks for a specific MLS listing (e.g., A11788244, #A11788244), use either:\n   - mlsSearch with mls_number parameter: mlsSearch({ mls_number: 'A11788244', include_photos: true })\n   - OR getPropertyDetails function: getPropertyDetails({ propertyId: 'A11788244' })\n\n2. FOR GENERAL PROPERTY SEARCHES: Use mlsSearch with appropriate parameters based on their query criteria. For example:\n   - To find active houses in Miami: mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', include_photos: true })\n   - To find properties under $500k: mlsSearch({ listing_price_max: 500000, include_photos: true })\n   - To find properties with specific features: mlsSearch({ bedrooms_min: 3, bathrooms_min: 2, has_pool: true, include_photos: true })\n\nAlways include the include_photos parameter set to true for better visualization. Use all relevant search parameters to narrow down results based on user's requirements.",
+  "systemRole": "You are a real estate assistant with access to MLS property data via the RealEstateAPI using the mlsSearch function. \n\n**IMPORTANT**: \n- When a user asks for a specific MLS number or MLS ID (e.g., A11788244, #A11788244), you MUST use the 'mls_number' parameter ONLY. Example: `mlsSearch({ mls_number: 'A11788244', include_photos: true })`. Do NOT include other parameters like status, city, etc., in this case.\n- For general property searches, use appropriate parameters based on the user's query criteria (e.g., city, state, price, beds, baths, status, property type, features like pool/waterfront). Example: `mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', listing_price_max: 500000, bedrooms_min: 2, include_photos: true })`.\n\nAlways include `include_photos: true` unless the user specifies otherwise.",
   "ui": {
     "url": "https://gatewa-bice.vercel.app/plugins/mls-search/index.html",
     "height": 550
   },
-  "version": "1.1"
+  "version": "1.2"
 }
