@@ -21,11 +21,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/antd@5.14.0/dist/reset.css">
   <script src="https://cdn.jsdelivr.net/npm/antd@5.14.0/dist/antd.min.js"></script>
   
-  <!-- Other Dependencies -->
+  <!-- Core Plugin Dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.5/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@lobehub/chat-plugin-sdk/dist/index.browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/antd-style@3.6.1/dist/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-layout-kit@1.8.2/dist/index.umd.js"></script>
+  
+  <!-- Removed antd-style and react-layout-kit for testing -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/antd-style@3.6.1/dist/index.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/react-layout-kit@1.8.2/dist/index.umd.js"></script> -->
   
   <style>
     body {
@@ -61,7 +63,7 @@
   </div>
 
   <script type="text/jsx">
-    // Wait for all dependencies to load
+    // Wait for essential dependencies to load
     const waitForLibraries = () => {
       return new Promise((resolve) => {
         const checkLibraries = () => {
@@ -71,8 +73,8 @@
               antd: !!window.antd,
               dayjs: !!window.dayjs,
               LobeChatPluginSdk: !!window.LobeChatPluginSdk,
-              AntdStyle: !!window.AntdStyle,
-              ReactLayoutKit: !!window.ReactLayoutKit,
+              // AntdStyle: !!window.AntdStyle, // Removed check
+              // ReactLayoutKit: !!window.ReactLayoutKit, // Removed check
             };
           const allLoaded = Object.values(loaded).every(Boolean);
 
@@ -83,11 +85,11 @@
             dayjs.extend(window.dayjs_plugin_relativeTime);
             dayjs.extend(window.dayjs_plugin_localeData);
             dayjs.extend(window.dayjs_plugin_customParseFormat);
-            console.log('All libraries loaded and dayjs extended.');
+            console.log('Essential libraries loaded and dayjs extended.');
             resolve();
           } else {
-            // Log status of each library
-            console.log('Waiting for libraries:', loaded);
+            // Log status of each essential library
+            console.log('Waiting for essential libraries:', loaded);
             setTimeout(checkLibraries, 100);
           }
         };
@@ -116,21 +118,26 @@
         
         // Create a module from the transformed code
         console.log('Creating ModuleFactory...');
-        const ModuleFactory = new Function('React', 'ReactDOM', 'antd', 'AntdStyle', 'LobeChatPluginSdk', 'ReactLayoutKit', 'dayjs', `
+        // Removed AntdStyle, ReactLayoutKit from arguments
+        const ModuleFactory = new Function('React', 'ReactDOM', 'antd', 'LobeChatPluginSdk', 'dayjs', `
           ${transformedCode};
+          // Need to manually expose createStyles and Flexbox if they are used globally in the TSX
+          // Since they are likely imported, this might cause errors now.
+          // We might need to adjust the TSX imports if this works.
           return MLSSearchPlugin;
         `);
         console.log('ModuleFactory created.');
         
         // Get the component
         console.log('Instantiating MLSSearchPlugin component...');
+        // Removed AntdStyle, ReactLayoutKit from arguments
         const MLSSearchPlugin = ModuleFactory(
           window.React, 
           window.ReactDOM, 
           window.antd, 
-          window.AntdStyle, 
+          // window.AntdStyle, // Removed
           window.LobeChatPluginSdk,
-          window.ReactLayoutKit,
+          // window.ReactLayoutKit, // Removed
           window.dayjs 
         );
         console.log('MLSSearchPlugin component instantiated.');
