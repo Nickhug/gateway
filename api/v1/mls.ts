@@ -179,6 +179,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     let parsedBody: any;
     try {
+      // Attempt to parse the raw body as JSON
       parsedBody = JSON.parse(rawBodyString);
     } catch (error) {
       console.error('Failed to parse raw request body string:', error);
@@ -190,55 +191,41 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     console.log('Parsed Request Body:', parsedBody);
 
-    // Extract API name and arguments (assuming LobeChat format)
-    const apiName = parsedBody.apiName || parsedBody.name;
-    let args = parsedBody.arguments || {}; // Default to empty object if arguments missing
+    // Attempt to extract apiName and arguments
+    let apiName = parsedBody.apiName || parsedBody.name;
+    let args: any = parsedBody.arguments;
 
-    // Handle cases where arguments might be double-stringified OR if the whole body was the args
-    if (typeof args === 'string') {
-      try {
-        args = JSON.parse(args);
-      } catch (error) {
-        console.error('Failed to parse arguments string, assuming body was args:', error);
-        // If args was a string and couldn't be parsed, maybe the *entire* parsedBody was the intended arguments?
-        // This handles the case observed where the received body was just `{"status":"Active","include_photos":true,"size":1}`
-        if (apiName) {
-          // If apiName *was* present, but args is an unparsable string, it's an error
+    // **Fallback Logic: If apiName is missing, assume mlsSearch and use parsedBody as args**
+    if (apiName) {
+      // If apiName *was* present, try to parse the arguments field (if it's a string)
+      if (typeof args === 'string') {
+        try {
+          args = JSON.parse(args);
+        } catch (error) {
+          console.error('Failed to parse arguments string (when apiName was present):', error);
           return res.status(400).json({
             argumentsValue: parsedBody.arguments,
-            error: 'Arguments field contains invalid JSON',
+            error: 'Invalid JSON in arguments field',
           });
-        } else {
-          // Only do this if apiName wasn't found at the top level
-          console.log('apiName missing, assuming parsedBody contains the arguments directly.');
-          args = parsedBody;
         }
+      } else if (typeof args !== 'object' || args === null) {
+        // Handle cases where arguments is present but not a string or object (invalid)
+        console.error('Invalid arguments field type (expected string or object):', typeof args);
+        return res.status(400).json({
+          argumentsValue: args,
+          error: 'Invalid arguments field type in request body',
+        });
       }
-    } else if (!args || typeof args !== 'object') {
-      // If arguments wasn't a string and isn't an object, check if parsedBody is the args
-      if (!apiName && typeof parsedBody === 'object' && parsedBody !== null) {
-        console.log(
-          'apiName missing and arguments missing/invalid, assuming parsedBody contains the arguments directly.',
-        );
-        args = parsedBody;
-      } else {
-        args = {}; // Fallback to empty args
-      }
+    } else {
+      console.warn(
+        "Missing apiName field. Assuming 'mlsSearch' and using request body as arguments.",
+      );
+      apiName = 'mlsSearch'; // Default API name for this endpoint
+      args = parsedBody; // Use the whole parsed body as arguments
     }
 
-    // **Re-check apiName AFTER potentially assigning parsedBody to args**
-    const finalApiName = apiName || args.apiName || args.name; // Check inside args too
-
-    console.log(`Handling API request: ${finalApiName}`);
+    console.log(`Handling API request: ${apiName}`);
     console.log('Final Arguments:', JSON.stringify(args, null, 2));
-
-    if (!finalApiName) {
-      console.error('Missing API name in request body or arguments');
-      return res.status(400).json({
-        debug: { attemptedArgs: args, parsedBody: parsedBody, receivedBody: rawBodyString },
-        error: 'Missing API name (apiName or name) in request body or arguments field',
-      });
-    }
 
     // Get the API token from environment
     const apiToken = process.env.REALESTATEAPI_KEY;
@@ -249,11 +236,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'API token not configured on server' });
     }
 
-    switch (finalApiName) {
+    switch (apiName) {
       case 'mlsSearch': {
-        // Ensure args is an object
+        // Ensure args is an object after potentially complex parsing/fallback
         if (typeof args !== 'object' || args === null) {
-          return res.status(400).json({ error: 'Invalid arguments format for mlsSearch' });
+          // It's unlikely to hit this now with the parsing logic above, but good safety check
+          return res
+            .status(400)
+            .json({ error: 'Internal Server Error: Invalid arguments structure after processing' });
         }
 
         const searchArgs: MLSSearchBody = args as MLSSearchBody;
@@ -349,8 +339,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       default: {
-        console.error(`Unknown API requested: ${finalApiName}`);
-        return res.status(400).json({ error: `Unknown API: ${finalApiName}` });
+        // This case should technically not be reached if the fallback works,
+        // but kept for robustness.
+        console.error(`Unknown or unsupported API requested: ${apiName}`);
+        return res.status(400).json({ error: `Unknown or unsupported API: ${apiName}` });
       }
     }
   } catch (error: any) {

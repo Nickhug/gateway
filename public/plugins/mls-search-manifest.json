@@ -9,27 +9,27 @@
         "properties": {
           "mls_number": {
             "type": "string",
-            "description": "Find a specific listing by its MLS number/ID (e.g., 'A11788244'). Use ONLY this parameter for specific MLS ID requests."
+            "description": "REQUIRED for specific MLS ID lookups. Find a listing by its exact MLS number (e.g., 'A11788244'). When using this, DO NOT use other parameters like city, status, price, etc."
           },
           "city": {
             "type": "string",
-            "description": "Filter by city name (e.g., 'Miami'). Requires 'state'."
+            "description": "Filter by city name (e.g., 'Miami'). Requires 'state'. Use for general searches, NOT for specific MLS ID lookups."
           },
           "state": {
             "type": "string",
-            "description": "Filter by 2-character state code (e.g., 'FL')."
+            "description": "Filter by 2-character state code (e.g., 'FL'). Use for general searches."
           },
           "zip": {
             "type": "string",
-            "description": "Filter by zip code (e.g., '33139')."
+            "description": "Filter by zip code (e.g., '33139'). Use for general searches."
           },
           "county": {
             "type": "string",
-            "description": "Filter by county name."
+            "description": "Filter by county name. Use for general searches."
           },
           "address": {
             "type": "string",
-            "description": "Search by full or partial address."
+            "description": "Search by full or partial address. Use for general searches."
           },
           "street": {
             "type": "string",
@@ -57,7 +57,7 @@
           },
           "status": {
             "type": "string",
-            "description": "Filter by listing status (e.g., 'Active', 'Pending', 'Sold')."
+            "description": "Filter by listing status (e.g., 'Active', 'Pending', 'Sold'). Use for general searches."
           },
           "active": {
             "type": "boolean",
@@ -298,10 +298,10 @@
     "required": [],
     "properties": {}
   },
-  "systemRole": "You are a real estate assistant with access to MLS property data via the RealEstateAPI using the mlsSearch function. \n\n**IMPORTANT**: \n- When a user asks for a specific MLS number or MLS ID (e.g., A11788244, #A11788244), you MUST use the 'mls_number' parameter ONLY. Example: `mlsSearch({ mls_number: 'A11788244', include_photos: true })`. Do NOT include other parameters like status, city, etc., in this case.\n- For general property searches, use appropriate parameters based on the user's query criteria (e.g., city, state, price, beds, baths, status, property type, features like pool/waterfront). Example: `mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', listing_price_max: 500000, bedrooms_min: 2, include_photos: true })`.\n\nAlways include `include_photos: true` unless the user specifies otherwise.",
+  "systemRole": "You are a real estate assistant using the `mlsSearch` function to access MLS data via RealEstateAPI.\n\n**CRITICAL INSTRUCTIONS:**\n1.  **Specific MLS ID Search:** If the user provides an MLS number (e.g., \"find mls #A11788244\", \"lookup A11788244\"), you MUST use the `mls_number` parameter **EXCLUSIVELY**. Your *only* arguments should be `mls_number` and `include_photos`. \n    *   **CORRECT:** `mlsSearch({ mls_number: 'A11788244', include_photos: true })`\n    *   **INCORRECT:** `mlsSearch({ zip: 'A11788244', status: 'Active', include_photos: true })`\n    *   **INCORRECT:** `mlsSearch({ mls_number: 'A11788244', city: 'Miami', include_photos: true })`\n2.  **General Property Search:** For *all other searches* (by location, price, features, status, etc.), use relevant parameters like `city`, `state`, `zip`, `listing_price_min`/`max`, `bedrooms_min`/`max`, `status`, `has_pool`, etc. Do NOT use the `mls_number` parameter in these cases.\n    *   **CORRECT:** `mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', include_photos: true })`\n    *   **CORRECT:** `mlsSearch({ zip: '90210', listing_price_max: 1000000, bedrooms_min: 3, include_photos: true })`\n\nAlways include `include_photos: true`.",
   "ui": {
     "url": "https://gatewa-bice.vercel.app/plugins/mls-search/index.html",
     "height": 550
   },
-  "version": "1.2"
+  "version": "1.3"
 }
