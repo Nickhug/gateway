@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MLS Property Search</title>
   
-  <!-- Core Dependencies First -->
+  <!-- Core React Dependencies First -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   
+  <!-- Load Lucide React immediately after React -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide-react@0.344.0/dist/umd/lucide-react.min.js"></script>
+  
   <!-- Dayjs (required by antd) -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js"></script>
-  <!-- Optional Dayjs plugins if needed by Antd components used -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/utc.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/timezone.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/relativeTime.js"></script>
@@ -26,7 +28,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.5/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@lobehub/chat-plugin-sdk/dist/index.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/antd-style@3.6.1/dist/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide-react@0.344.0/dist/umd/lucide-react.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-layout-kit@1.8.2/dist/index.umd.js"></script>
   
   <style>
@@ -63,18 +64,18 @@
   </div>
 
   <script type="text/jsx">
-    // Wait for all dependencies to load
+    // Wait for all dependencies to load (LucideReact should be checked earlier now)
     const waitForLibraries = () => {
       return new Promise((resolve) => {
         const checkLibraries = () => {
           if (
             window.React && 
             window.ReactDOM && 
+            window.LucideReact && // Check earlier
             window.antd && 
-            window.dayjs && // Add check for dayjs
+            window.dayjs && 
             window.LobeChatPluginSdk && 
             window.AntdStyle &&
-            window.LucideReact &&
             window.ReactLayoutKit
           ) {
             // Extend dayjs with plugins needed by Antd
@@ -86,6 +87,17 @@
             console.log('All libraries loaded and dayjs extended.');
             resolve();
           } else {
+            // Add logging to see what's missing
+            console.log('Waiting for libraries:', {
+              React: !!window.React,
+              ReactDOM: !!window.ReactDOM,
+              LucideReact: !!window.LucideReact,
+              antd: !!window.antd,
+              dayjs: !!window.dayjs,
+              LobeChatPluginSdk: !!window.LobeChatPluginSdk,
+              AntdStyle: !!window.AntdStyle,
+              ReactLayoutKit: !!window.ReactLayoutKit,
+            });
             setTimeout(checkLibraries, 100);
           }
         };
@@ -93,7 +105,7 @@
       });
     };
 
-    // Load our component dynamically
+    // Load our component dynamically (ModuleFactory definition remains the same)
     const loadComponent = async () => {
       try {
         await waitForLibraries();
