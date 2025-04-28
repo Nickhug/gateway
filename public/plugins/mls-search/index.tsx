@@ -690,25 +690,30 @@ const MLSSearchPlugin = memo(() => {
   const { token } = useToken();
 
   useEffect(() => {
+    console.log('MLSSearchPlugin: useEffect triggered, fetching message...');
     setLoading(true);
     setError(undefined);
     // Fetch data from LobeChat using the SDK
     fetchPluginMessage()
       .then((response: any) => {
-        console.log('Plugin data received from SDK:', response);
+        console.log('MLSSearchPlugin: fetchPluginMessage response received:', response);
         if (response?.error) {
+          console.error('MLSSearchPlugin: API Error received:', response.error);
           setError(`API Error: ${response.error}`);
           setData(undefined);
         } else if (response) {
+          console.log('MLSSearchPlugin: Setting data state:', response);
           setData(response);
         } else {
+          console.warn('MLSSearchPlugin: Received empty data from plugin.');
           setError('Received empty data from plugin.');
           setData(undefined);
         }
+        console.log('MLSSearchPlugin: Setting loading to false.');
         setLoading(false);
       })
       .catch((fetchError) => {
-        console.error('Error fetching plugin data via SDK:', fetchError);
+        console.error('MLSSearchPlugin: Error fetching plugin data via SDK:', fetchError);
         setError(`Failed to load plugin data: ${fetchError.message}`);
         setData(undefined);
         setLoading(false);
@@ -734,7 +739,10 @@ const MLSSearchPlugin = memo(() => {
     };
   }, []);
 
+  console.log('MLSSearchPlugin: Rendering component...', { data, error, loading });
+
   if (loading) {
+    console.log('MLSSearchPlugin: Rendering loading state.');
     return (
       <div
         style={{ alignItems: 'center', display: 'flex', height: '200px', justifyContent: 'center' }}
@@ -745,6 +753,7 @@ const MLSSearchPlugin = memo(() => {
   }
 
   if (error) {
+    console.error('MLSSearchPlugin: Rendering error state:', error);
     return (
       <div style={{ color: 'red', padding: 24 }}>
         <Title level={4}>Error Loading Plugin Data</Title>
@@ -767,6 +776,7 @@ const MLSSearchPlugin = memo(() => {
   }
 
   if (!data) {
+    console.warn('MLSSearchPlugin: Rendering no data state.');
     return (
       <div style={{ padding: 24, textAlign: 'center' }}>
         <Title level={4}>No Data Available</Title>
@@ -779,6 +789,8 @@ const MLSSearchPlugin = memo(() => {
   // Check for a unique field in PropertyDetails (e.g., 'schools') or check if data.data exists for search results
   const isPropertyDetail = data && 'schools' in data;
   const isSearchResults = data && 'data' in data && Array.isArray(data.data);
+
+  console.log('MLSSearchPlugin: Data type detected:', { isPropertyDetail, isSearchResults });
 
   return (
     <Layout style={{ background: token.colorBgContainer, minHeight: '100%' }}>
