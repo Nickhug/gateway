@@ -225,7 +225,7 @@ const mapApiPropertyToUI = (
       city: apiProp.city || '',
       full:
         apiProp.address ||
-        `${apiProp.street || ''}, ${apiProp.city || ''}, ${apiProp.state || ''} ${apiProp.zip || ''}`,
+        `${apiProp.street || ''}, ${apiProp.city || ''}, ${apiProp.state || ''}${apiProp.zip || ''}`,
       neighborhood: apiProp.subdivision || 'N/A',
       state: apiProp.state || '',
       street: apiProp.street || '',
@@ -327,13 +327,8 @@ export const mlsSearch = async (params: MLSSearchParams, apiToken: string) => {
     const responseData: RealEstateAPIResponse = await response.json();
 
     console.log('Received RealEstateAPI response status:', response.status);
-    console.log(
-      'Response contains',
-      responseData.returnedResults,
-      'results out of',
-      responseData.totalResults,
-      'total',
-    );
+    // Log the actual response body for debugging
+    console.log('Actual RealEstateAPI Response Body:', JSON.stringify(responseData, null, 2));
 
     if (!response.ok || responseData.statusCode !== 200) {
       console.error('RealEstateAPI MLSSearch Error:', responseData);
@@ -344,33 +339,40 @@ export const mlsSearch = async (params: MLSSearchParams, apiToken: string) => {
       });
     }
 
-    // For mls_number searches, if there's just one result, return it directly
-    // This helps maintain backward compatibility with code expecting a single property object
-    if (params.mls_number && responseData.results.length === 1) {
-      return mapApiPropertyToUI(responseData.results[0]);
+    // Map response to the format expected by the UI - DEFENSIVE CHECK ADDED
+    const resultsArray = Array.isArray(responseData.results) ? responseData.results : [];
+    console.log(`Found ${resultsArray.length} results in the response array.`);
+    const mappedProperties = resultsArray.map((prop) => mapApiPropertyToUI(prop));
+
+    // Check if it was an mls_number search that should return a single item
+    if (params.mls_number && resultsArray.length === 1) {
+      console.log('Returning single property due to mls_number search with one result.');
+      return mappedProperties[0]; // Return the single mapped property directly
     }
 
-    // Map response to the format expected by the UI
-    const mappedProperties = responseData.results.map((prop) => mapApiPropertyToUI(prop));
+    // Return the list format with metadata
+    const totalResults = responseData.totalResults ?? 0;
+    const returnedResults = responseData.returnedResults ?? resultsArray.length;
+    console.log(`Response meta: returned=${returnedResults}, total=${totalResults}`);
 
     return {
       data: mappedProperties,
       meta: {
-        count: responseData.returnedResults,
-        // Assuming resultIndex corresponds to offset
+        count: returnedResults,
         limit: size,
-        nextResultIndex: responseData.resultIndex,
+        nextResultIndex: responseData.resultIndex, // Keep this as is, might be undefined
         offset: params.resultIndex || 0,
-        total: responseData.totalResults, // Pass along for pagination
+        total: totalResults,
       },
     };
   } catch (error: any) {
+    // Log the error causing the fetch/map issue
+    console.error('Error during RealEstateAPI MLSSearch fetch or mapping:', error);
     // Handle fetch errors or errors thrown from createErrorResponse
     if (error.errorType) throw error; // Re-throw known plugin errors
 
-    console.error('Error during RealEstateAPI MLSSearch fetch:', error);
     throw createErrorResponse(PluginErrorType.PluginApiError, {
-      message: `Network error or failed to parse response: ${error.message}`,
+      message: `Network error or failed processing response: ${error.message}`,
     });
   }
 };
@@ -393,6 +395,7 @@ export const getPropertyDetails = async (propertyId: string, apiToken: string) =
 
   try {
     // Just call mlsSearch with the mls_number parameter
+    // The modified mlsSearch will now return the single object directly if successful
     return await mlsSearch({ include_photos: true, mls_number: cleanMlsId }, apiToken);
   } catch (error: any) {
     // Re-throw with a more specific error message
