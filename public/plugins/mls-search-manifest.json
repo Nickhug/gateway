@@ -301,7 +301,7 @@
   "ui": {
     "height": 600,
     "mode": "iframe",
-    "url": "/plugins/mls-search/index.html"
+    "url": "https://gatewa-bice.vercel.app/plugins/mls-search/index.html"
   },
   "version": "1.0.0"
 }
