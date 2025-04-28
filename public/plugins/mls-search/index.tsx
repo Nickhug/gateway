@@ -2,11 +2,13 @@ import { fetchPluginMessage } from '@lobehub/chat-plugin-sdk/client';
 import {
   Avatar,
   Badge,
+  Button,
   Card,
   Carousel,
   Col,
   Descriptions,
   Divider,
+  Empty,
   Flex,
   Image,
   Layout,
@@ -18,10 +20,30 @@ import {
   Typography,
   theme,
 } from 'antd';
+import { createStyles } from 'antd-style';
 import React, { memo, useEffect, useState } from 'react';
+import { Flexbox } from 'react-layout-kit';
 
 const { Title, Text, Paragraph } = Typography;
 const { useToken } = theme;
+
+// Create styles for property card
+const useStyles = createStyles(({ css }) => ({
+  propertyCard: css`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+  `,
+}));
 
 interface MLSProperty {
   address: {
@@ -138,6 +160,7 @@ const formatNumber = (value: number): string => {
 
 const PropertyCard = ({ property }: { property: MLSProperty }) => {
   const { token } = useToken();
+  const { styles } = useStyles();
 
   return (
     <Card
@@ -145,6 +168,7 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
         flex: 1,
         padding: 16,
       }}
+      className={styles.propertyCard}
       cover={
         <div style={{ height: 200, position: 'relative' }}>
           {property.media.photos && property.media.photos.length > 0 ? (
@@ -166,8 +190,8 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
             <div
               style={{
                 alignItems: 'center',
-                background: '#f0f0f0',
-                color: '#ccc',
+                background: token.colorFillQuaternary,
+                color: token.colorTextDisabled,
                 display: 'flex',
                 height: 200,
                 justifyContent: 'center',
@@ -194,11 +218,20 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
           />
           <div
             style={{
-              background: 'rgba(0,0,0,0.6)',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%)',
+              bottom: 0,
+              height: '50%',
+              left: 0,
+              position: 'absolute',
+              right: 0,
+            }}
+          />
+          <div
+            style={{
               bottom: 0,
               color: 'white',
               left: 0,
-              padding: '8px 12px',
+              padding: '12px',
               position: 'absolute',
               right: 0,
             }}
@@ -210,18 +243,12 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
         </div>
       }
       hoverable
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        overflow: 'hidden',
-      }}
     >
       <Title ellipsis level={5} style={{ marginBottom: 8, marginTop: 0 }}>
         {property.address.street || property.address.full}
       </Title>
 
-      <Paragraph ellipsis style={{ color: token.colorTextSecondary, marginBottom: 8 }}>
+      <Paragraph ellipsis style={{ color: token.colorTextSecondary, marginBottom: 12 }}>
         {property.address.city}, {property.address.state} {property.address.zipCode}
         {property.address.neighborhood && property.address.neighborhood !== 'N/A' && (
           <Tag color={token.colorPrimary} style={{ marginLeft: 8 }}>
@@ -230,7 +257,7 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
         )}
       </Paragraph>
 
-      <Flex gap={12} style={{ marginBottom: 12 }} wrap="wrap">
+      <Flexbox gap={16} style={{ marginBottom: 16 }} wrap="wrap">
         <Statistic title="Beds" value={property.property.bedrooms} valueStyle={{ fontSize: 16 }} />
         <Statistic
           title="Baths"
@@ -238,7 +265,7 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
             property.property.bathrooms % 1 === 0
               ? property.property.bathrooms
               : property.property.bathrooms.toFixed(1)
-          } // Display decimals only if needed
+          }
           valueStyle={{ fontSize: 16 }}
         />
         <Statistic
@@ -253,38 +280,23 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
             valueStyle={{ fontSize: 16 }}
           />
         )}
-      </Flex>
+      </Flexbox>
 
-      <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 12 }}>
-        {property.listing.remarks}
-      </Paragraph>
-
-      <Flex gap={6} wrap="wrap">
-        <Tag color="blue">{property.property.propertyType}</Tag>
-        {property.property.waterfront && <Tag color="cyan">Waterfront</Tag>}
-        {property.property.pool && <Tag color="geekblue">Pool</Tag>}
-        {property.property.view && <Tag color="purple">View: {property.property.view}</Tag>}
-      </Flex>
-
-      <Divider style={{ margin: '12px 0' }} />
-
-      <Flex align="center" justify="space-between">
-        <Flex align="center">
-          {property.agent.name !== 'N/A' && (
-            <Avatar size="small" style={{ backgroundColor: token.colorPrimary, marginRight: 8 }}>
-              {property.agent.name.charAt(0)}
-            </Avatar>
-          )}
-          <Text ellipsis style={{ fontSize: 12 }} type="secondary">
-            {property.agent.name === 'N/A'
-              ? 'Agent Unknown'
-              : `${property.agent.name} · ${property.agent.office}`}
-          </Text>
-        </Flex>
-        {property.listing.daysOnMarket > 0 && property.listing.daysOnMarket <= 7 && (
-          <Tag color="orange">New</Tag>
-        )}
-      </Flex>
+      <Flexbox gap={8} horizontal style={{ marginBottom: 0 }}>
+        <Tag color="blue" style={{ borderRadius: 4, margin: 0 }}>
+          {property.property.propertyType}
+        </Tag>
+        <Tag
+          style={{
+            backgroundColor: token.colorFillSecondary,
+            borderRadius: 4,
+            color: token.colorTextSecondary,
+            margin: 0,
+          }}
+        >
+          {property.listing.daysOnMarket} days on market
+        </Tag>
+      </Flexbox>
     </Card>
   );
 };
@@ -423,7 +435,7 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
                   {formatNumber(property.property.lotSize)} sqft
                 </Descriptions.Item>
               )}
-              {property.property.garageSpaces !== null && (
+              {property.property.garageSpaces !== undefined && (
                 <Descriptions.Item label="Garage">
                   {property.property.garageSpaces} spaces
                 </Descriptions.Item>
@@ -597,36 +609,77 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
 };
 
 const SearchResults = ({ data }: { data: PropertySearchResults }) => {
-  return (
-    <div style={{ padding: '0 16px' }}>
-      <Layout.Header style={{ background: 'transparent', padding: '16px 0' }}>
-        <Flex align="center" justify="space-between">
-          <Title level={4} style={{ marginBottom: 0 }}>
-            {formatNumber(data.meta.total)} Properties Found
-          </Title>
-          {data.meta.count > 0 && (
-            <Text>
-              Showing {data.meta.count} of {formatNumber(data.meta.total)}
-            </Text>
-          )}
-        </Flex>
-      </Layout.Header>
+  const [loading, setLoading] = useState(false);
+  const [properties, setProperties] = useState(data.data);
+  const [meta, setMeta] = useState(data.meta);
 
-      {data.data && data.data.length > 0 ? (
-        <Row gutter={[16, 16]}>
-          {data.data.map((property) => (
-            <Col key={property.id} lg={8} sm={12} xs={24}>
-              <PropertyCard property={property} />
-            </Col>
-          ))}
-        </Row>
-      ) : (
-        <div style={{ padding: '48px 0', textAlign: 'center' }}>
-          <Text>No properties match your criteria.</Text>
-        </div>
+  // No results UI
+  if (!properties || properties.length === 0) {
+    return (
+      <Empty
+        description="No properties found matching your search criteria."
+        image={Empty.PRESENTED_IMAGE_SIMPLE}
+        style={{ margin: '48px 0' }}
+      />
+    );
+  }
+
+  const loadMoreResults = async () => {
+    if (!meta.nextResultIndex) return;
+
+    setLoading(true);
+    try {
+      // Get current URL search params
+      const currentUrl = new URL(window.location.href);
+      const searchParams = currentUrl.searchParams;
+
+      // Add the resultIndex parameter for pagination
+      searchParams.set('resultIndex', meta.nextResultIndex.toString());
+
+      // Make the API call to get more results
+      const response = await fetch(`/api/v1/mls?${searchParams.toString()}`);
+      const newData = await response.json();
+
+      if (newData && newData.data && Array.isArray(newData.data)) {
+        // Merge the new properties with existing ones
+        setProperties([...properties, ...newData.data]);
+        // Update the meta information
+        setMeta(newData.meta);
+      }
+    } catch (error) {
+      console.error('Error loading more results:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Flexbox gap={24}>
+      <div style={{ marginBottom: 16 }}>
+        <Title level={4} style={{ marginBottom: 8 }}>
+          Search Results
+        </Title>
+        <Text type="secondary">
+          Found {meta.total} properties ({properties.length} shown)
+        </Text>
+      </div>
+
+      <Row gutter={[24, 24]}>
+        {properties.map((property) => (
+          <Col key={property.id} lg={8} md={12} sm={24} xs={24}>
+            <PropertyCard property={property} />
+          </Col>
+        ))}
+      </Row>
+
+      {meta.nextResultIndex && (
+        <Flexbox align="center" justify="center" style={{ marginTop: 24 }}>
+          <Button loading={loading} onClick={loadMoreResults} type="primary">
+            Load More Results
+          </Button>
+        </Flexbox>
       )}
-      {/* TODO: Add pagination controls using data.meta.nextResultIndex */}
-    </div>
+    </Flexbox>
   );
 };
 
@@ -634,6 +687,7 @@ const MLSSearchPlugin = memo(() => {
   const [data, setData] = useState<PluginMessageData | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
+  const { token } = useToken();
 
   useEffect(() => {
     setLoading(true);
@@ -698,14 +752,14 @@ const MLSSearchPlugin = memo(() => {
         {data && (data as any).details && (
           <pre
             style={{
-              background: '#f0f0f0',
-              borderRadius: '4px',
-              padding: '8px',
+              background: token.colorFillTertiary,
+              borderRadius: '8px',
+              padding: '16px',
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-all',
             }}
           >
-            {JSON.stringify((data as any).details, null, 2)}
+            {JSON.stringify((data as any).details, undefined, 2)}
           </pre>
         )}
       </div>
@@ -727,8 +781,8 @@ const MLSSearchPlugin = memo(() => {
   const isSearchResults = data && 'data' in data && Array.isArray(data.data);
 
   return (
-    <Layout style={{ background: '#f5f5f5', minHeight: '100%' }}>
-      <Layout.Content style={{ padding: '16px 0' }}>
+    <Layout style={{ background: token.colorBgContainer, minHeight: '100%' }}>
+      <Layout.Content style={{ padding: '24px' }}>
         {isPropertyDetail ? (
           <PropertyDetailsView property={data as PropertyDetails} />
         ) : isSearchResults ? (
@@ -739,14 +793,14 @@ const MLSSearchPlugin = memo(() => {
             <Paragraph>The plugin returned data in an unexpected format.</Paragraph>
             <pre
               style={{
-                background: '#f0f0f0',
-                borderRadius: '4px',
-                padding: '8px',
+                background: token.colorFillTertiary,
+                borderRadius: '8px',
+                padding: '16px',
                 whiteSpace: 'pre-wrap',
                 wordBreak: 'break-all',
               }}
             >
-              {JSON.stringify(data, null, 2)}
+              {JSON.stringify(data, undefined, 2)}
             </pre>
           </div>
         )}
