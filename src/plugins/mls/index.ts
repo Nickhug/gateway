@@ -205,14 +205,28 @@ interface RealEstateAPIProperty {
 
 // Interface for the overall API response structure
 interface RealEstateAPIResponse {
-  credits: number;
-  resultCount: number;
+  credits?: number;
+  // For pagination
+  data: RealEstateAPIProperty[]; 
+  // Keep for potential backward compat, but prefer resultCount
+  input?: any; 
+  // Added based on logs
+  live?: boolean; 
+  // Total results matching query
+  recordCount?: number; 
+  // Added based on logs
+  requestExecutionTimeMS?: string; 
+  resultCount?: number;
+  // Results returned in this response (<= size)
   resultIndex?: number;
-  results: RealEstateAPIProperty[];
-  returnedResults: number; // For pagination
-  statusCode: number;
-  statusMessage: string;
-  totalResults: number;
+  // Changed from results to data
+  returnedResults?: number; 
+  // Keep for potential backward compat or other endpoints, but prefer recordCount
+  statusCode: number; 
+  statusMessage: string; 
+  totalResults?: number; 
+  // Added based on logs
+  warning?: string; // Added based on logs
   // ... other potential meta fields
 }
 
@@ -339,9 +353,9 @@ export const mlsSearch = async (params: MLSSearchParams, apiToken: string) => {
       });
     }
 
-    // Map response to the format expected by the UI - DEFENSIVE CHECK ADDED
-    const resultsArray = Array.isArray(responseData.results) ? responseData.results : [];
-    console.log(`Found ${resultsArray.length} results in the response array.`);
+    // Map response using the correct field name 'data' - DEFENSIVE CHECK ADDED
+    const resultsArray = Array.isArray(responseData.data) ? responseData.data : [];
+    console.log(`Found ${resultsArray.length} results in the response data array.`);
     const mappedProperties = resultsArray.map((prop) => mapApiPropertyToUI(prop));
 
     // Check if it was an mls_number search that should return a single item
@@ -350,9 +364,9 @@ export const mlsSearch = async (params: MLSSearchParams, apiToken: string) => {
       return mappedProperties[0]; // Return the single mapped property directly
     }
 
-    // Return the list format with metadata
-    const totalResults = responseData.totalResults ?? 0;
-    const returnedResults = responseData.returnedResults ?? resultsArray.length;
+    // Return the list format with metadata using correct fields from API response
+    const totalResults = responseData.resultCount ?? 0;
+    const returnedResults = responseData.recordCount ?? resultsArray.length;
     console.log(`Response meta: returned=${returnedResults}, total=${totalResults}`);
 
     return {
