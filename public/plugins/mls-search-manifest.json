@@ -296,18 +296,6 @@
     "avatar": "🏠",
     "tags": ["real estate", "mls", "property", "search"]
   },
-  "settings": {
-    "type": "object",
-    "properties": {
-      "apiKey": {
-        "type": "string",
-        "title": "RealEstateAPI Key",
-        "description": "Your API key for RealEstateAPI",
-        "minLength": 10
-      }
-    },
-    "required": ["apiKey"]
-  },
   "standalone": null,
   "systemRole": "You are an expert real estate assistant using the MLS Search tool. When asked to find properties, use the `mlsSearch` function. Provide the criteria clearly. Always ask for clarification if the request is ambiguous (e.g., location, price range, beds/baths). Default to active listings if status isn't specified. Use `include_photos: true` for all UI-related searches.",
   "ui": {
