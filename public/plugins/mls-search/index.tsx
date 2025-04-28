@@ -7,7 +7,6 @@ import {
   Col,
   Descriptions,
   Divider,
-  Empty,
   Flex,
   Image,
   Layout,
@@ -19,224 +18,10 @@ import {
   Typography,
   theme,
 } from 'antd';
-import { createStyles } from 'antd-style';
 import React, { memo, useEffect, useState } from 'react';
 
 const { Title, Text, Paragraph } = Typography;
 const { useToken } = theme;
-
-// Helper function to transform API property data to our MLSProperty format
-const transformToMLSProperty = (property: any): MLSProperty => {
-  return {
-    address: {
-      city: property.address?.city || '',
-      full: property.address?.full || '',
-      neighborhood: property.address?.neighborhood || '',
-      state: property.address?.state || '',
-      street: property.address?.street || '',
-      zipCode: property.address?.zipCode || '',
-    },
-    agent: {
-      email: property.agent?.email || '',
-      name: property.agent?.name || '',
-      office: property.agent?.office || '',
-      phone: property.agent?.phone || '',
-    },
-    id: property.id || '',
-    listing: {
-      daysOnMarket: property.listing?.daysOnMarket || 0,
-      listedDate: property.listing?.listedDate || '',
-      price: property.listing?.price || 0,
-      remarks: property.listing?.remarks || '',
-      status: property.listing?.status || 'Unknown',
-    },
-    listingId: property.listingId || '',
-    media: {
-      photos: property.media?.photos || [],
-      virtualTour: property.media?.virtualTour,
-    },
-    property: {
-      bathrooms: property.property?.bathrooms || 0,
-      bedrooms: property.property?.bedrooms || 0,
-      garageSpaces: property.property?.garageSpaces,
-      livingArea: property.property?.livingArea || 0,
-      lotSize: property.property?.lotSize,
-      pool: !!property.property?.pool,
-      propertyType: property.property?.propertyType || '',
-      stories: property.property?.stories,
-      view: property.property?.view,
-      waterfront: !!property.property?.waterfront,
-      yearBuilt: property.property?.yearBuilt || 0,
-    },
-  };
-};
-
-// Helper function to transform API property data to our PropertyDetails format
-const transformToPropertyDetails = (property: any): PropertyDetails => {
-  const baseProperty = transformToMLSProperty(property);
-
-  return {
-    ...baseProperty,
-    address: {
-      ...baseProperty.address,
-      county: property.address?.county || '',
-      latitude: property.address?.latitude || 0,
-      longitude: property.address?.longitude || 0,
-      unit: property.address?.unit,
-    },
-    agent: {
-      ...baseProperty.agent,
-      officeEmail: property.agent?.officeEmail || '',
-      officePhone: property.agent?.officePhone || '',
-    },
-    listing: {
-      ...baseProperty.listing,
-      hoaFees: property.listing?.hoaFees || 0,
-      hoaFrequency: property.listing?.hoaFrequency,
-      mlsNumber: property.listing?.mlsNumber || property.listingId || '',
-      pricePerSqFt: property.listing?.pricePerSqFt || 0,
-      taxAnnualAmount: property.listing?.taxAnnualAmount || 0,
-      taxAssessedValue: property.listing?.taxAssessedValue || 0,
-      taxYear: property.listing?.taxYear || 0,
-      virtualTourUrl: property.listing?.virtualTourUrl || property.media?.virtualTour,
-    },
-    property: {
-      ...baseProperty.property,
-      appliances: property.property?.appliances || [],
-      construction: property.property?.construction || '',
-      cooling: property.property?.cooling || '',
-      features: property.property?.features || [],
-      foundation: property.property?.foundation,
-      halfBaths: property.property?.halfBaths || 0,
-      heating: property.property?.heating || '',
-      parkingSpaces: property.property?.parkingSpaces,
-      roof: property.property?.roof,
-      spa: !!property.property?.spa,
-      subType: property.property?.subType || '',
-    },
-    schools: property.schools || [],
-  };
-};
-
-// Define styles using antd-style (Sorted alphabetically)
-const useStyles = createStyles(({ css, token }) => ({
-  agentInfo: css`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  `,
-  agentText: css`
-    font-size: 12px;
-    color: ${token.colorTextSecondary};
-  `,
-  cardBody: css`
-    flex: 1;
-    padding: 16px;
-  `,
-  cardContainer: css`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.3s;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: ${token.boxShadowTertiary};
-    }
-  `,
-  cardsContainer: css`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-    padding: 0 16px;
-  `,
-  carouselDot: css`
-    .slick-dots li button {
-      background: white !important;
-      opacity: 0.6;
-    }
-    .slick-dots li.slick-active button {
-      opacity: 1;
-    }
-  `,
-  description: css`
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 12px;
-    color: ${token.colorTextSecondary};
-  `,
-  detailsContainer: css`
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 16px;
-  `,
-  footer: css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border-top: 1px solid ${token.colorBorderSecondary};
-    background: ${token.colorBgContainer};
-  `,
-  imageContainer: css`
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-  `,
-  priceTag: css`
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    font-weight: bold;
-  `,
-  propertyStats: css`
-    display: flex;
-    justify-content: space-between;
-    margin: 12px 0;
-  `,
-  resultHeader: css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    padding: 16px 0;
-  `,
-  statItem: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-  `,
-  statLabel: css`
-    font-size: 12px;
-    color: ${token.colorTextSecondary};
-  `,
-  statValue: css`
-    font-size: 16px;
-    font-weight: 500;
-    color: ${token.colorTextHeading};
-  `,
-  statusBadge: css`
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 2;
-  `,
-  tagContainer: css`
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  `,
-}));
 
 interface MLSProperty {
   address: {
@@ -351,43 +136,19 @@ const formatNumber = (value: number): string => {
   return new Intl.NumberFormat('en-US').format(value);
 };
 
-const getStatusColor = (status: string): string => {
-  switch (status) {
-    case 'Active': {
-      return 'green';
-    }
-    case 'Pending': {
-      return 'orange';
-    }
-    case 'Sold': {
-      return 'blue';
-    }
-    case 'Closed': {
-      return 'blue';
-    }
-    default: {
-      return 'default';
-    }
-  }
-};
-
-// Improved property card component
 const PropertyCard = ({ property }: { property: MLSProperty }) => {
-  const { styles } = useStyles();
   const { token } = useToken();
 
   return (
     <Card
-      bodyStyle={{ padding: 0 }}
-      className={styles.cardContainer}
+      bodyStyle={{
+        flex: 1,
+        padding: 16,
+      }}
       cover={
-        <div className={styles.imageContainer}>
+        <div style={{ height: 200, position: 'relative' }}>
           {property.media.photos && property.media.photos.length > 0 ? (
-            <Carousel
-              autoplay
-              className={styles.carouselDot}
-              dots={{ className: 'custom-carousel-dots' }}
-            >
+            <Carousel autoplay dots={{ className: 'custom-carousel-dots' }}>
               {property.media.photos.map((photo, index) => (
                 <div key={index}>
                   <div
@@ -395,7 +156,7 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
                       backgroundImage: `url(${photo})`,
                       backgroundPosition: 'center',
                       backgroundSize: 'cover',
-                      height: 220,
+                      height: 200,
                     }}
                   />
                 </div>
@@ -405,103 +166,136 @@ const PropertyCard = ({ property }: { property: MLSProperty }) => {
             <div
               style={{
                 alignItems: 'center',
-                background: token.colorFillQuaternary,
-                color: token.colorTextQuaternary,
+                background: '#f0f0f0',
+                color: '#ccc',
                 display: 'flex',
-                height: 220,
+                height: 200,
                 justifyContent: 'center',
               }}
             >
-              No Image Available
+              No Image
             </div>
           )}
           <Badge.Ribbon
-            className={styles.statusBadge}
-            color={getStatusColor(property.listing.status)}
+            color={
+              property.listing.status === 'Active'
+                ? 'green'
+                : property.listing.status === 'Pending'
+                  ? 'orange'
+                  : 'blue'
+            }
+            style={{
+              padding: '0 8px',
+              position: 'absolute',
+              right: 0,
+              top: 0,
+            }}
             text={property.listing.status}
           />
-          <div className={styles.priceTag}>{formatCurrency(property.listing.price)}</div>
+          <div
+            style={{
+              background: 'rgba(0,0,0,0.6)',
+              bottom: 0,
+              color: 'white',
+              left: 0,
+              padding: '8px 12px',
+              position: 'absolute',
+              right: 0,
+            }}
+          >
+            <Text strong style={{ color: 'white', fontSize: 18 }}>
+              {formatCurrency(property.listing.price)}
+            </Text>
+          </div>
         </div>
       }
       hoverable
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        overflow: 'hidden',
+      }}
     >
-      <div className={styles.cardBody}>
-        <Title ellipsis level={5} style={{ marginBottom: 8, marginTop: 0 }}>
-          {property.address.street || property.address.full}
-        </Title>
+      <Title ellipsis level={5} style={{ marginBottom: 8, marginTop: 0 }}>
+        {property.address.street || property.address.full}
+      </Title>
 
-        <Text style={{ display: 'block', marginBottom: 12 }} type="secondary">
-          {property.address.city}, {property.address.state} {property.address.zipCode}
-          {property.address.neighborhood && property.address.neighborhood !== 'N/A' && (
-            <Tag color="blue" style={{ marginLeft: 8 }}>
-              {property.address.neighborhood}
-            </Tag>
-          )}
-        </Text>
+      <Paragraph ellipsis style={{ color: token.colorTextSecondary, marginBottom: 8 }}>
+        {property.address.city}, {property.address.state} {property.address.zipCode}
+        {property.address.neighborhood && property.address.neighborhood !== 'N/A' && (
+          <Tag color={token.colorPrimary} style={{ marginLeft: 8 }}>
+            {property.address.neighborhood}
+          </Tag>
+        )}
+      </Paragraph>
 
-        <div className={styles.propertyStats}>
-          <div className={styles.statItem}>
-            <span className={styles.statValue}>{property.property.bedrooms}</span>
-            <span className={styles.statLabel}>Beds</span>
-          </div>
-          <div className={styles.statItem}>
-            <span className={styles.statValue}>
-              {property.property.bathrooms % 1 === 0
-                ? property.property.bathrooms
-                : property.property.bathrooms.toFixed(1)}
-            </span>
-            <span className={styles.statLabel}>Baths</span>
-          </div>
-          <div className={styles.statItem}>
-            <span className={styles.statValue}>{formatNumber(property.property.livingArea)}</span>
-            <span className={styles.statLabel}>Sq Ft</span>
-          </div>
-          {property.property.yearBuilt > 0 && (
-            <div className={styles.statItem}>
-              <span className={styles.statValue}>{property.property.yearBuilt}</span>
-              <span className={styles.statLabel}>Year</span>
-            </div>
-          )}
-        </div>
+      <Flex gap={12} style={{ marginBottom: 12 }} wrap="wrap">
+        <Statistic title="Beds" value={property.property.bedrooms} valueStyle={{ fontSize: 16 }} />
+        <Statistic
+          title="Baths"
+          value={
+            property.property.bathrooms % 1 === 0
+              ? property.property.bathrooms
+              : property.property.bathrooms.toFixed(1)
+          } // Display decimals only if needed
+          valueStyle={{ fontSize: 16 }}
+        />
+        <Statistic
+          title="Sq Ft"
+          value={formatNumber(property.property.livingArea)}
+          valueStyle={{ fontSize: 16 }}
+        />
+        {property.property.yearBuilt > 0 && (
+          <Statistic
+            title="Year"
+            value={property.property.yearBuilt}
+            valueStyle={{ fontSize: 16 }}
+          />
+        )}
+      </Flex>
 
-        <Paragraph className={styles.description}>{property.listing.remarks}</Paragraph>
+      <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 12 }}>
+        {property.listing.remarks}
+      </Paragraph>
 
-        <div className={styles.tagContainer}>
-          <Tag color="blue">{property.property.propertyType}</Tag>
-          {property.property.waterfront && <Tag color="cyan">Waterfront</Tag>}
-          {property.property.pool && <Tag color="geekblue">Pool</Tag>}
-          {property.property.view && <Tag color="purple">View</Tag>}
-        </div>
-      </div>
+      <Flex gap={6} wrap="wrap">
+        <Tag color="blue">{property.property.propertyType}</Tag>
+        {property.property.waterfront && <Tag color="cyan">Waterfront</Tag>}
+        {property.property.pool && <Tag color="geekblue">Pool</Tag>}
+        {property.property.view && <Tag color="purple">View: {property.property.view}</Tag>}
+      </Flex>
 
-      <div className={styles.footer}>
-        <div className={styles.agentInfo}>
+      <Divider style={{ margin: '12px 0' }} />
+
+      <Flex align="center" justify="space-between">
+        <Flex align="center">
           {property.agent.name !== 'N/A' && (
-            <Avatar size="small" style={{ backgroundColor: token.colorPrimary }}>
+            <Avatar size="small" style={{ backgroundColor: token.colorPrimary, marginRight: 8 }}>
               {property.agent.name.charAt(0)}
             </Avatar>
           )}
-          <span className={styles.agentText}>
-            {property.agent.name === 'N/A' ? 'Agent Unknown' : property.agent.name}
-          </span>
-        </div>
+          <Text ellipsis style={{ fontSize: 12 }} type="secondary">
+            {property.agent.name === 'N/A'
+              ? 'Agent Unknown'
+              : `${property.agent.name} · ${property.agent.office}`}
+          </Text>
+        </Flex>
         {property.listing.daysOnMarket > 0 && property.listing.daysOnMarket <= 7 && (
           <Tag color="orange">New</Tag>
         )}
-      </div>
+      </Flex>
     </Card>
   );
 };
 
-// Property details view component
 const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
-  const { styles } = useStyles();
   const { token } = useToken();
 
   return (
-    <div className={styles.detailsContainer}>
+    <div style={{ padding: '0 16px' }}>
       {property.media.photos && property.media.photos.length > 0 ? (
-        <Carousel autoplay style={{ borderRadius: 8, marginBottom: 24, overflow: 'hidden' }}>
+        <Carousel autoplay style={{ marginBottom: 24 }}>
           {property.media.photos.map((photo, index) => (
             <div key={index}>
               <Image
@@ -509,7 +303,8 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
                 preview={false}
                 src={photo}
                 style={{
-                  height: '400px',
+                  borderRadius: 8,
+                  height: '300px',
                   objectFit: 'cover',
                   width: '100%',
                 }}
@@ -521,11 +316,11 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
         <div
           style={{
             alignItems: 'center',
-            background: token.colorFillQuaternary,
+            background: '#f0f0f0',
             borderRadius: 8,
-            color: token.colorTextQuaternary,
+            color: '#ccc',
             display: 'flex',
-            height: 400,
+            height: 300,
             justifyContent: 'center',
             marginBottom: 24,
           }}
@@ -596,7 +391,13 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
         <Row gutter={[24, 16]}>
           <Col xs={24}>
             <Badge.Ribbon
-              color={getStatusColor(property.listing.status)}
+              color={
+                property.listing.status === 'Active'
+                  ? 'green'
+                  : property.listing.status === 'Pending'
+                    ? 'orange'
+                    : 'blue'
+              }
               text={property.listing.status}
             />
             <Paragraph style={{ fontSize: 16, lineHeight: 1.6 }}>
@@ -606,7 +407,6 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
         </Row>
       </Card>
 
-      {/* Additional property details sections */}
       <Row gutter={[24, 24]}>
         <Col md={12} xs={24}>
           <Card bordered={false} title="Property Details">
@@ -623,7 +423,7 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
                   {formatNumber(property.property.lotSize)} sqft
                 </Descriptions.Item>
               )}
-              {property.property.garageSpaces !== undefined && (
+              {property.property.garageSpaces !== null && (
                 <Descriptions.Item label="Garage">
                   {property.property.garageSpaces} spaces
                 </Descriptions.Item>
@@ -647,65 +447,105 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
               {property.property.roof && (
                 <Descriptions.Item label="Roof">{property.property.roof}</Descriptions.Item>
               )}
-              {property.property.foundation !== undefined && (
-                <Descriptions.Item label="Foundation">
-                  {property.property.foundation}
-                </Descriptions.Item>
-              )}
             </Descriptions>
           </Card>
         </Col>
+
         <Col md={12} xs={24}>
           <Card bordered={false} title="Listing Details">
             <Descriptions column={1} style={{ marginBottom: 0 }}>
-              <Descriptions.Item label="Status">{property.listing.status}</Descriptions.Item>
-              <Descriptions.Item label="MLS #">{property.listing.mlsNumber}</Descriptions.Item>
-              <Descriptions.Item label="Listed Date">
-                {new Date(property.listing.listedDate).toLocaleDateString()}
-              </Descriptions.Item>
+              {property.listing.mlsNumber && (
+                <Descriptions.Item label="MLS #">{property.listing.mlsNumber}</Descriptions.Item>
+              )}
               <Descriptions.Item label="Days on Market">
                 {property.listing.daysOnMarket}
               </Descriptions.Item>
+              <Descriptions.Item label="Listed Date">
+                {new Date(property.listing.listedDate).toLocaleDateString()}
+              </Descriptions.Item>
+              {property.listing.taxYear > 0 && (
+                <Descriptions.Item label="Tax Year">{property.listing.taxYear}</Descriptions.Item>
+              )}
+              {property.listing.taxAssessedValue > 0 && (
+                <Descriptions.Item label="Tax Assessment">
+                  {formatCurrency(property.listing.taxAssessedValue)}
+                </Descriptions.Item>
+              )}
               {property.listing.taxAnnualAmount > 0 && (
                 <Descriptions.Item label="Annual Tax">
                   {formatCurrency(property.listing.taxAnnualAmount)}
                 </Descriptions.Item>
               )}
-              {property.listing.taxYear > 0 && (
-                <Descriptions.Item label="Tax Year">{property.listing.taxYear}</Descriptions.Item>
-              )}
-              {property.listing.taxAssessedValue > 0 && (
-                <Descriptions.Item label="Tax Assessed Value">
-                  {formatCurrency(property.listing.taxAssessedValue)}
-                </Descriptions.Item>
-              )}
               {property.listing.hoaFees > 0 && (
-                <Descriptions.Item
-                  label={`HOA${property.listing.hoaFrequency ? ' (' + property.listing.hoaFrequency + ')' : ''}`}
-                >
-                  {formatCurrency(property.listing.hoaFees)}
+                <Descriptions.Item label="HOA Fees">
+                  {formatCurrency(property.listing.hoaFees)} {property.listing.hoaFrequency || ''}
                 </Descriptions.Item>
               )}
             </Descriptions>
           </Card>
         </Col>
 
+        {property.property.features && property.property.features.length > 0 && (
+          <Col xs={24}>
+            <Card bordered={false} title="Features">
+              <Row gutter={[16, 16]}>
+                {property.property.features.map((feature, index) => (
+                  <Col key={index} md={8} xs={12}>
+                    <Tag style={{ padding: '4px 8px' }}>{feature}</Tag>
+                  </Col>
+                ))}
+                {property.property.waterfront && (
+                  <Col md={8} xs={12}>
+                    <Tag color="blue" style={{ padding: '4px 8px' }}>
+                      Waterfront
+                    </Tag>
+                  </Col>
+                )}
+                {property.property.pool && (
+                  <Col md={8} xs={12}>
+                    <Tag color="blue" style={{ padding: '4px 8px' }}>
+                      Pool
+                    </Tag>
+                  </Col>
+                )}
+                {property.property.spa && (
+                  <Col md={8} xs={12}>
+                    <Tag color="blue" style={{ padding: '4px 8px' }}>
+                      Spa
+                    </Tag>
+                  </Col>
+                )}
+                {property.property.view && (
+                  <Col md={8} xs={12}>
+                    <Tag color="blue" style={{ padding: '4px 8px' }}>
+                      View: {property.property.view}
+                    </Tag>
+                  </Col>
+                )}
+              </Row>
+            </Card>
+          </Col>
+        )}
+
         {property.schools && property.schools.length > 0 && (
           <Col xs={24}>
-            <Card bordered={false} title="Nearby Schools">
+            <Card bordered={false} title="Schools">
               {property.schools.map((school, index) => (
-                <div key={index}>
+                <div
+                  key={index}
+                  style={{ marginBottom: index < property.schools.length - 1 ? 16 : 0 }}
+                >
                   <Flex align="center" justify="space-between">
                     <div>
                       <Text strong>{school.name}</Text>
                       <br />
-                      <Text type="secondary">{school.level}</Text>
+                      <Text type="secondary">
+                        {school.level} · {school.distance.toFixed(1)} mi
+                      </Text>
                     </div>
-                    <div>
-                      <Rate defaultValue={school.rating} disabled />
-                      <br />
-                      <Text type="secondary">{school.distance.toFixed(1)} miles</Text>
-                    </div>
+                    {school.rating > 0 && (
+                      <Rate allowHalf defaultValue={school.rating / 2} disabled />
+                    )}
                   </Flex>
                   {index < property.schools.length - 1 && <Divider style={{ margin: '16px 0' }} />}
                 </div>
@@ -756,109 +596,72 @@ const PropertyDetailsView = ({ property }: { property: PropertyDetails }) => {
   );
 };
 
-// Search results component with improved layout
 const SearchResults = ({ data }: { data: PropertySearchResults }) => {
-  const { styles } = useStyles();
-
   return (
     <div style={{ padding: '0 16px' }}>
-      <div className={styles.resultHeader}>
-        <Title level={4} style={{ margin: 0 }}>
-          {formatNumber(data.meta.total)} Properties Found
-        </Title>
-        {data.meta.count > 0 && (
-          <Text type="secondary">
-            Showing {data.meta.count} of {formatNumber(data.meta.total)}
-          </Text>
-        )}
-      </div>
+      <Layout.Header style={{ background: 'transparent', padding: '16px 0' }}>
+        <Flex align="center" justify="space-between">
+          <Title level={4} style={{ marginBottom: 0 }}>
+            {formatNumber(data.meta.total)} Properties Found
+          </Title>
+          {data.meta.count > 0 && (
+            <Text>
+              Showing {data.meta.count} of {formatNumber(data.meta.total)}
+            </Text>
+          )}
+        </Flex>
+      </Layout.Header>
 
       {data.data && data.data.length > 0 ? (
-        <div className={styles.cardsContainer}>
+        <Row gutter={[16, 16]}>
           {data.data.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+            <Col key={property.id} lg={8} sm={12} xs={24}>
+              <PropertyCard property={property} />
+            </Col>
           ))}
-        </div>
+        </Row>
       ) : (
-        <Empty
-          description="No properties match your criteria."
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          style={{ margin: '48px 0' }}
-        />
+        <div style={{ padding: '48px 0', textAlign: 'center' }}>
+          <Text>No properties match your criteria.</Text>
+        </div>
       )}
+      {/* TODO: Add pagination controls using data.meta.nextResultIndex */}
     </div>
   );
 };
 
-// Main plugin component
 const MLSSearchPlugin = memo(() => {
   const [data, setData] = useState<PluginMessageData | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
-    console.log('MLSSearchPlugin: useEffect started, setting loading=true');
     setLoading(true);
     setError(undefined);
-    setData(undefined); // Reset data on new fetch
-
+    // Fetch data from LobeChat using the SDK
     fetchPluginMessage()
       .then((response: any) => {
-        console.log('MLSSearchPlugin: fetchPluginMessage resolved. Raw response:', response);
-
+        console.log('Plugin data received from SDK:', response);
         if (response?.error) {
-          console.error('MLSSearchPlugin: API returned an error:', response.error);
           setError(`API Error: ${response.error}`);
           setData(undefined);
         } else if (response) {
-          try {
-            console.log('MLSSearchPlugin: Attempting to parse successful response.');
-            // Handle search results (has data array and meta info)
-            if (response.data && Array.isArray(response.data) && response.meta) {
-              console.log('MLSSearchPlugin: Detected search results format.');
-              setData({
-                data: response.data.map((property: any) => transformToMLSProperty(property)),
-                meta: response.meta,
-              });
-              setError(undefined); // Clear previous error if successful
-            }
-            // Handle single property detail (has property fields but no data array)
-            else if (response.address && response.property && response.listing) {
-              console.log('MLSSearchPlugin: Detected single property detail format.');
-              setData(transformToPropertyDetails(response));
-              setError(undefined); // Clear previous error if successful
-            }
-            // Handle unexpected format
-            else {
-              console.warn('MLSSearchPlugin: Unexpected data format received:', response);
-              setError('Received data in an unexpected format.');
-              setData(undefined); // Set data to undefined for unexpected formats
-            }
-          } catch (parseError) {
-            console.error('MLSSearchPlugin: Error parsing response:', parseError);
-            setError(`Failed to parse response: ${parseError.message}`);
-            setData(undefined);
-          }
+          setData(response);
         } else {
-          console.warn('MLSSearchPlugin: Received null or undefined response from SDK.');
           setError('Received empty data from plugin.');
           setData(undefined);
         }
+        setLoading(false);
       })
       .catch((fetchError) => {
-        // This catches errors in fetchPluginMessage() itself or network errors
-        console.error('MLSSearchPlugin: Error fetching plugin data via SDK:', fetchError);
+        console.error('Error fetching plugin data via SDK:', fetchError);
         setError(`Failed to load plugin data: ${fetchError.message}`);
         setData(undefined);
-      })
-      .finally(() => {
-        // This will always run, regardless of success or failure
-        console.log('MLSSearchPlugin: fetchPluginMessage finished. Setting loading=false');
         setLoading(false);
       });
   }, []);
 
-  // Custom styles to override carousel dots
+  // Custom styles to override carousel dots (can be moved to CSS)
   useEffect(() => {
     const style = document.createElement('style');
     style.innerHTML = `
@@ -880,12 +683,7 @@ const MLSSearchPlugin = memo(() => {
   if (loading) {
     return (
       <div
-        style={{
-          alignItems: 'center',
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '64px 0',
-        }}
+        style={{ alignItems: 'center', display: 'flex', height: '200px', justifyContent: 'center' }}
       >
         <Spin size="large" tip="Loading properties..." />
       </div>
@@ -894,10 +692,8 @@ const MLSSearchPlugin = memo(() => {
 
   if (error) {
     return (
-      <div style={{ padding: 24 }}>
-        <Title level={4} type="danger">
-          Error Loading Properties
-        </Title>
+      <div style={{ color: 'red', padding: 24 }}>
+        <Title level={4}>Error Loading Plugin Data</Title>
         <Paragraph>{error}</Paragraph>
         {data && (data as any).details && (
           <pre
@@ -918,23 +714,21 @@ const MLSSearchPlugin = memo(() => {
 
   if (!data) {
     return (
-      <Empty
-        description="No property data available"
-        image={Empty.PRESENTED_IMAGE_SIMPLE}
-        style={{ margin: '48px 0' }}
-      />
+      <div style={{ padding: 24, textAlign: 'center' }}>
+        <Title level={4}>No Data Available</Title>
+        <Paragraph>Plugin did not return any data.</Paragraph>
+      </div>
     );
   }
 
   // Determine if the data is a property detail or search results
-  const isPropertyDetail =
-    data && typeof data === 'object' && 'schools' in data && !('data' in data);
-  const isSearchResults =
-    data && typeof data === 'object' && 'data' in data && Array.isArray((data as any).data);
+  // Check for a unique field in PropertyDetails (e.g., 'schools') or check if data.data exists for search results
+  const isPropertyDetail = data && 'schools' in data;
+  const isSearchResults = data && 'data' in data && Array.isArray(data.data);
 
   return (
-    <Layout style={{ background: 'transparent', minHeight: '100%' }}>
-      <Layout.Content>
+    <Layout style={{ background: '#f5f5f5', minHeight: '100%' }}>
+      <Layout.Content style={{ padding: '16px 0' }}>
         {isPropertyDetail ? (
           <PropertyDetailsView property={data as PropertyDetails} />
         ) : isSearchResults ? (
