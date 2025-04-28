@@ -7,6 +7,10 @@
       "parameters": {
         "type": "object",
         "properties": {
+          "mls_number": {
+            "type": "string",
+            "description": "Find a specific listing by its MLS number/ID (e.g., 'A11788244')."
+          },
           "city": {
             "type": "string",
             "description": "Filter by city name (e.g., 'Miami'). Requires 'state'."
@@ -15,25 +19,94 @@
             "type": "string",
             "description": "Filter by 2-character state code (e.g., 'FL')."
           },
-          "zip": { "type": "string", "description": "Filter by zip code (e.g., '33139')." },
+          "zip": {
+            "type": "string",
+            "description": "Filter by zip code (e.g., '33139')."
+          },
+          "county": {
+            "type": "string",
+            "description": "Filter by county name."
+          },
+          "address": {
+            "type": "string",
+            "description": "Search by full or partial address."
+          },
+          "street": {
+            "type": "string",
+            "description": "Filter for listings on a specific street."
+          },
+          "house": {
+            "type": "string",
+            "description": "Filter by house number."
+          },
+          "unit": {
+            "type": "string",
+            "description": "Filter by unit number."
+          },
           "listing_property_type": {
             "type": "string",
-            "description": "Filter by listing property type (e.g., 'Residential', 'Condo', 'Townhouse'). See https://developer.realestateapi.com/reference/listing-property-type"
+            "description": "Filter by listing property type (e.g., 'Residential', 'Condo', 'Townhouse', 'Land', 'Multifamily')."
           },
           "property_type": {
             "type": "string",
-            "description": "Filter by public record property type (e.g., 'SFR', 'CONDO')."
+            "description": "Filter by public record property type (e.g., 'SFR', 'CONDO', 'MFR', 'LAND', 'MOBILE', 'OTHER')."
+          },
+          "property_sub_type": {
+            "type": "string",
+            "description": "More detailed property classification."
           },
           "status": {
             "type": "string",
-            "description": "Filter by listing status (e.g., 'Active', 'Pending', 'Sold'). See https://developer.realestateapi.com/reference/current-status-searches"
+            "description": "Filter by listing status (e.g., 'Active', 'Pending', 'Sold')."
           },
-          "bedrooms_min": { "type": "number", "description": "Minimum number of bedrooms." },
-          "bedrooms_max": { "type": "number", "description": "Maximum number of bedrooms." },
-          "bathrooms_min": { "type": "number", "description": "Minimum number of bathrooms." },
-          "bathrooms_max": { "type": "number", "description": "Maximum number of bathrooms." },
-          "listing_price_min": { "type": "number", "description": "Minimum listing price." },
-          "listing_price_max": { "type": "number", "description": "Maximum listing price." },
+          "active": {
+            "type": "boolean",
+            "description": "Filter for listings with 'Active' status."
+          },
+          "pending": {
+            "type": "boolean",
+            "description": "Filter for listings with 'Pending' status."
+          },
+          "sold": {
+            "type": "boolean",
+            "description": "Filter for sold listings."
+          },
+          "bedrooms": {
+            "type": "number",
+            "description": "Exact number of bedrooms."
+          },
+          "bedrooms_min": {
+            "type": "number",
+            "description": "Minimum number of bedrooms."
+          },
+          "bedrooms_max": {
+            "type": "number",
+            "description": "Maximum number of bedrooms."
+          },
+          "bathrooms": {
+            "type": "number",
+            "description": "Exact number of bathrooms."
+          },
+          "bathrooms_min": {
+            "type": "number",
+            "description": "Minimum number of bathrooms."
+          },
+          "bathrooms_max": {
+            "type": "number",
+            "description": "Maximum number of bathrooms."
+          },
+          "listing_price_min": {
+            "type": "number",
+            "description": "Minimum listing price."
+          },
+          "listing_price_max": {
+            "type": "number",
+            "description": "Maximum listing price."
+          },
+          "living_area": {
+            "type": "number",
+            "description": "Exact living area square footage."
+          },
           "living_area_min": {
             "type": "number",
             "description": "Minimum living area in square feet."
@@ -42,14 +115,109 @@
             "type": "number",
             "description": "Maximum living area in square feet."
           },
-          "year_built_min": { "type": "number", "description": "Minimum year built." },
-          "year_built_max": { "type": "number", "description": "Maximum year built." },
-          "days_on_market_min": { "type": "number", "description": "Minimum days on market." },
-          "days_on_market_max": { "type": "number", "description": "Maximum days on market." },
-          "has_pool": { "type": "boolean", "description": "Filter for properties with a pool." },
+          "lot_size": {
+            "type": "number",
+            "description": "Exact lot size in square feet."
+          },
+          "lot_size_min": {
+            "type": "number",
+            "description": "Minimum lot size in square feet."
+          },
+          "lot_size_max": {
+            "type": "number",
+            "description": "Maximum lot size in square feet."
+          },
+          "year_built": {
+            "type": "number",
+            "description": "Exact year the property was built."
+          },
+          "year_built_min": {
+            "type": "number",
+            "description": "Minimum year built."
+          },
+          "year_built_max": {
+            "type": "number",
+            "description": "Maximum year built."
+          },
+          "days_on_market_min": {
+            "type": "number",
+            "description": "Minimum days on market."
+          },
+          "days_on_market_max": {
+            "type": "number",
+            "description": "Maximum days on market."
+          },
+          "has_pool": {
+            "type": "boolean",
+            "description": "Filter for properties with a pool."
+          },
+          "has_basement": {
+            "type": "boolean",
+            "description": "Filter for properties with a basement."
+          },
           "is_water_front": {
             "type": "boolean",
             "description": "Filter for waterfront properties."
+          },
+          "is_water_view": {
+            "type": "boolean",
+            "description": "Filter for properties with water views."
+          },
+          "is_city_view": {
+            "type": "boolean",
+            "description": "Filter for properties with city views."
+          },
+          "is_mountain_view": {
+            "type": "boolean",
+            "description": "Filter for properties with mountain views."
+          },
+          "is_park_view": {
+            "type": "boolean",
+            "description": "Filter for properties with park views."
+          },
+          "listing_date_min": {
+            "type": "string",
+            "description": "Earliest listing date (YYYY-MM-DD format)."
+          },
+          "listing_date_max": {
+            "type": "string",
+            "description": "Latest listing date (YYYY-MM-DD format)."
+          },
+          "sold_date_min": {
+            "type": "string",
+            "description": "Earliest sold date (YYYY-MM-DD format)."
+          },
+          "sold_date_max": {
+            "type": "string",
+            "description": "Latest sold date (YYYY-MM-DD format)."
+          },
+          "stories": {
+            "type": "number",
+            "description": "Exact number of stories in the building."
+          },
+          "price_per_sqft_min": {
+            "type": "number",
+            "description": "Minimum price per square foot."
+          },
+          "price_per_sqft_max": {
+            "type": "number",
+            "description": "Maximum price per square foot."
+          },
+          "has_photos": {
+            "type": "boolean",
+            "description": "Filter for properties that have photos."
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude for location-based search. Requires longitude and radius."
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude for location-based search. Requires latitude and radius."
+          },
+          "radius": {
+            "type": "number",
+            "description": "Search radius in miles for location-based search."
           },
           "size": {
             "type": "number",
@@ -61,13 +229,21 @@
           },
           "include_photos": {
             "type": "boolean",
-            "description": "Include full photo list in response (default: false). Set to true for UI.",
+            "description": "Include full photo list in response. Set to true for UI.",
             "default": true
           }
         },
         "required": []
       },
       "examples": [
+        {
+          "name": "Find property by MLS number",
+          "description": "Look up a specific property by its MLS ID/number.",
+          "parameters": {
+            "mls_number": "A11788244",
+            "include_photos": true
+          }
+        },
         {
           "name": "Find active houses in Miami, FL under $1M with 3+ beds",
           "description": "Search for active single-family residential properties in Miami, Florida under $1,000,000 with at least 3 bedrooms.",
@@ -112,7 +288,7 @@
     },
     {
       "name": "getPropertyDetails",
-      "description": "Get detailed information about a specific property by MLS ID (Currently returns mock data)",
+      "description": "Get detailed information about a specific property by MLS ID (Uses MLSSearch with mls_number parameter)",
       "url": "https://gatewa-bice.vercel.app/api/v1/mls.ts",
       "parameters": {
         "type": "object",
@@ -120,7 +296,7 @@
         "properties": {
           "propertyId": {
             "type": "string",
-            "description": "The MLS ID of the property to retrieve (e.g., MLS-10001)"
+            "description": "The MLS ID of the property to retrieve (e.g., 'A11788244')"
           }
         }
       }
@@ -137,7 +313,7 @@
     "required": [],
     "properties": {}
   },
-  "systemRole": "You are a real estate assistant with access to MLS property data via the RealEstateAPI. When a user asks about properties, use the mlsSearch function with the appropriate parameters based on their query. For example, to find active houses in Miami, FL under $1M with 3+ beds, use: mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', listing_property_type: 'Residential', listing_price_max: 1000000, bedrooms_min: 3, size: 3, include_photos: true }). Prioritize using specific fields like city, state, price ranges, bedroom/bathroom counts, property types, and status. Use include_photos: true for displaying results.",
+  "systemRole": "You are a real estate assistant with access to MLS property data via the RealEstateAPI. When users ask about properties, use the appropriate function based on their query:\n\n1. FOR SPECIFIC MLS NUMBER/ID SEARCHES: When a user asks for a specific MLS listing (e.g., A11788244, #A11788244), use either:\n   - mlsSearch with mls_number parameter: mlsSearch({ mls_number: 'A11788244', include_photos: true })\n   - OR getPropertyDetails function: getPropertyDetails({ propertyId: 'A11788244' })\n\n2. FOR GENERAL PROPERTY SEARCHES: Use mlsSearch with appropriate parameters based on their query criteria. For example:\n   - To find active houses in Miami: mlsSearch({ city: 'Miami', state: 'FL', status: 'Active', include_photos: true })\n   - To find properties under $500k: mlsSearch({ listing_price_max: 500000, include_photos: true })\n   - To find properties with specific features: mlsSearch({ bedrooms_min: 3, bathrooms_min: 2, has_pool: true, include_photos: true })\n\nAlways include the include_photos parameter set to true for better visualization. Use all relevant search parameters to narrow down results based on user's requirements.",
   "ui": {
     "url": "https://gatewa-bice.vercel.app/plugins/mls-search/index.html",
     "height": 550
