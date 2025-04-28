@@ -155,148 +155,180 @@ interface MLSSearchParams {
 }
 
 // Interface for the expected structure of a property from RealEstateAPI MLSSearch
-// Based on common fields and parameters. Adjust based on actual API response.
+// Updated based on actual API response logs
 interface RealEstateAPIProperty {
-  address?: string;
-  basement?: boolean;
-  bathrooms?: number;
-  bedrooms?: number;
-  city?: string;
-  city_view?: boolean;
-  county?: string;
-  days_on_market?: number;
-  garage_spaces?: number;
-  half_bathrooms?: number;
-  id: number; // Assuming RealEstateAPI uses numeric ID
-  latitude?: number;
-  listed_date?: string; // ISO Date string?
-  listing_agent_email?: string;
-  listing_agent_name?: string;
-  listing_agent_phone?: string;
-  listing_id: string; // MLS listing ID
-  listing_office_name?: string;
-  listing_price?: number;
-  listing_property_type?: string;
-  living_area?: number; // Square footage
-  longitude?: number;
-  lot_size?: number; // Square footage
-  mountain_view?: boolean;
-  park_view?: boolean;
-  photos?: string[]; // If include_photos=true
-  pool?: boolean; // Often represented as 0 or 1, needs check
-  price_per_sqft?: number;
-  property_type?: string; // e.g., "SFR"
-  remarks?: string;
-  sold_date?: string; // ISO Date string?
-  sold_price?: number;
-  state?: string;
-  status?: string;
-  stories?: number;
-  street?: string;
-  subdivision?: string;
-  virtual_tour_url?: string;
-  water_front?: boolean;
-  water_view?: boolean;
-  year_built?: number;
-  zip?: string;
-
-  // Add other relevant fields from RealEstateAPI response
+  id: number; // Top-level ID from the API
+  listing?: {
+    // Alphabetized keys within listing
+    address?: {
+      city?: string;
+      countyOrParish?: string;
+      stateOrProvince?: string;
+      unparsedAddress?: string;
+      zipCode?: string;
+    };
+    courtesyOf?: string;
+    customStatus?: string;
+    hasPhotos?: boolean;
+    internetAddressDisplayYN?: boolean;
+    isListed?: boolean;
+    leadTypes?: any; 
+    listPriceLow?: number;
+    // Contains various boolean flags
+    listingAgentEmailAddress?: string;
+    listingContractDate?: string;
+    media?: {
+      // Alphabetized keys within media
+      photosCount?: string; // Note: API returns string, convert to number
+      photosList?: Array<{ highRes?: string, lowRes?: string; midRes?: string; }>;
+      primaryListingImageUrl?: string;
+    };
+    mlsBoardCode?: string;
+    mlsNumber?: string;
+    priceChangeTimestamp?: string;
+    pricePerSqFt?: number;
+    property?: {
+      // Alphabetized keys within property
+      associationFee?: number;
+      bathroomsText?: string;
+      bathroomsTotal?: number;
+      bedroomsTotal?: number;
+      garageSpaces?: number;
+      hasBasement?: boolean;
+      hasPool?: boolean;
+      isCityView?: boolean;
+      isMountainView?: boolean;
+      isParkView?: boolean;
+      isWaterFront?: boolean;
+      isWaterView?: boolean;
+      latitude?: number;
+      livingArea?: number;
+      location?: string; // e.g., "POINT(-80.178436279297 25.840671539307)"
+      longitude?: number;
+      lotSizeSquareFeet?: number;
+      propertySubType?: string[];
+      propertyType?: string;
+      stories?: number;
+      subdivisionName?: string;
+      yearBuilt?: string; // Note: API returns string, convert to number
+    };
+    publicRemarks?: string;
+    schools?: any;
+    standardStatus?: string;
+    url?: string;
+  };
+  listingAgent?: {
+    // Alphabetized keys within listingAgent
+    email?: string;
+    firstName?: string;
+    fullName?: string;
+    lastName?: string;
+    mlsCode?: string;
+    phone?: string;
+  };
+  listingId: string; // Top-level listingId (often matches mlsNumber)
+  listingOffice?: {
+    // Alphabetized keys within listingOffice
+    address?: string;
+    city?: string;
+    email?: string;
+    mlsCode?: string;
+    name?: string;
+    phone?: string;
+    postalCode?: string;
+    stateOrProvince?: string;
+  };
+  modificationTimestamp?: string;
+  public?: any; // Contains detailed public record data
+  sellingAgent?: any;
+  sellingOffice?: any;
 }
 
 // Interface for the overall API response structure
 interface RealEstateAPIResponse {
   credits?: number;
-  // For pagination
-  data: RealEstateAPIProperty[]; 
-  // Keep for potential backward compat, but prefer resultCount
-  input?: any; 
-  // Added based on logs
-  live?: boolean; 
-  // Total results matching query
-  recordCount?: number; 
-  // Added based on logs
-  requestExecutionTimeMS?: string; 
-  resultCount?: number;
-  // Results returned in this response (<= size)
-  resultIndex?: number;
-  // Changed from results to data
-  returnedResults?: number; 
-  // Keep for potential backward compat or other endpoints, but prefer recordCount
-  statusCode: number; 
-  statusMessage: string; 
-  totalResults?: number; 
-  // Added based on logs
+  data: RealEstateAPIProperty[]; // Changed from results to data
+  input?: any; // Added based on logs
+  live?: boolean; // Added based on logs
+  recordCount?: number; // Results returned in this response (<= size)
+  requestExecutionTimeMS?: string; // Added based on logs
+  resultCount?: number; // Total results matching query
+  resultIndex?: number; // For pagination
+  returnedResults?: number; // Keep for potential backward compat or other endpoints, but prefer recordCount
+  statusCode: number;
+  statusMessage: string;
+  totalResults?: number; // Keep for potential backward compat, but prefer resultCount
   warning?: string; // Added based on logs
   // ... other potential meta fields
 }
 
 // Map RealEstateAPI response field names to our internal MLSProperty interface used by the UI
+// ** REVISED MAPPING LOGIC **
 const mapApiPropertyToUI = (
   apiProp: RealEstateAPIProperty,
 ): any /* Use MLSProperty type from UI */ => {
+  const listing = apiProp.listing || {};
+  const property = listing.property || {};
+  const address = listing.address || {};
+  const agent = apiProp.listingAgent || {};
+  const office = apiProp.listingOffice || {};
+  const media = listing.media || {};
+  const leadTypes = listing.leadTypes || {};
+
+  const photos = (media.photosList || [])
+    .map((p) => p.highRes || p.midRes || p.lowRes)
+    .filter(Boolean) as string[];
+
   return {
     address: {
-      city: apiProp.city || '',
+      city: address.city || '',
       full:
-        apiProp.address ||
-        `${apiProp.street || ''}, ${apiProp.city || ''}, ${apiProp.state || ''}${apiProp.zip || ''}`,
-      neighborhood: apiProp.subdivision || 'N/A',
-      state: apiProp.state || '',
-      street: apiProp.street || '',
-      zipCode: apiProp.zip || '', // Assuming subdivision maps to neighborhood
+        address.unparsedAddress ||
+        `${address.city || ''}, ${address.stateOrProvince || ''} ${address.zipCode || ''}`,
+      neighborhood: property.subdivisionName || 'N/A',
+      state: address.stateOrProvince || '',
+      street: address.unparsedAddress || '', // Best guess if unparsedAddress exists
+      zipCode: address.zipCode || '',
     },
     agent: {
-      email: apiProp.listing_agent_email || 'N/A',
-      name: apiProp.listing_agent_name || 'N/A',
-      office: apiProp.listing_office_name || 'N/A',
-      phone: apiProp.listing_agent_phone || 'N/A',
+      email: agent.email || 'N/A',
+      name: agent.fullName || `${agent.firstName || ''} ${agent.lastName || ''}`.trim() || 'N/A',
+      office: office.name || 'N/A',
+      phone: agent.phone || 'N/A',
     },
-
-    id: `REAPI-${apiProp.id}`,
-
+    id: `REAPI-${apiProp.id}`, // Use the top-level API ID
     listing: {
-      daysOnMarket: apiProp.days_on_market || 0,
-      listedDate: apiProp.listed_date || new Date().toISOString(),
-
-      price: apiProp.listing_price || apiProp.sold_price || 0,
-
-      remarks: apiProp.remarks || 'No description available.',
-      // Prioritize listing price
-      status: apiProp.status || 'N/A',
+      daysOnMarket: Number(leadTypes.mlsDaysOnMarket) || 0,
+      listedDate: listing.listingContractDate || new Date().toISOString(),
+      price: listing.listPriceLow || 0,
+      remarks: listing.publicRemarks || 'No description available.',
+      status: listing.standardStatus || listing.customStatus || 'N/A',
     },
-    // Create a unique ID for UI keys
-    listingId: apiProp.listing_id,
+    listingId: listing.mlsNumber || apiProp.listingId, // Prefer MLS number from listing object
     media: {
-      photos: apiProp.photos || [],
-      virtualTour: apiProp.virtual_tour_url || undefined,
+      photos: photos,
+      virtualTour: undefined, // Virtual tour URL not obvious in logged response, add later if found
     },
     property: {
-      // RealEstateAPI might return full/half separately or combined
-      bathrooms: (apiProp.bathrooms || 0) + (apiProp.half_bathrooms || 0) * 0.5,
-
-      bedrooms: apiProp.bedrooms || 0,
-
-      garageSpaces: apiProp.garage_spaces || undefined,
-      livingArea: apiProp.living_area || 0,
-      lotSize: apiProp.lot_size || undefined,
-      // Convert potential 0/1 to boolean
-      pool: !!apiProp.pool,
-
-      propertyType: apiProp.listing_property_type || apiProp.property_type || 'N/A',
-
-      stories: apiProp.stories || undefined,
-
-      view: apiProp.water_view
+      bathrooms: property.bathroomsTotal || 0,
+      bedrooms: property.bedroomsTotal || 0,
+      garageSpaces: property.garageSpaces || undefined,
+      livingArea: property.livingArea || 0,
+      lotSize: property.lotSizeSquareFeet || undefined,
+      pool: !!property.hasPool, // Check boolean flag
+      propertyType: property.propertyType || 'N/A',
+      stories: property.stories || undefined,
+      view: property.isWaterView
         ? 'Water'
-        : apiProp.city_view
+        : property.isCityView
           ? 'City'
-          : apiProp.mountain_view
+          : property.isMountainView
             ? 'Mountain'
-            : apiProp.park_view
+            : property.isParkView
               ? 'Park'
               : undefined,
-      waterfront: !!apiProp.water_front,
-      yearBuilt: apiProp.year_built || 0,
+      waterfront: !!property.isWaterFront, // Check boolean flag
+      yearBuilt: Number(property.yearBuilt) || 0, // Convert string year to number
     },
   };
 };
@@ -374,7 +406,7 @@ export const mlsSearch = async (params: MLSSearchParams, apiToken: string) => {
       meta: {
         count: returnedResults,
         limit: size,
-        nextResultIndex: responseData.resultIndex, // Keep this as is, might be undefined
+        nextResultIndex: responseData.resultIndex === null ? undefined : responseData.resultIndex, // Explicitly handle null
         offset: params.resultIndex || 0,
         total: totalResults,
       },
