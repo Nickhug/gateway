@@ -797,50 +797,63 @@ const MLSSearchPlugin = memo(() => {
   const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
+    console.log('MLSSearchPlugin: useEffect started, setting loading=true');
     setLoading(true);
     setError(undefined);
+    setData(undefined); // Reset data on new fetch
 
-    // Fetch data from LobeChat using the SDK
     fetchPluginMessage()
       .then((response: any) => {
-        console.log('Plugin data received from SDK:', response);
+        console.log('MLSSearchPlugin: fetchPluginMessage resolved. Raw response:', response);
 
         if (response?.error) {
+          console.error('MLSSearchPlugin: API returned an error:', response.error);
           setError(`API Error: ${response.error}`);
           setData(undefined);
         } else if (response) {
           try {
+            console.log('MLSSearchPlugin: Attempting to parse successful response.');
             // Handle search results (has data array and meta info)
             if (response.data && Array.isArray(response.data) && response.meta) {
+              console.log('MLSSearchPlugin: Detected search results format.');
               setData({
                 data: response.data.map((property: any) => transformToMLSProperty(property)),
                 meta: response.meta,
               });
+              setError(undefined); // Clear previous error if successful
             }
             // Handle single property detail (has property fields but no data array)
             else if (response.address && response.property && response.listing) {
-              // This is a single property detail
+              console.log('MLSSearchPlugin: Detected single property detail format.');
               setData(transformToPropertyDetails(response));
+              setError(undefined); // Clear previous error if successful
             }
-            // For any other data structure, try to use as-is
+            // Handle unexpected format
             else {
-              setData(response);
+              console.warn('MLSSearchPlugin: Unexpected data format received:', response);
+              setError('Received data in an unexpected format.');
+              setData(undefined); // Set data to undefined for unexpected formats
             }
           } catch (parseError) {
-            console.error('Error parsing response:', parseError);
+            console.error('MLSSearchPlugin: Error parsing response:', parseError);
             setError(`Failed to parse response: ${parseError.message}`);
             setData(undefined);
           }
         } else {
+          console.warn('MLSSearchPlugin: Received null or undefined response from SDK.');
           setError('Received empty data from plugin.');
           setData(undefined);
         }
-        setLoading(false);
       })
       .catch((fetchError) => {
-        console.error('Error fetching plugin data via SDK:', fetchError);
+        // This catches errors in fetchPluginMessage() itself or network errors
+        console.error('MLSSearchPlugin: Error fetching plugin data via SDK:', fetchError);
         setError(`Failed to load plugin data: ${fetchError.message}`);
         setData(undefined);
+      })
+      .finally(() => {
+        // This will always run, regardless of success or failure
+        console.log('MLSSearchPlugin: fetchPluginMessage finished. Setting loading=false');
         setLoading(false);
       });
   }, []);
@@ -914,8 +927,10 @@ const MLSSearchPlugin = memo(() => {
   }
 
   // Determine if the data is a property detail or search results
-  const isPropertyDetail = data && 'schools' in data;
-  const isSearchResults = data && 'data' in data && Array.isArray(data.data);
+  const isPropertyDetail =
+    data && typeof data === 'object' && 'schools' in data && !('data' in data);
+  const isSearchResults =
+    data && typeof data === 'object' && 'data' in data && Array.isArray((data as any).data);
 
   return (
     <Layout style={{ background: 'transparent', minHeight: '100%' }}>
