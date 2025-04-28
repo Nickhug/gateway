@@ -4,15 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MLS Property Search</title>
-  <!-- Import React and ReactDOM -->
+  
+  <!-- Core Dependencies First -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   
-  <!-- Import antd -->
+  <!-- Dayjs (required by antd) -->
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js"></script>
+  <!-- Optional Dayjs plugins if needed by Antd components used -->
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/utc.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/timezone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/relativeTime.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/localeData.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/customParseFormat.js"></script>
+
+  <!-- Ant Design -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/antd@5.14.0/dist/reset.css">
   <script src="https://cdn.jsdelivr.net/npm/antd@5.14.0/dist/antd.min.js"></script>
   
-  <!-- Import Dependencies -->
+  <!-- Other Dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.5/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@lobehub/chat-plugin-sdk/dist/index.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/antd-style@3.6.1/dist/index.min.js"></script>
@@ -61,11 +71,19 @@
             window.React && 
             window.ReactDOM && 
             window.antd && 
+            window.dayjs && // Add check for dayjs
             window.LobeChatPluginSdk && 
             window.AntdStyle &&
             window.LucideReact &&
             window.ReactLayoutKit
           ) {
+            // Extend dayjs with plugins needed by Antd
+            dayjs.extend(window.dayjs_plugin_utc);
+            dayjs.extend(window.dayjs_plugin_timezone);
+            dayjs.extend(window.dayjs_plugin_relativeTime);
+            dayjs.extend(window.dayjs_plugin_localeData);
+            dayjs.extend(window.dayjs_plugin_customParseFormat);
+            console.log('All libraries loaded and dayjs extended.');
             resolve();
           } else {
             setTimeout(checkLibraries, 100);
@@ -82,22 +100,28 @@
         
         // Fetch the component code
         const response = await fetch('./index.tsx');
+        if (!response.ok) throw new Error(`Failed to fetch index.tsx: ${response.statusText}`);
         const code = await response.text();
         
         // Transform TypeScript to JavaScript using Babel
+        console.log('Babel transforming code...');
         const transformedCode = Babel.transform(code, {
           presets: ['react', 'env', 'typescript'], 
           filename: 'index.tsx',
           sourceMaps: 'inline'
         }).code;
+        console.log('Babel transformation complete.');
         
         // Create a module from the transformed code
-        const ModuleFactory = new Function('React', 'ReactDOM', 'antd', 'AntdStyle', 'LobeChatPluginSdk', 'LucideReact', 'ReactLayoutKit', `
+        console.log('Creating ModuleFactory...');
+        const ModuleFactory = new Function('React', 'ReactDOM', 'antd', 'AntdStyle', 'LobeChatPluginSdk', 'LucideReact', 'ReactLayoutKit', 'dayjs', `
           ${transformedCode};
           return MLSSearchPlugin;
         `);
+        console.log('ModuleFactory created.');
         
         // Get the component
+        console.log('Instantiating MLSSearchPlugin component...');
         const MLSSearchPlugin = ModuleFactory(
           window.React, 
           window.ReactDOM, 
@@ -105,14 +129,18 @@
           window.AntdStyle, 
           window.LobeChatPluginSdk,
           window.LucideReact,
-          window.ReactLayoutKit
+          window.ReactLayoutKit,
+          window.dayjs // Pass dayjs if needed directly
         );
+        console.log('MLSSearchPlugin component instantiated.');
         
         // Render the component
+        console.log('Rendering component...');
         ReactDOM.render(
           React.createElement(MLSSearchPlugin),
           document.getElementById('root')
         );
+        console.log('Component rendered.');
       } catch (error) {
         console.error('Error loading component:', error);
         document.getElementById('root').innerHTML = `
