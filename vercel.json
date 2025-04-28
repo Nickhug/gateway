@@ -1,14 +1,36 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "framework": null,
-  "regions": ["iad1"],
-  "builds": [
-    { "src": "api/**/*.ts", "use": "@vercel/node" },
-    { "src": "public/**/*", "use": "@vercel/static" }
+  "builds": [{ "src": "api/**/*.ts", "use": "@vercel/node" }],
+  "env": {
+    "DATAFINITI_API_TOKEN": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrcWl4MXRuZHB0MWZzZXppaWxiYW9wOXJpNjZtanZ2ciIsImlzcyI6ImRhdGFmaW5pdGkuY28ifQ.Jzs_LtcLXHK2WgQgdwBFYL6C8EQPh7RlGXwHD14cBDc2YObydvKyTU411lWxRc7PTsD7Yo4_zGWZDbhLAuMpnDdl9BJb5DVGyJu_sd-qD90i237H68MD4arxl2dVOmjx4xbkdqsEB3yjraczQTjXABUM-tKjQ8W1DolaPjpr0Uxv-83IPKaWIzKCh5-ess75IAPALyoOsm9FmJ1RFis0610cgxRzp1WOEz1nivHWHbcOWJDUoKbw_KpEbAle4ykR1KDGqM0xJkQ_jces-HkPIyyojg55Nt5KK6FvLaF7XbGeBWJ2TmEGHqb-pxzkPXSsstaImb-_gc2fDaHMSZepyEKDGCZ8kHal2KpkMXaYz8zY3XsE2SMNAL3ecZ8cTrMlOrxOcnNApZGPxgpebHNYslf3iiW3x-DUwNH5aaI8MKb5qEqDtsT3AFqTd-MPuQDV-3l6NlejilsUJK5nBBJcHkxPoh_-OZ6Sl6C7apEGyNJCVl3gRWe74BFtrUlw52Ghb_c6ItVX3QrBTn2C-ReypTenu_dNJhAWEZq241Qvo0QfVa289X7xPk5hXSxqWsO2stmE10Zlf7wDG5Cv5yYOAhAWy68ROQHOh661YGnzYGZJPYBTsXi_eWS6Lww96XFgdo7J3bI-5tkfFmYydvgimS1qEh4uc4u0D7FP43OxykE",
+    "TAVILY_API_KEY": "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"
+  },
+  "headers": [
+    {
+      "source": "/(.*)\\.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Accept, Authorization"
+        },
+        { "key": "Cache-Control", "value": "s-maxage=600, stale-while-revalidate=60" }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Accept, Authorization"
+        }
+      ]
+    }
   ],
+  "regions": ["iad1"],
   "rewrites": [
     { "source": "/api/v1/datafiniti", "destination": "/api/v1/propertai" },
     { "source": "/api/v1/propertai", "destination": "/api/v1/propertai" },
@@ -20,28 +42,5 @@
     { "source": "/index.json", "destination": "/public/index.json" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ],
-  "headers": [
-    {
-      "source": "/(.*)\\.json",
-      "headers": [
-        { "key": "Content-Type", "value": "application/json" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept, Authorization" },
-        { "key": "Cache-Control", "value": "s-maxage=600, stale-while-revalidate=60" }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept, Authorization" }
-      ]
-    }
-  ],
-  "env": {
-    "DATAFINITI_API_TOKEN": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrcWl4MXRuZHB0MWZzZXppaWxiYW9wOXJpNjZtanZ2ciIsImlzcyI6ImRhdGFmaW5pdGkuY28ifQ.Jzs_LtcLXHK2WgQgdwBFYL6C8EQPh7RlGXwHD14cBDc2YObydvKyTU411lWxRc7PTsD7Yo4_zGWZDbhLAuMpnDdl9BJb5DVGyJu_sd-qD90i237H68MD4arxl2dVOmjx4xbkdqsEB3yjraczQTjXABUM-tKjQ8W1DolaPjpr0Uxv-83IPKaWIzKCh5-ess75IAPALyoOsm9FmJ1RFis0610cgxRzp1WOEz1nivHWHbcOWJDUoKbw_KpEbAle4ykR1KDGqM0xJkQ_jces-HkPIyyojg55Nt5KK6FvLaF7XbGeBWJ2TmEGHqb-pxzkPXSsstaImb-_gc2fDaHMSZepyEKDGCZ8kHal2KpkMXaYz8zY3XsE2SMNAL3ecZ8cTrMlOrxOcnNApZGPxgpebHNYslf3iiW3x-DUwNH5aaI8MKb5qEqDtsT3AFqTd-MPuQDV-3l6NlejilsUJK5nBBJcHkxPoh_-OZ6Sl6C7apEGyNJCVl3gRWe74BFtrUlw52Ghb_c6ItVX3QrBTn2C-ReypTenu_dNJhAWEZq241Qvo0QfVa289X7xPk5hXSxqWsO2stmE10Zlf7wDG5Cv5yYOAhAWy68ROQHOh661YGnzYGZJPYBTsXi_eWS6Lww96XFgdo7J3bI-5tkfFmYydvgimS1qEh4uc4u0D7FP43OxykE",
-    "TAVILY_API_KEY": "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"
-  }
-} 
+  "version": 2
+}
