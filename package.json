@@ -56,7 +56,10 @@
     "@lobehub/chat-plugin-sdk": "^1",
     "ajv": "^8",
     "antd": "^5",
+    "antd-style": "^3.7.1",
+    "lucide-react": "^0.503.0",
     "next": "^14.0.3",
+    "react-layout-kit": "^1.9.1",
     "swagger-client": "^3",
     "zod": "^3"
   },
