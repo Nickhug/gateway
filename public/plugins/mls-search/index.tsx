@@ -22,7 +22,6 @@ import {
 } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { memo, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { Flexbox } from 'react-layout-kit';
 
 const { Title, Text, Paragraph } = Typography;
@@ -822,16 +821,4 @@ const MLSSearchPlugin = memo(() => {
   );
 });
 
-// Create the root element and render the App
-const container = document.querySelector('#root');
-
-if (container) {
-  const root = ReactDOM.createRoot(container);
-  root.render(
-    <React.StrictMode>
-      <MLSSearchPlugin />
-    </React.StrictMode>,
-  );
-} else {
-  console.error('Failed to find the root element. Could not mount the React app.');
-}
+export default MLSSearchPlugin;
