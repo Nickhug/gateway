@@ -9,9 +9,6 @@
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   
-  <!-- Load Lucide React immediately after React -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide-react@0.344.0/dist/umd/lucide-react.min.js"></script>
-  
   <!-- Dayjs (required by antd) -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/dayjs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.10/plugin/utc.js"></script>
@@ -64,20 +61,22 @@
   </div>
 
   <script type="text/jsx">
-    // Wait for all dependencies to load (LucideReact should be checked earlier now)
+    // Wait for all dependencies to load
     const waitForLibraries = () => {
       return new Promise((resolve) => {
         const checkLibraries = () => {
-          if (
-            window.React && 
-            window.ReactDOM && 
-            window.LucideReact && // Check earlier
-            window.antd && 
-            window.dayjs && 
-            window.LobeChatPluginSdk && 
-            window.AntdStyle &&
-            window.ReactLayoutKit
-          ) {
+          const loaded = {
+              React: !!window.React,
+              ReactDOM: !!window.ReactDOM,
+              antd: !!window.antd,
+              dayjs: !!window.dayjs,
+              LobeChatPluginSdk: !!window.LobeChatPluginSdk,
+              AntdStyle: !!window.AntdStyle,
+              ReactLayoutKit: !!window.ReactLayoutKit,
+            };
+          const allLoaded = Object.values(loaded).every(Boolean);
+
+          if (allLoaded) {
             // Extend dayjs with plugins needed by Antd
             dayjs.extend(window.dayjs_plugin_utc);
             dayjs.extend(window.dayjs_plugin_timezone);
@@ -87,17 +86,8 @@
             console.log('All libraries loaded and dayjs extended.');
             resolve();
           } else {
-            // Add logging to see what's missing
-            console.log('Waiting for libraries:', {
-              React: !!window.React,
-              ReactDOM: !!window.ReactDOM,
-              LucideReact: !!window.LucideReact,
-              antd: !!window.antd,
-              dayjs: !!window.dayjs,
-              LobeChatPluginSdk: !!window.LobeChatPluginSdk,
-              AntdStyle: !!window.AntdStyle,
-              ReactLayoutKit: !!window.ReactLayoutKit,
-            });
+            // Log status of each library
+            console.log('Waiting for libraries:', loaded);
             setTimeout(checkLibraries, 100);
           }
         };
@@ -105,7 +95,7 @@
       });
     };
 
-    // Load our component dynamically (ModuleFactory definition remains the same)
+    // Load our component dynamically
     const loadComponent = async () => {
       try {
         await waitForLibraries();
@@ -126,7 +116,7 @@
         
         // Create a module from the transformed code
         console.log('Creating ModuleFactory...');
-        const ModuleFactory = new Function('React', 'ReactDOM', 'antd', 'AntdStyle', 'LobeChatPluginSdk', 'LucideReact', 'ReactLayoutKit', 'dayjs', `
+        const ModuleFactory = new Function('React', 'ReactDOM', 'antd', 'AntdStyle', 'LobeChatPluginSdk', 'ReactLayoutKit', 'dayjs', `
           ${transformedCode};
           return MLSSearchPlugin;
         `);
@@ -140,9 +130,8 @@
           window.antd, 
           window.AntdStyle, 
           window.LobeChatPluginSdk,
-          window.LucideReact,
           window.ReactLayoutKit,
-          window.dayjs // Pass dayjs if needed directly
+          window.dayjs 
         );
         console.log('MLSSearchPlugin component instantiated.');
         
