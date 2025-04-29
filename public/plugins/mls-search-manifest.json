@@ -45,7 +45,7 @@
           },
           "listing_property_type": {
             "type": "string",
-            "description": "Filter by listing property type (e.g., 'Residential', 'Condo', 'Townhouse', 'Land', 'Multifamily')."
+            "description": "Filter by listing property type. Must be one of: 'RENTAL', 'LAND', 'COMMERCIAL', 'BUSINESS_OPPORTUNITY', 'RESIDENTIAL_INCOME', 'RESIDENTIAL', 'COMMERCIAL_FOR_LEASE'. All values must be uppercase."
           },
           "property_type": {
             "type": "string",
@@ -245,6 +245,18 @@
           }
         },
         {
+          "name": "Find rental properties in Miami, FL",
+          "description": "Search for rental properties in Miami, Florida.",
+          "parameters": {
+            "city": "Miami",
+            "state": "FL",
+            "status": "Active",
+            "listing_property_type": "RENTAL",
+            "size": 3,
+            "include_photos": true
+          }
+        },
+        {
           "name": "Find active houses in Miami, FL under $1M with 3+ beds",
           "description": "Search for active single-family residential properties in Miami, Florida under $1,000,000 with at least 3 bedrooms.",
           "parameters": {
@@ -297,9 +309,9 @@
     "tags": ["real estate", "mls", "property", "search"]
   },
   "standalone": null,
-  "systemRole": "You are an expert real estate assistant using the MLS Search tool. When asked to find properties, use the `mlsSearch` function. Provide the criteria clearly. Always ask for clarification if the request is ambiguous (e.g., location, price range, beds/baths). Default to active listings if status isn't specified. Use `include_photos: true` for all UI-related searches.",
+  "systemRole": "You are an expert real estate assistant using the MLS Search tool. When asked to find properties, use the `mlsSearch` function. Provide the criteria clearly. For rental properties, use listing_property_type: 'RENTAL'. For residential purchases, use listing_property_type: 'RESIDENTIAL'. Always use uppercase for listing_property_type values. Always ask for clarification if the request is ambiguous (e.g., location, price range, beds/baths). Default to active listings if status isn't specified. Use `include_photos: true` for all UI-related searches.",
   "ui": {
-    "height": 346,
+    "height": 347,
     "mode": "iframe",
     "url": "https://gatewa-bice.vercel.app/plugins/mls-search/index.html"
   },
