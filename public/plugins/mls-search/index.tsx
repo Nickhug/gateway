@@ -3,27 +3,27 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 interface Address {
-  full?: string;
   city?: string;
+  full?: string;
   state?: string;
-  zipCode?: string;
   street?: string;
+  zipCode?: string;
 }
 
 interface Agent {
+  email?: string;
   name?: string;
   office?: string;
-  email?: string;
   phone?: string;
 }
 
 interface Listing {
-  status?: string;
-  price?: number;
-  bedrooms?: number;
   bathrooms?: number;
+  bedrooms?: number;
   livingArea?: number;
+  price?: number;
   remarks?: string;
+  status?: string;
 }
 
 interface Media {
@@ -33,10 +33,10 @@ interface Media {
 interface Property {
   address?: Address;
   agent?: Agent;
-  listing?: Listing;
-  media?: Media;
   id?: string;
+  listing?: Listing;
   listingId?: string;
+  media?: Media;
 }
 
 interface ResponseData {
@@ -45,16 +45,23 @@ interface ResponseData {
 
 // Format price function moved to outer scope
 const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
+  const options: Intl.NumberFormatOptions = {
     currency: 'USD',
     maximumFractionDigits: 0,
-  }).format(price);
+    style: 'currency',
+  };
+
+  if (price >= 10_000) {
+    options.notation = 'compact';
+    options.maximumFractionDigits = 1;
+  }
+
+  return new Intl.NumberFormat('en-US', options).format(price);
 };
 
 // Property card component
 const PropertyCard = ({ property }: { property: Property }) => {
-  if (!property) return undefined;
+  if (!property) return;
 
   const address = property.address || {};
   const listing = property.listing || {};
@@ -62,55 +69,69 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const media = property.media || {};
   const photos = media.photos || [];
 
+  // Calculate theme-based colors (light theme)
+  const colorBgContainer = '#fff';
+  const colorBorderSecondary = '#eaeaea';
+  const colorTextSecondary = '#666';
+  const colorTextTertiary = '#999';
+
   return (
     <div
-      style={{
-        borderRadius: '8px',
-        overflow: 'hidden',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
-        backgroundColor: 'white',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+      onMouseOut={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.05)';
       }}
       onMouseOver={(e) => {
         e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.08)';
       }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.08)';
+      style={{
+        backgroundColor: colorBgContainer,
+        border: `1px solid ${colorBorderSecondary}`,
+        borderRadius: '12px',
+        boxShadow: '0 1px 4px rgba(0, 0, 0, 0.05)',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        overflow: 'hidden',
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
       }}
     >
-      {/* Property image with compact ratio */}
-      <div style={{ position: 'relative', width: '100%', paddingTop: '66%', backgroundColor: '#f0f2f5' }}>
+      {/* Property image with property ratio */}
+      <div
+        style={{
+          backgroundColor: '#f0f2f5',
+          paddingTop: '60%',
+          position: 'relative',
+          width: '100%',
+        }}
+      >
         {photos && photos.length > 0 ? (
           <img
-            src={photos[0]}
             alt={`${address.full || 'Property'}`}
+            src={photos[0]}
             style={{
+              height: '100%',
+              left: 0,
+              objectFit: 'cover',
               position: 'absolute',
               top: 0,
-              left: 0,
               width: '100%',
-              height: '100%',
-              objectFit: 'cover',
             }}
           />
         ) : (
           <div
             style={{
+              alignItems: 'center',
+              color: colorTextTertiary,
+              display: 'flex',
+              fontSize: '14px',
+              height: '100%',
+              justifyContent: 'center',
+              left: 0,
               position: 'absolute',
               top: 0,
-              left: 0,
               width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#999',
-              fontSize: '14px',
             }}
           >
             No image available
@@ -120,35 +141,48 @@ const PropertyCard = ({ property }: { property: Property }) => {
         {listing.status && (
           <div
             style={{
-              position: 'absolute',
-              top: '8px',
-              left: '8px',
-              backgroundColor: listing.status === 'Active' ? '#10b981' : 
-                              listing.status === 'Pending' ? '#f59e0b' : '#6366f1',
-              color: 'white',
-              padding: '3px 8px',
+              backgroundColor:
+                listing.status === 'Active'
+                  ? '#10b981'
+                  : listing.status === 'Pending'
+                    ? '#f59e0b'
+                    : '#6366f1',
               borderRadius: '4px',
+              color: 'white',
               fontSize: '11px',
               fontWeight: '600',
+              left: '12px',
+              padding: '2px 8px',
+              position: 'absolute',
               textTransform: 'uppercase',
+              top: '12px',
             }}
           >
             {listing.status}
           </div>
         )}
+        {/* Gradient overlay for price */}
+        <div
+          style={{
+            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+            bottom: 0,
+            height: '50%',
+            left: 0,
+            position: 'absolute',
+            right: 0,
+          }}
+        />
         {/* Price tag */}
         {listing.price && (
           <div
             style={{
-              position: 'absolute',
-              bottom: '8px',
-              right: '8px',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              bottom: '10px',
               color: 'white',
-              padding: '4px 8px',
-              borderRadius: '4px',
-              fontSize: '14px',
+              fontSize: '15px',
               fontWeight: '700',
+              left: '12px',
+              position: 'absolute',
+              textShadow: '0 1px 3px rgba(0,0,0,0.3)',
             }}
           >
             {formatPrice(listing.price)}
@@ -156,70 +190,83 @@ const PropertyCard = ({ property }: { property: Property }) => {
         )}
       </div>
 
-      {/* Property details - more compact */}
-      <div style={{ padding: '12px', flex: '1', display: 'flex', flexDirection: 'column' }}>
-        <h3 style={{ 
-          margin: '0 0 6px 0', 
-          fontSize: '15px', 
-          fontWeight: '600', 
-          color: '#1a1a1a',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis'
-        }}>
-          {address.full || `${address.street || ''}, ${address.city || ''}, ${address.state || ''} ${address.zipCode || ''}`}
+      {/* Property details */}
+      <div style={{ display: 'flex', flex: '1', flexDirection: 'column', padding: '12px' }}>
+        <h3
+          style={{
+            color: '#1a1a1a',
+            fontSize: '14px',
+            fontWeight: '600',
+            margin: '0 0 6px 0',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {address.full ||
+            `${address.street || ''}, ${address.city || ''}, ${address.state || ''} ${address.zipCode || ''}`}
         </h3>
-        
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-          {listing.bedrooms && (
-            <div style={{ display: 'flex', alignItems: 'center', color: '#666' }}>
-              <span style={{ marginRight: '3px', fontSize: '12px' }}>🛏️</span>
-              <span style={{ fontSize: '12px' }}>{listing.bedrooms}</span>
+
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
+          {listing.bedrooms !== undefined && (
+            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
+              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
+                {listing.bedrooms}
+              </span>
+              <span style={{ color: colorTextTertiary, fontSize: '12px' }}>beds</span>
             </div>
           )}
-          {listing.bathrooms && (
-            <div style={{ display: 'flex', alignItems: 'center', color: '#666' }}>
-              <span style={{ marginRight: '3px', fontSize: '12px' }}>🚿</span>
-              <span style={{ fontSize: '12px' }}>{listing.bathrooms}</span>
+          {listing.bathrooms !== undefined && (
+            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
+              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
+                {listing.bathrooms}
+              </span>
+              <span style={{ color: colorTextTertiary, fontSize: '12px' }}>baths</span>
             </div>
           )}
           {listing.livingArea && (
-            <div style={{ display: 'flex', alignItems: 'center', color: '#666' }}>
-              <span style={{ marginRight: '3px', fontSize: '12px' }}>📏</span>
-              <span style={{ fontSize: '12px' }}>{listing.livingArea.toLocaleString()} sq ft</span>
+            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
+              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
+                {listing.livingArea.toLocaleString()}
+              </span>
+              <span style={{ color: colorTextTertiary, fontSize: '12px' }}>sqft</span>
             </div>
           )}
         </div>
-        
+
         {listing.remarks && (
-          <p style={{ 
-            margin: '0 0 8px 0', 
-            fontSize: '12px', 
-            color: '#666',
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            lineHeight: '1.3',
-            flex: '1'
-          }}>
+          <p
+            style={{
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 2,
+              color: colorTextSecondary,
+              display: '-webkit-box',
+              flex: '1',
+              fontSize: '12px',
+              lineHeight: '1.3',
+              margin: '0 0 8px 0',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
             {listing.remarks}
           </p>
         )}
-        
+
         {agent.name && (
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            fontSize: '11px', 
-            color: '#888',
-            paddingTop: '8px',
-            borderTop: '1px solid #f0f0f0',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
-          }}>
+          <div
+            style={{
+              alignItems: 'center',
+              borderTop: '1px solid #f0f0f0',
+              color: colorTextTertiary,
+              display: 'flex',
+              fontSize: '11px',
+              overflow: 'hidden',
+              paddingTop: '8px',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
             <span style={{ marginRight: '3px' }}>👤</span>
             <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {agent.name}
@@ -234,16 +281,18 @@ const PropertyCard = ({ property }: { property: Property }) => {
 
 // Properties list component
 const PropertyList = ({ properties }: { properties: Property[] }) => {
-  if (!properties || properties.length === 0) return undefined;
-  
+  if (!properties || properties.length === 0) return;
+
   return (
-    <div style={{ 
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-      gap: '16px',
-      width: '100%',
-      overflowX: 'auto'
-    }}>
+    <div
+      style={{
+        display: 'grid',
+        gap: '14px',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        overflowX: 'auto',
+        width: '100%',
+      }}
+    >
       {properties.map((property, index) => (
         <PropertyCard key={index} property={property} />
       ))}
@@ -278,22 +327,27 @@ const App = () => {
 
   if (loading) {
     return (
-      <div style={{ 
-        fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif', 
-        padding: '20px',
-        textAlign: 'center',
-        color: '#666'
-      }}>
-        <div style={{ 
-          display: 'inline-block', 
-          width: '24px', 
-          height: '24px', 
-          border: '2px solid #f3f3f3',
-          borderTop: '2px solid #3498db',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite',
-          marginBottom: '12px'
-        }} />
+      <div
+        style={{
+          color: '#666',
+          fontFamily:
+            'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
+          padding: '20px',
+          textAlign: 'center',
+        }}
+      >
+        <div
+          style={{
+            animation: 'spin 1s linear infinite',
+            border: '2px solid #f3f3f3',
+            borderRadius: '50%',
+            borderTop: '2px solid #3498db',
+            display: 'inline-block',
+            height: '24px',
+            marginBottom: '12px',
+            width: '24px',
+          }}
+        />
         <style>
           {`
             @keyframes spin {
@@ -308,36 +362,41 @@ const App = () => {
   }
 
   return (
-    <div style={{ 
-      fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
-      padding: '16px',
-      maxWidth: '100%',
-      overflowX: 'hidden'
-    }}>
+    <div
+      style={{
+        fontFamily:
+          'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
+        maxWidth: '100%',
+        overflowX: 'hidden',
+        padding: '16px',
+      }}
+    >
       {data?.data ? (
         <>
-          <h2 style={{ 
-            fontSize: '18px', 
-            fontWeight: '600', 
-            marginBottom: '12px',
-            color: '#1a1a1a' 
-          }}>
+          <h2
+            style={{
+              color: '#1a1a1a',
+              fontSize: '16px',
+              fontWeight: '600',
+              marginBottom: '14px',
+            }}
+          >
             Property Results
           </h2>
           {Array.isArray(data.data) ? (
             <PropertyList properties={data.data} />
           ) : (
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+            <div style={{ margin: '0 auto', maxWidth: '400px' }}>
               <PropertyCard property={data.data} />
             </div>
           )}
         </>
       ) : (
-        <div style={{ textAlign: 'center', color: '#666', padding: '24px 16px' }}>
+        <div style={{ color: '#666', padding: '24px 16px', textAlign: 'center' }}>
           <p style={{ fontSize: '15px', marginBottom: '10px' }}>
             Waiting for property data... Try searching for properties in Miami, FL.
           </p>
-          <p style={{ fontSize: '13px', color: '#888' }}>
+          <p style={{ color: '#888', fontSize: '13px' }}>
             Example: &quot;Find 3-bedroom houses in Miami under $1M&quot;
           </p>
         </div>
