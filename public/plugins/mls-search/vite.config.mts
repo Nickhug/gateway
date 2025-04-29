@@ -8,7 +8,7 @@ export default defineConfig({
   root: __dirname,
   build: {
     // Output directory relative to the root
-    outDir: 'dist',
+    outDir: 'assets',
     // Ensure the output is suitable for embedding (no complex hashing etc.)
     rollupOptions: {
       output: {
