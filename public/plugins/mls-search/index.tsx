@@ -20,6 +20,7 @@ interface Agent {
 interface Listing {
   bathrooms?: number;
   bedrooms?: number;
+  daysOnMarket?: number;
   livingArea?: number;
   price?: number;
   remarks?: string;
@@ -37,6 +38,16 @@ interface Property {
   listing?: Listing;
   listingId?: string;
   media?: Media;
+  property?: {
+    bathrooms?: number;
+    bedrooms?: number;
+    livingArea?: number;
+    lotSize?: number;
+    pool?: boolean;
+    propertyType?: string;
+    waterfront?: boolean;
+    yearBuilt?: number;
+  };
 }
 
 interface ResponseData {
@@ -44,7 +55,7 @@ interface ResponseData {
 }
 
 // Format price function moved to outer scope
-const formatPrice = (price: number) => {
+const formatPrice = (price: number, isRental: boolean = false) => {
   const options: Intl.NumberFormatOptions = {
     currency: 'USD',
     maximumFractionDigits: 0,
@@ -56,7 +67,27 @@ const formatPrice = (price: number) => {
     options.maximumFractionDigits = 1;
   }
 
-  return new Intl.NumberFormat('en-US', options).format(price);
+  const formattedPrice = new Intl.NumberFormat('en-US', options).format(price);
+
+  if (isRental) {
+    return (
+      <span style={{ whiteSpace: 'nowrap' }}>
+        {formattedPrice}
+        <span style={{ color: '#CCCCCC', fontSize: '0.8em', marginLeft: '4px' }}>/month</span>
+      </span>
+    );
+  }
+
+  return formattedPrice;
+};
+
+// Convert sqft to acres with appropriate formatting
+const formatLotSizeAcres = (sqft: number | undefined | null): string => {
+  if (sqft === undefined || sqft === null || sqft <= 0) return 'N/A';
+  const acres = sqft / 43_560;
+  // Use more precision for smaller lots, less for very large ones
+  const decimalPlaces = acres < 0.1 ? 3 : acres < 10 ? 2 : 1;
+  return `${acres.toFixed(decimalPlaces)} acres`;
 };
 
 // Property card component
@@ -67,7 +98,23 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const listing = property.listing || {};
   const agent = property.agent || {};
   const media = property.media || {};
+  const propertyDetails = property.property || {};
   const photos = media.photos || [];
+
+  // Check if property is rental
+  const isRental =
+    listing.status === 'For Rent' ||
+    (propertyDetails.propertyType &&
+      propertyDetails.propertyType.toLowerCase().includes('rental')) ||
+    propertyDetails.propertyType === 'Residential Lease';
+
+  // Get the living area from the appropriate location
+  const livingArea = listing.livingArea || propertyDetails.livingArea;
+  // Get beds and baths from the appropriate location
+  const bedrooms = listing.bedrooms || propertyDetails.bedrooms;
+  const bathrooms = listing.bathrooms || propertyDetails.bathrooms;
+  // Get lot size for conversion to acres
+  const lotSize = propertyDetails.lotSize;
 
   // Calculate theme-based colors (light theme)
   const colorBgContainer = '#fff';
@@ -185,7 +232,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
               textShadow: '0 1px 3px rgba(0,0,0,0.3)',
             }}
           >
-            {formatPrice(listing.price)}
+            {formatPrice(listing.price, isRental)}
           </div>
         )}
       </div>
@@ -208,50 +255,101 @@ const PropertyCard = ({ property }: { property: Property }) => {
         </h3>
 
         <div style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
-          {listing.bedrooms !== undefined && (
+          {bedrooms !== undefined && (
             <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
-                {listing.bedrooms}
-              </span>
+              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>{bedrooms}</span>
               <span style={{ color: colorTextTertiary, fontSize: '12px' }}>beds</span>
             </div>
           )}
-          {listing.bathrooms !== undefined && (
+          {bathrooms !== undefined && (
             <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
-                {listing.bathrooms}
-              </span>
+              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>{bathrooms}</span>
               <span style={{ color: colorTextTertiary, fontSize: '12px' }}>baths</span>
             </div>
           )}
-          {listing.livingArea && (
+          {livingArea && (
             <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
               <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
-                {listing.livingArea.toLocaleString()}
+                {livingArea.toLocaleString()}
               </span>
               <span style={{ color: colorTextTertiary, fontSize: '12px' }}>sqft</span>
             </div>
           )}
         </div>
 
-        {listing.remarks && (
-          <p
-            style={{
-              WebkitBoxOrient: 'vertical',
-              WebkitLineClamp: 2,
-              color: colorTextSecondary,
-              display: '-webkit-box',
-              flex: '1',
-              fontSize: '12px',
-              lineHeight: '1.3',
-              margin: '0 0 8px 0',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            {listing.remarks}
-          </p>
-        )}
+        {/* Property Stats - replacing remarks */}
+        <div style={{ flex: '1', marginBottom: '8px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}>
+            {lotSize && lotSize > 0 && (
+              <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
+                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>Lot:</span>
+                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>
+                  {formatLotSizeAcres(lotSize)}
+                </span>
+              </div>
+            )}
+
+            {propertyDetails.yearBuilt && (
+              <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
+                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>Built:</span>
+                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>
+                  {propertyDetails.yearBuilt}
+                </span>
+              </div>
+            )}
+
+            {listing.daysOnMarket !== undefined && (
+              <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
+                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>DOM:</span>
+                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>
+                  {listing.daysOnMarket} days
+                </span>
+              </div>
+            )}
+
+            {propertyDetails.propertyType && (
+              <div
+                style={{
+                  backgroundColor: '#f5f5f7',
+                  borderRadius: '4px',
+                  color: colorTextSecondary,
+                  fontSize: '11px',
+                  padding: '2px 6px',
+                }}
+              >
+                {propertyDetails.propertyType}
+              </div>
+            )}
+
+            {propertyDetails.pool && (
+              <div
+                style={{
+                  backgroundColor: '#e6f7ff',
+                  borderRadius: '4px',
+                  color: '#0091ff',
+                  fontSize: '11px',
+                  padding: '2px 6px',
+                }}
+              >
+                Pool
+              </div>
+            )}
+
+            {propertyDetails.waterfront && (
+              <div
+                style={{
+                  backgroundColor: '#e6f7ff',
+                  borderRadius: '4px',
+                  color: '#0091ff',
+                  fontSize: '11px',
+                  padding: '2px 6px',
+                }}
+              >
+                Waterfront
+              </div>
+            )}
+          </div>
+        </div>
 
         {agent.name && (
           <div
