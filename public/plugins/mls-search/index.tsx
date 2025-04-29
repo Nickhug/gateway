@@ -25,6 +25,7 @@ interface Listing {
   price?: number;
   remarks?: string;
   status?: string;
+  url?: string;
 }
 
 interface Media {
@@ -121,6 +122,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const colorBorderSecondary = 'var(--color-border-secondary, #eaeaea)';
   const colorTextSecondary = 'var(--color-text-2, #666)';
   const colorTextTertiary = 'var(--color-text-3, #999)';
+  const colorPrimary = 'var(--color-primary, #0077ff)';
 
   return (
     <div
@@ -241,7 +243,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
       <div style={{ display: 'flex', flex: '1', flexDirection: 'column', padding: '12px' }}>
         <h3
           style={{
-            color: '#1a1a1a',
+            color: 'var(--color-text-0, #1a1a1a)',
             fontSize: '14px',
             fontWeight: '600',
             margin: '0 0 6px 0',
@@ -310,7 +312,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
             {propertyDetails.propertyType && (
               <div
                 style={{
-                  backgroundColor: '#f5f5f7',
+                  backgroundColor: 'var(--color-bg-tertiary, #f5f5f7)',
                   borderRadius: '4px',
                   color: colorTextSecondary,
                   fontSize: '11px',
@@ -324,9 +326,9 @@ const PropertyCard = ({ property }: { property: Property }) => {
             {propertyDetails.pool && (
               <div
                 style={{
-                  backgroundColor: '#e6f7ff',
+                  backgroundColor: 'var(--color-bg-primary-light, #e6f7ff)',
                   borderRadius: '4px',
-                  color: '#0091ff',
+                  color: colorPrimary,
                   fontSize: '11px',
                   padding: '2px 6px',
                 }}
@@ -338,9 +340,9 @@ const PropertyCard = ({ property }: { property: Property }) => {
             {propertyDetails.waterfront && (
               <div
                 style={{
-                  backgroundColor: '#e6f7ff',
+                  backgroundColor: 'var(--color-bg-primary-light, #e6f7ff)',
                   borderRadius: '4px',
-                  color: '#0091ff',
+                  color: colorPrimary,
                   fontSize: '11px',
                   padding: '2px 6px',
                 }}
@@ -351,11 +353,32 @@ const PropertyCard = ({ property }: { property: Property }) => {
           </div>
         </div>
 
+        {/* Original Listing Link */}
+        {listing.url && (
+          <div style={{ marginBottom: '8px' }}>
+            <a
+              href={listing.url}
+              rel="noopener noreferrer"
+              style={{
+                alignItems: 'center',
+                color: colorPrimary,
+                display: 'flex',
+                fontSize: '12px',
+                gap: '4px',
+                textDecoration: 'none',
+              }}
+              target="_blank"
+            >
+              <span>🔗</span> Original Listing
+            </a>
+          </div>
+        )}
+
         {agent.name && (
           <div
             style={{
               alignItems: 'center',
-              borderTop: '1px solid #f0f0f0',
+              borderTop: `1px solid var(--color-border-secondary, #f0f0f0)`,
               color: colorTextTertiary,
               display: 'flex',
               fontSize: '11px',
@@ -470,11 +493,16 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
       {!scrollPosition.isAtStart && (
         <div
           onClick={scrollLeft}
+          onMouseOut={(e) => {
+            e.currentTarget.style.opacity = '0.7';
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.opacity = '1';
+          }}
           style={{
             alignItems: 'center',
             backdropFilter: 'blur(4px)',
-            // Use direct rgba for guaranteed translucency
-            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            backgroundColor: 'var(--color-arrow-bg, rgba(255, 255, 255, 0.5))',
             borderRadius: '50%',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
             color: 'var(--color-text-0, #1a1a1a)',
@@ -483,9 +511,11 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             height: '32px',
             justifyContent: 'center',
             left: '0',
+            opacity: 0.7,
             position: 'absolute',
             top: '50%',
             transform: 'translateY(-50%)',
+            transition: 'opacity 0.2s ease',
             width: '32px',
             zIndex: 2,
           }}
@@ -498,11 +528,16 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
       {!scrollPosition.isAtEnd && (
         <div
           onClick={scrollRight}
+          onMouseOut={(e) => {
+            e.currentTarget.style.opacity = '0.7';
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.opacity = '1';
+          }}
           style={{
             alignItems: 'center',
             backdropFilter: 'blur(4px)',
-            // Use direct rgba for guaranteed translucency
-            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            backgroundColor: 'var(--color-arrow-bg, rgba(255, 255, 255, 0.5))',
             borderRadius: '50%',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
             color: 'var(--color-text-0, #1a1a1a)',
@@ -510,10 +545,12 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             display: 'flex',
             height: '32px',
             justifyContent: 'center',
+            opacity: 0.7,
             position: 'absolute',
             right: '0',
             top: '50%',
             transform: 'translateY(-50%)',
+            transition: 'opacity 0.2s ease',
             width: '32px',
             zIndex: 2,
           }}
@@ -527,7 +564,7 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
         ref={scrollContainerRef}
         style={{
           WebkitOverflowScrolling: 'touch',
-          margin: '0 16px',
+          margin: '0',
           msOverflowStyle: 'none',
           overflowX: 'auto',
           overflowY: 'hidden',
@@ -542,7 +579,7 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             flexDirection: 'row',
             gap: '14px',
             minWidth: 'min-content',
-            paddingLeft: '24px',
+            paddingLeft: '0',
             paddingRight: '24px',
           }}
         >
@@ -631,6 +668,19 @@ const App = () => {
         width: '100%',
       }}
     >
+      {/* Add CSS variables for theme support */}
+      <style>
+        {`
+          :root {
+            --color-arrow-bg: rgba(255, 255, 255, 0.5);
+          }
+          @media (prefers-color-scheme: dark) {
+            :root {
+              --color-arrow-bg: rgba(50, 50, 50, 0.5);
+            }
+          }
+        `}
+      </style>
       {data?.data ? (
         <>
           <h2
