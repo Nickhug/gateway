@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
@@ -9,8 +10,11 @@ export default defineConfig({
   build: {
     // Output directory relative to the root
     outDir: 'assets',
-    // Ensure the output is suitable for embedding (no complex hashing etc.)
+    // Explicitly define the entry point
     rollupOptions: {
+      input: {
+        index: resolve(__dirname, 'index.tsx'),
+      },
       output: {
         entryFileNames: `[name].js`,
         chunkFileNames: `[name].js`,
