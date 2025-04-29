@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "build": "father build",
+    "build:plugin:mls-search": "vite build --config public/plugins/mls-search/vite.config.mts",
     "build:watch": "father dev",
     "ci": "npm run lint && npm run type-check && npm run doctor",
     "doctor": "father doctor",
