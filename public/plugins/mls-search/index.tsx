@@ -389,10 +389,14 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
     if (!scrollContainerRef.current) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+
+    // Check if content is scrollable
+    const isScrollable = scrollWidth > clientWidth;
+
     // Add a small tolerance for floating point inaccuracies
     const tolerance = 1;
-    const isAtStart = scrollLeft <= tolerance;
-    const isAtEnd = scrollLeft + clientWidth >= scrollWidth - tolerance;
+    const isAtStart = !isScrollable || scrollLeft <= tolerance;
+    const isAtEnd = !isScrollable || scrollLeft + clientWidth >= scrollWidth - tolerance;
 
     // Only update state if values have actually changed
     setScrollPosition((prev) => {
@@ -469,8 +473,8 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
           style={{
             alignItems: 'center',
             backdropFilter: 'blur(4px)',
-            // Updated background color with alpha transparency
-            backgroundColor: 'var(--color-bg-container-translucent, rgba(255, 255, 255, 0.85))',
+            // Use direct rgba for guaranteed translucency
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
             borderRadius: '50%',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
             color: 'var(--color-text-0, #1a1a1a)',
@@ -497,8 +501,8 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
           style={{
             alignItems: 'center',
             backdropFilter: 'blur(4px)',
-            // Updated background color with alpha transparency
-            backgroundColor: 'var(--color-bg-container-translucent, rgba(255, 255, 255, 0.85))',
+            // Use direct rgba for guaranteed translucency
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
             borderRadius: '50%',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
             color: 'var(--color-text-0, #1a1a1a)',

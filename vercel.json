@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build && npx vite build",
   "builds": [
     { "src": "api/**/*.ts", "use": "@vercel/node" },
     { "src": "public/**/*", "use": "@vercel/static" }
