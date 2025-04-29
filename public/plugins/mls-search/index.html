@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MLS Search Plugin</title>
     <style>
-      /* Optional: Add basic body styling to prevent flashes of unstyled content */
+      /* Basic styling for the entire app */
       body {
         margin: 0;
         padding: 0;
-        font-family: sans-serif;
-        background-color: #f5f5f5; /* Match initial background if needed */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      #root {
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
@@ -19,10 +24,8 @@
     <div id="root"></div>
     <!--
       This HTML file is a template.
-      The React app (compiled from index.tsx) will be injected into the <div id="root"> element.
-      The script tag below will be automatically added by the build process.
-      Ensure your build process (e.g., Vite, Webpack) is configured correctly.
+      The React app will be injected into the <div id="root"> element.
     -->
-    <script type="module" src="https://gatewa-bice.vercel.app/plugins/mls-search/index.tsx"></script>
+    <script type="module" src="./dist/index.js"></script>
   </body>
 </html> 
