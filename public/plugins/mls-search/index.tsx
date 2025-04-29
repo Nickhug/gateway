@@ -116,11 +116,11 @@ const PropertyCard = ({ property }: { property: Property }) => {
   // Get lot size for conversion to acres
   const lotSize = propertyDetails.lotSize;
 
-  // Calculate theme-based colors (light theme)
-  const colorBgContainer = '#fff';
-  const colorBorderSecondary = '#eaeaea';
-  const colorTextSecondary = '#666';
-  const colorTextTertiary = '#999';
+  // Calculate theme-based colors (using CSS variables to support dark mode)
+  const colorBgContainer = 'var(--color-bg-container, #fff)';
+  const colorBorderSecondary = 'var(--color-border-secondary, #eaeaea)';
+  const colorTextSecondary = 'var(--color-text-2, #666)';
+  const colorTextTertiary = 'var(--color-text-3, #999)';
 
   return (
     <div
@@ -379,32 +379,112 @@ const PropertyCard = ({ property }: { property: Property }) => {
 
 // Properties list component
 const PropertyList = ({ properties }: { properties: Property[] }) => {
+  // Move the ref outside the conditional return
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
   if (!properties || properties.length === 0) return;
+
+  // Function to scroll left
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ behavior: 'smooth', left: -500 });
+    }
+  };
+
+  // Function to scroll right
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ behavior: 'smooth', left: 500 });
+    }
+  };
 
   return (
     <div
       style={{
-        WebkitOverflowScrolling: 'touch',
-        overflowX: 'auto',
-        overflowY: 'hidden',
-        paddingBottom: '8px',
-        width: '100%' /* Space for the scrollbar */,
+        position: 'relative',
+        width: '100%',
       }}
     >
+      {/* Left navigation arrow */}
       <div
+        onClick={scrollLeft}
         style={{
+          alignItems: 'center',
+          backdropFilter: 'blur(4px)',
+          backgroundColor: 'var(--color-bg-container, rgba(255, 255, 255, 0.7))',
+          borderRadius: '50%',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+          color: 'var(--color-text-0, #1a1a1a)',
+          cursor: 'pointer',
           display: 'flex',
-          flexDirection: 'row',
-          gap: '14px',
-          minWidth: 'min-content',
-          paddingRight: '12px' /* Ensure space after the last item */,
+          height: '32px',
+          justifyContent: 'center',
+          left: '0',
+          position: 'absolute',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: '32px',
+          zIndex: 2,
         }}
       >
-        {properties.map((property, index) => (
-          <div key={index} style={{ flexShrink: 0, width: '240px' }}>
-            <PropertyCard property={property} />
-          </div>
-        ))}
+        <span style={{ fontSize: '18px' }}>←</span>
+      </div>
+
+      {/* Right navigation arrow */}
+      <div
+        onClick={scrollRight}
+        style={{
+          alignItems: 'center',
+          backdropFilter: 'blur(4px)',
+          backgroundColor: 'var(--color-bg-container, rgba(255, 255, 255, 0.7))',
+          borderRadius: '50%',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+          color: 'var(--color-text-0, #1a1a1a)',
+          cursor: 'pointer',
+          display: 'flex',
+          height: '32px',
+          justifyContent: 'center',
+          position: 'absolute',
+          right: '0',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: '32px',
+          zIndex: 2,
+        }}
+      >
+        <span style={{ fontSize: '18px' }}>→</span>
+      </div>
+
+      {/* Scrollable container */}
+      <div
+        ref={scrollContainerRef}
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          margin: '0 16px',
+          msOverflowStyle: 'none',
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          paddingBottom: '8px',
+          scrollbarWidth: 'none',
+          width: '100%',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '14px',
+            minWidth: 'min-content',
+            paddingLeft: '24px',
+            paddingRight: '24px',
+          }}
+        >
+          {properties.map((property, index) => (
+            <div key={index} style={{ flexShrink: 0, width: '240px' }}>
+              <PropertyCard property={property} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -474,9 +554,11 @@ const App = () => {
   return (
     <div
       style={{
+        backgroundColor: 'transparent',
         boxSizing: 'border-box',
         fontFamily:
           'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
+        height: '100%',
         overflow: 'hidden',
         padding: '12px',
         width: '100%',
@@ -486,10 +568,11 @@ const App = () => {
         <>
           <h2
             style={{
-              color: '#1a1a1a',
+              color: 'var(--color-text-0, #1a1a1a)',
               fontSize: '16px',
               fontWeight: '600',
               marginBottom: '12px',
+              marginTop: '0',
               paddingLeft: '4px',
             }}
           >
@@ -504,11 +587,13 @@ const App = () => {
           )}
         </>
       ) : (
-        <div style={{ color: '#666', padding: '24px 16px', textAlign: 'center' }}>
+        <div
+          style={{ color: 'var(--color-text-2, #666)', padding: '24px 16px', textAlign: 'center' }}
+        >
           <p style={{ fontSize: '15px', marginBottom: '10px' }}>
             Waiting for property data... Try searching for properties in Miami, FL.
           </p>
-          <p style={{ color: '#888', fontSize: '13px' }}>
+          <p style={{ color: 'var(--color-text-3, #888)', fontSize: '13px' }}>
             Example: &quot;Find 3-bedroom houses in Miami under $1M&quot;
           </p>
         </div>

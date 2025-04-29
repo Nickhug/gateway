@@ -5,13 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MLS Search Plugin</title>
     <style>
+      /* CSS variables for theme support */
+      :root {
+        --color-bg-container: #ffffff;
+        --color-border-secondary: #eaeaea;
+        --color-text-0: #1a1a1a;
+        --color-text-2: #666666;
+        --color-text-3: #999999;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-bg-container: rgba(255, 255, 255, 0.08);
+          --color-border-secondary: rgba(255, 255, 255, 0.15);
+          --color-text-0: #ffffff;
+          --color-text-2: rgba(255, 255, 255, 0.65);
+          --color-text-3: rgba(255, 255, 255, 0.45);
+        }
+      }
+
       /* Basic styling for the entire app */
       body {
         margin: 0;
         padding: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         background-color: transparent;
-        color: #333;
+        color: var(--color-text-0);
         overflow-x: hidden;
       }
       #root {
