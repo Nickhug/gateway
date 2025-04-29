@@ -381,8 +381,65 @@ const PropertyCard = ({ property }: { property: Property }) => {
 const PropertyList = ({ properties }: { properties: Property[] }) => {
   // Move the ref outside the conditional return
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  // State to track scroll position
+  const [scrollPosition, setScrollPosition] = React.useState({ isAtEnd: false, isAtStart: true });
 
-  if (!properties || properties.length === 0) return;
+  // Function to check scroll position and update state
+  const updateScrollPosition = React.useCallback(() => {
+    if (!scrollContainerRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+    // Add a small tolerance for floating point inaccuracies
+    const tolerance = 1;
+    const isAtStart = scrollLeft <= tolerance;
+    const isAtEnd = scrollLeft + clientWidth >= scrollWidth - tolerance;
+
+    // Only update state if values have actually changed
+    setScrollPosition((prev) => {
+      if (prev.isAtStart !== isAtStart || prev.isAtEnd !== isAtEnd) {
+        return { isAtEnd, isAtStart };
+      }
+      return prev;
+    });
+  }, []);
+
+  // Initialize scroll position check and set up scroll event listener
+  React.useEffect(() => {
+    // Ensure we have properties before setting up listeners
+    if (!properties || properties.length === 0) {
+      // Reset scroll position if properties disappear
+      setScrollPosition({ isAtEnd: true, isAtStart: true });
+      return;
+    }
+
+    // Initial check
+    updateScrollPosition();
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', updateScrollPosition, { passive: true }); // Use passive listener
+
+      // Use ResizeObserver for more reliable checks after layout changes/resizes
+      const resizeObserver = new ResizeObserver(updateScrollPosition);
+      resizeObserver.observe(scrollContainer);
+
+      // Debounced check after initial render and potential layout shifts
+      const timer = setTimeout(updateScrollPosition, 150); // Slightly longer timeout
+
+      return () => {
+        scrollContainer.removeEventListener('scroll', updateScrollPosition);
+        resizeObserver.disconnect();
+        clearTimeout(timer);
+      };
+    }
+    // Include updateScrollPosition in dependencies as it's now defined with useCallback
+  }, [properties, updateScrollPosition]);
+
+  // Early return if no properties
+  if (!properties || properties.length === 0) {
+    // Return null or a placeholder if needed when there are no properties
+    return null;
+  }
 
   // Function to scroll left
   const scrollLeft = () => {
@@ -405,55 +462,61 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
         width: '100%',
       }}
     >
-      {/* Left navigation arrow */}
-      <div
-        onClick={scrollLeft}
-        style={{
-          alignItems: 'center',
-          backdropFilter: 'blur(4px)',
-          backgroundColor: 'var(--color-bg-container, rgba(255, 255, 255, 0.7))',
-          borderRadius: '50%',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-          color: 'var(--color-text-0, #1a1a1a)',
-          cursor: 'pointer',
-          display: 'flex',
-          height: '32px',
-          justifyContent: 'center',
-          left: '0',
-          position: 'absolute',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: '32px',
-          zIndex: 2,
-        }}
-      >
-        <span style={{ fontSize: '18px' }}>←</span>
-      </div>
+      {/* Left navigation arrow - only show if not at start */}
+      {!scrollPosition.isAtStart && (
+        <div
+          onClick={scrollLeft}
+          style={{
+            alignItems: 'center',
+            backdropFilter: 'blur(4px)',
+            // Updated background color with alpha transparency
+            backgroundColor: 'var(--color-bg-container-translucent, rgba(255, 255, 255, 0.85))',
+            borderRadius: '50%',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+            color: 'var(--color-text-0, #1a1a1a)',
+            cursor: 'pointer',
+            display: 'flex',
+            height: '32px',
+            justifyContent: 'center',
+            left: '0',
+            position: 'absolute',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '32px',
+            zIndex: 2,
+          }}
+        >
+          <span style={{ fontSize: '18px' }}>←</span>
+        </div>
+      )}
 
-      {/* Right navigation arrow */}
-      <div
-        onClick={scrollRight}
-        style={{
-          alignItems: 'center',
-          backdropFilter: 'blur(4px)',
-          backgroundColor: 'var(--color-bg-container, rgba(255, 255, 255, 0.7))',
-          borderRadius: '50%',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-          color: 'var(--color-text-0, #1a1a1a)',
-          cursor: 'pointer',
-          display: 'flex',
-          height: '32px',
-          justifyContent: 'center',
-          position: 'absolute',
-          right: '0',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: '32px',
-          zIndex: 2,
-        }}
-      >
-        <span style={{ fontSize: '18px' }}>→</span>
-      </div>
+      {/* Right navigation arrow - only show if not at end */}
+      {!scrollPosition.isAtEnd && (
+        <div
+          onClick={scrollRight}
+          style={{
+            alignItems: 'center',
+            backdropFilter: 'blur(4px)',
+            // Updated background color with alpha transparency
+            backgroundColor: 'var(--color-bg-container-translucent, rgba(255, 255, 255, 0.85))',
+            borderRadius: '50%',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+            color: 'var(--color-text-0, #1a1a1a)',
+            cursor: 'pointer',
+            display: 'flex',
+            height: '32px',
+            justifyContent: 'center',
+            position: 'absolute',
+            right: '0',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '32px',
+            zIndex: 2,
+          }}
+        >
+          <span style={{ fontSize: '18px' }}>→</span>
+        </div>
+      )}
 
       {/* Scrollable container */}
       <div
