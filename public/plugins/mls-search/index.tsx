@@ -384,16 +384,28 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
   return (
     <div
       style={{
-        display: 'grid',
-        gap: '14px',
-        gridTemplateColumns: 'repeat(3, 1fr)',
+        WebkitOverflowScrolling: 'touch',
         overflowX: 'auto',
-        width: '100%',
+        overflowY: 'hidden',
+        paddingBottom: '8px',
+        width: '100%' /* Space for the scrollbar */,
       }}
     >
-      {properties.map((property, index) => (
-        <PropertyCard key={index} property={property} />
-      ))}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '14px',
+          minWidth: 'min-content',
+          paddingRight: '12px' /* Ensure space after the last item */,
+        }}
+      >
+        {properties.map((property, index) => (
+          <div key={index} style={{ flexShrink: 0, width: '240px' }}>
+            <PropertyCard property={property} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -462,11 +474,12 @@ const App = () => {
   return (
     <div
       style={{
+        boxSizing: 'border-box',
         fontFamily:
           'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
-        maxWidth: '100%',
-        overflowX: 'hidden',
-        padding: '16px',
+        overflow: 'hidden',
+        padding: '12px',
+        width: '100%',
       }}
     >
       {data?.data ? (
@@ -476,7 +489,8 @@ const App = () => {
               color: '#1a1a1a',
               fontSize: '16px',
               fontWeight: '600',
-              marginBottom: '14px',
+              marginBottom: '12px',
+              paddingLeft: '4px',
             }}
           >
             Property Results
