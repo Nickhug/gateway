@@ -93,6 +93,9 @@ const formatLotSizeAcres = (sqft: number | undefined | null): string => {
 
 // Property card component
 const PropertyCard = ({ property }: { property: Property }) => {
+  // Move useState out of conditional logic to the top level
+  const [isFavorite, setIsFavorite] = React.useState(false);
+
   if (!property) return;
 
   const address = property.address || {};
@@ -123,6 +126,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
   const colorTextSecondary = 'var(--color-text-2, #666)';
   const colorTextTertiary = 'var(--color-text-3, #999)';
   const colorPrimary = 'var(--color-primary, #0077ff)';
+  const colorError = 'var(--color-error, #ff4d4f)';
 
   return (
     <div
@@ -149,7 +153,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
       {/* Property image with property ratio */}
       <div
         style={{
-          backgroundColor: '#f0f2f5',
+          backgroundColor: 'var(--color-bg-tertiary, #f0f2f5)',
           paddingTop: '60%',
           position: 'relative',
           width: '100%',
@@ -192,10 +196,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
             style={{
               backgroundColor:
                 listing.status === 'Active'
-                  ? '#10b981'
+                  ? 'var(--color-success, #10b981)'
                   : listing.status === 'Pending'
-                    ? '#f59e0b'
-                    : '#6366f1',
+                    ? 'var(--color-warning, #f59e0b)'
+                    : 'var(--color-info, #6366f1)',
               borderRadius: '4px',
               color: 'white',
               fontSize: '11px',
@@ -210,6 +214,62 @@ const PropertyCard = ({ property }: { property: Property }) => {
             {listing.status}
           </div>
         )}
+
+        {/* Favorite heart button */}
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsFavorite(!isFavorite);
+            // Here we would trigger an event to inform the parent app
+            // For now we just toggle the state locally
+          }}
+          style={{
+            alignItems: 'center',
+            backdropFilter: 'blur(4px)',
+            backgroundColor: 'var(--color-bg-mask, rgba(255, 255, 255, 0.7))',
+            borderRadius: '50%',
+            color: isFavorite ? colorError : 'var(--color-text-1, #333)',
+            cursor: 'pointer',
+            display: 'flex',
+            height: '32px',
+            justifyContent: 'center',
+            position: 'absolute',
+            right: '12px',
+            top: '12px',
+            transition: 'all 0.2s ease',
+            width: '32px',
+            zIndex: 2,
+          }}
+        >
+          {isFavorite ? (
+            // Filled heart
+            <svg
+              fill={colorError}
+              height="18"
+              viewBox="0 0 24 24"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          ) : (
+            // Outline heart
+            <svg
+              fill="none"
+              height="18"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          )}
+        </div>
+
         {/* Gradient overlay for price */}
         <div
           style={{
@@ -353,26 +413,58 @@ const PropertyCard = ({ property }: { property: Property }) => {
           </div>
         </div>
 
-        {/* Original Listing Link */}
-        {listing.url && (
-          <div style={{ marginBottom: '8px' }}>
-            <a
-              href={listing.url}
-              rel="noopener noreferrer"
-              style={{
-                alignItems: 'center',
-                color: colorPrimary,
-                display: 'flex',
-                fontSize: '12px',
-                gap: '4px',
-                textDecoration: 'none',
-              }}
-              target="_blank"
-            >
-              <span>🔗</span> Original Listing
-            </a>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+          {/* Original Listing Link */}
+          {listing.url && (
+            <div>
+              <a
+                href={listing.url}
+                rel="noopener noreferrer"
+                style={{
+                  alignItems: 'center',
+                  color: colorPrimary,
+                  display: 'flex',
+                  fontSize: '12px',
+                  gap: '4px',
+                  textDecoration: 'none',
+                }}
+                target="_blank"
+              >
+                <span>🔗</span> Original Listing
+              </a>
+            </div>
+          )}
+
+          {/* Save button */}
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              // Here we would trigger an event to inform the parent app
+              // This is where you'd implement saving functionality
+              alert(`Saving property: ${property.listingId || property.id}`);
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-bg-tertiary, #f5f5f7)';
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-bg-primary-light, #e6f7ff)';
+            }}
+            style={{
+              alignItems: 'center',
+              backgroundColor: 'var(--color-bg-tertiary, #f5f5f7)',
+              borderRadius: '4px',
+              color: colorPrimary,
+              cursor: 'pointer',
+              display: 'flex',
+              fontSize: '12px',
+              gap: '4px',
+              padding: '3px 8px',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            <span>+</span> Save
           </div>
-        )}
+        </div>
 
         {agent.name && (
           <div
@@ -673,10 +765,12 @@ const App = () => {
         {`
           :root {
             --color-arrow-bg: rgba(255, 255, 255, 0.5);
+            --color-bg-mask: rgba(255, 255, 255, 0.7);
           }
           @media (prefers-color-scheme: dark) {
             :root {
               --color-arrow-bg: rgba(50, 50, 50, 0.5);
+              --color-bg-mask: rgba(30, 30, 30, 0.7);
             }
           }
         `}
