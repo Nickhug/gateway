@@ -141,7 +141,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
       style={{
         backgroundColor: colorBgContainer,
         border: `1px solid ${colorBorderSecondary}`,
-        borderRadius: '12px',
+        borderRadius: '10px',
         boxShadow: '0 1px 4px rgba(0, 0, 0, 0.05)',
         display: 'flex',
         flexDirection: 'column',
@@ -154,7 +154,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
       <div
         style={{
           backgroundColor: 'var(--color-bg-tertiary, #f0f2f5)',
-          paddingTop: '60%',
+          paddingTop: '53%',
           position: 'relative',
           width: '100%',
         }}
@@ -178,7 +178,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
               alignItems: 'center',
               color: colorTextTertiary,
               display: 'flex',
-              fontSize: '14px',
+              fontSize: '12px',
               height: '100%',
               justifyContent: 'center',
               left: 0,
@@ -202,13 +202,13 @@ const PropertyCard = ({ property }: { property: Property }) => {
                     : 'var(--color-info, #6366f1)',
               borderRadius: '4px',
               color: 'white',
-              fontSize: '11px',
+              fontSize: '10px',
               fontWeight: '600',
-              left: '12px',
-              padding: '2px 8px',
+              left: '10px',
+              padding: '2px 6px',
               position: 'absolute',
               textTransform: 'uppercase',
-              top: '12px',
+              top: '10px',
             }}
           >
             {listing.status}
@@ -231,13 +231,13 @@ const PropertyCard = ({ property }: { property: Property }) => {
             color: isFavorite ? colorError : 'var(--color-text-1, #333)',
             cursor: 'pointer',
             display: 'flex',
-            height: '32px',
+            height: '28px',
             justifyContent: 'center',
             position: 'absolute',
-            right: '12px',
-            top: '12px',
+            right: '10px',
+            top: '10px',
             transition: 'all 0.2s ease',
-            width: '32px',
+            width: '28px',
             zIndex: 2,
           }}
         >
@@ -245,9 +245,9 @@ const PropertyCard = ({ property }: { property: Property }) => {
             // Filled heart
             <svg
               fill={colorError}
-              height="18"
+              height="16"
               viewBox="0 0 24 24"
-              width="18"
+              width="16"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
@@ -256,13 +256,13 @@ const PropertyCard = ({ property }: { property: Property }) => {
             // Outline heart
             <svg
               fill="none"
-              height="18"
+              height="16"
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
               viewBox="0 0 24 24"
-              width="18"
+              width="16"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -285,11 +285,11 @@ const PropertyCard = ({ property }: { property: Property }) => {
         {listing.price && (
           <div
             style={{
-              bottom: '10px',
+              bottom: '9px',
               color: 'white',
-              fontSize: '15px',
+              fontSize: '13px',
               fontWeight: '700',
-              left: '12px',
+              left: '10px',
               position: 'absolute',
               textShadow: '0 1px 3px rgba(0,0,0,0.3)',
             }}
@@ -300,13 +300,13 @@ const PropertyCard = ({ property }: { property: Property }) => {
       </div>
 
       {/* Property details */}
-      <div style={{ display: 'flex', flex: '1', flexDirection: 'column', padding: '12px' }}>
+      <div style={{ display: 'flex', flex: '1', flexDirection: 'column', padding: '10px' }}>
         <h3
           style={{
             color: 'var(--color-text-0, #1a1a1a)',
-            fontSize: '14px',
+            fontSize: '12px',
             fontWeight: '600',
-            margin: '0 0 6px 0',
+            margin: '0 0 5px 0',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
@@ -316,54 +316,54 @@ const PropertyCard = ({ property }: { property: Property }) => {
             `${address.street || ''}, ${address.city || ''}, ${address.state || ''} ${address.zipCode || ''}`}
         </h3>
 
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '6px' }}>
           {bedrooms !== undefined && (
-            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>{bedrooms}</span>
-              <span style={{ color: colorTextTertiary, fontSize: '12px' }}>beds</span>
+            <div style={{ alignItems: 'center', display: 'flex', gap: '3px' }}>
+              <span style={{ color: colorTextSecondary, fontSize: '11px' }}>{bedrooms}</span>
+              <span style={{ color: colorTextTertiary, fontSize: '10px' }}>beds</span>
             </div>
           )}
           {bathrooms !== undefined && (
-            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>{bathrooms}</span>
-              <span style={{ color: colorTextTertiary, fontSize: '12px' }}>baths</span>
+            <div style={{ alignItems: 'center', display: 'flex', gap: '3px' }}>
+              <span style={{ color: colorTextSecondary, fontSize: '11px' }}>{bathrooms}</span>
+              <span style={{ color: colorTextTertiary, fontSize: '10px' }}>baths</span>
             </div>
           )}
           {livingArea && (
-            <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-              <span style={{ color: colorTextSecondary, fontSize: '13px' }}>
+            <div style={{ alignItems: 'center', display: 'flex', gap: '3px' }}>
+              <span style={{ color: colorTextSecondary, fontSize: '11px' }}>
                 {livingArea.toLocaleString()}
               </span>
-              <span style={{ color: colorTextTertiary, fontSize: '12px' }}>sqft</span>
+              <span style={{ color: colorTextTertiary, fontSize: '10px' }}>sqft</span>
             </div>
           )}
         </div>
 
         {/* Property Stats - replacing remarks */}
-        <div style={{ flex: '1', marginBottom: '8px' }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}>
+        <div style={{ flex: '1', marginBottom: '6px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 14px' }}>
             {lotSize && lotSize > 0 && (
-              <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>Lot:</span>
-                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>
+              <div style={{ alignItems: 'center', display: 'flex', gap: '3px' }}>
+                <span style={{ color: colorTextSecondary, fontSize: '10px' }}>Lot:</span>
+                <span style={{ color: colorTextSecondary, fontSize: '10px' }}>
                   {formatLotSizeAcres(lotSize)}
                 </span>
               </div>
             )}
 
             {propertyDetails.yearBuilt && (
-              <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>Built:</span>
-                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>
+              <div style={{ alignItems: 'center', display: 'flex', gap: '3px' }}>
+                <span style={{ color: colorTextSecondary, fontSize: '10px' }}>Built:</span>
+                <span style={{ color: colorTextSecondary, fontSize: '10px' }}>
                   {propertyDetails.yearBuilt}
                 </span>
               </div>
             )}
 
             {listing.daysOnMarket !== undefined && (
-              <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
-                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>DOM:</span>
-                <span style={{ color: colorTextSecondary, fontSize: '12px' }}>
+              <div style={{ alignItems: 'center', display: 'flex', gap: '3px' }}>
+                <span style={{ color: colorTextSecondary, fontSize: '10px' }}>DOM:</span>
+                <span style={{ color: colorTextSecondary, fontSize: '10px' }}>
                   {listing.daysOnMarket} days
                 </span>
               </div>
@@ -373,10 +373,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
               <div
                 style={{
                   backgroundColor: 'var(--color-bg-tertiary, #f5f5f7)',
-                  borderRadius: '4px',
+                  borderRadius: '3px',
                   color: colorTextSecondary,
-                  fontSize: '11px',
-                  padding: '2px 6px',
+                  fontSize: '10px',
+                  padding: '1px 5px',
                 }}
               >
                 {propertyDetails.propertyType}
@@ -387,10 +387,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
               <div
                 style={{
                   backgroundColor: 'var(--color-bg-primary-light, #e6f7ff)',
-                  borderRadius: '4px',
+                  borderRadius: '3px',
                   color: colorPrimary,
-                  fontSize: '11px',
-                  padding: '2px 6px',
+                  fontSize: '10px',
+                  padding: '1px 5px',
                 }}
               >
                 Pool
@@ -401,10 +401,10 @@ const PropertyCard = ({ property }: { property: Property }) => {
               <div
                 style={{
                   backgroundColor: 'var(--color-bg-primary-light, #e6f7ff)',
-                  borderRadius: '4px',
+                  borderRadius: '3px',
                   color: colorPrimary,
-                  fontSize: '11px',
-                  padding: '2px 6px',
+                  fontSize: '10px',
+                  padding: '1px 5px',
                 }}
               >
                 Waterfront
@@ -413,7 +413,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
           {/* Original Listing Link */}
           {listing.url && (
             <div>
@@ -424,8 +424,8 @@ const PropertyCard = ({ property }: { property: Property }) => {
                   alignItems: 'center',
                   color: colorPrimary,
                   display: 'flex',
-                  fontSize: '12px',
-                  gap: '4px',
+                  fontSize: '10px',
+                  gap: '3px',
                   textDecoration: 'none',
                 }}
                 target="_blank"
@@ -452,13 +452,13 @@ const PropertyCard = ({ property }: { property: Property }) => {
             style={{
               alignItems: 'center',
               backgroundColor: 'var(--color-bg-tertiary, #f5f5f7)',
-              borderRadius: '4px',
+              borderRadius: '3px',
               color: colorPrimary,
               cursor: 'pointer',
               display: 'flex',
-              fontSize: '12px',
-              gap: '4px',
-              padding: '3px 8px',
+              fontSize: '10px',
+              gap: '3px',
+              padding: '2px 6px',
               transition: 'all 0.2s ease',
             }}
           >
@@ -473,14 +473,14 @@ const PropertyCard = ({ property }: { property: Property }) => {
               borderTop: `1px solid var(--color-border-secondary, #f0f0f0)`,
               color: colorTextTertiary,
               display: 'flex',
-              fontSize: '11px',
+              fontSize: '10px',
               overflow: 'hidden',
-              paddingTop: '8px',
+              paddingTop: '6px',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
             }}
           >
-            <span style={{ marginRight: '3px' }}>👤</span>
+            <span style={{ marginRight: '2px' }}>👤</span>
             <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {agent.name}
               {agent.office && ` • ${agent.office}`}
@@ -600,7 +600,7 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             color: 'var(--color-text-0, #1a1a1a)',
             cursor: 'pointer',
             display: 'flex',
-            height: '32px',
+            height: '28px',
             justifyContent: 'center',
             left: '0',
             opacity: 0.7,
@@ -608,11 +608,11 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             top: '50%',
             transform: 'translateY(-50%)',
             transition: 'opacity 0.2s ease',
-            width: '32px',
+            width: '28px',
             zIndex: 2,
           }}
         >
-          <span style={{ fontSize: '18px' }}>←</span>
+          <span style={{ fontSize: '16px' }}>←</span>
         </div>
       )}
 
@@ -635,7 +635,7 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             color: 'var(--color-text-0, #1a1a1a)',
             cursor: 'pointer',
             display: 'flex',
-            height: '32px',
+            height: '28px',
             justifyContent: 'center',
             opacity: 0.7,
             position: 'absolute',
@@ -643,11 +643,11 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
             top: '50%',
             transform: 'translateY(-50%)',
             transition: 'opacity 0.2s ease',
-            width: '32px',
+            width: '28px',
             zIndex: 2,
           }}
         >
-          <span style={{ fontSize: '18px' }}>→</span>
+          <span style={{ fontSize: '16px' }}>→</span>
         </div>
       )}
 
@@ -669,14 +669,14 @@ const PropertyList = ({ properties }: { properties: Property[] }) => {
           style={{
             display: 'flex',
             flexDirection: 'row',
-            gap: '14px',
+            gap: '12px',
             minWidth: 'min-content',
             paddingLeft: '0',
             paddingRight: '24px',
           }}
         >
           {properties.map((property, index) => (
-            <div key={index} style={{ flexShrink: 0, width: '240px' }}>
+            <div key={index} style={{ flexShrink: 0, width: '210px' }}>
               <PropertyCard property={property} />
             </div>
           ))}
@@ -711,11 +711,18 @@ const App = () => {
     }
   }, [watchData]);
 
+  // Calculate the number of properties to display in the header
+  const getResultsCount = () => {
+    if (!data?.data) return '0';
+    if (Array.isArray(data.data)) return data.data.length.toString();
+    return '1';
+  };
+
   if (loading) {
     return (
       <div
         style={{
-          color: '#666',
+          color: 'var(--color-text-2, #666)',
           fontFamily:
             'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
           padding: '20px',
@@ -725,9 +732,9 @@ const App = () => {
         <div
           style={{
             animation: 'spin 1s linear infinite',
-            border: '2px solid #f3f3f3',
+            border: '2px solid var(--color-border-secondary, #f3f3f3)',
             borderRadius: '50%',
-            borderTop: '2px solid #3498db',
+            borderTop: '2px solid var(--color-primary, #3498db)',
             display: 'inline-block',
             height: '24px',
             marginBottom: '12px',
@@ -771,6 +778,15 @@ const App = () => {
             :root {
               --color-arrow-bg: rgba(50, 50, 50, 0.5);
               --color-bg-mask: rgba(30, 30, 30, 0.7);
+              --color-bg-container: #1a1a1a;
+              --color-bg-elevated: #2a2a2a;
+              --color-border-secondary: #333;
+              --color-text-0: #ffffff;
+              --color-text-1: #eeeeee;
+              --color-text-2: #bbbbbb;
+              --color-text-3: #999999;
+              --color-bg-tertiary: #333333;
+              --color-bg-primary-light: #113466;
             }
           }
         `}
@@ -780,14 +796,14 @@ const App = () => {
           <h2
             style={{
               color: 'var(--color-text-0, #1a1a1a)',
-              fontSize: '16px',
+              fontSize: '15px',
               fontWeight: '600',
-              marginBottom: '12px',
+              marginBottom: '10px',
               marginTop: '0',
               paddingLeft: '4px',
             }}
           >
-            Property Results
+            Showing {getResultsCount()} {Number.parseInt(getResultsCount()) === 1 ? 'result' : 'results'}
           </h2>
           {Array.isArray(data.data) ? (
             <PropertyList properties={data.data} />
