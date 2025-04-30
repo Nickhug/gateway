@@ -219,6 +219,28 @@ const PropertyCard = ({ property }: { property: Property }) => {
         <div
           onClick={(e) => {
             e.stopPropagation();
+            console.log('[MLS-Plugin] Favorite button clicked for property:', property.id);
+            console.log('[MLS-Plugin] Current favorite state:', isFavorite);
+
+            // Try to notify the parent frame that the favorite button was clicked
+            try {
+              if (window.parent && window.parent !== window) {
+                console.log('[MLS-Plugin] Sending postMessage to parent');
+                window.parent.postMessage(
+                  {
+                    action: isFavorite ? 'unfavorite' : 'favorite',
+                    property: property,
+                    type: 'mls-plugin-favorite',
+                  },
+                  '*',
+                );
+              } else {
+                console.log('[MLS-Plugin] No parent window detected');
+              }
+            } catch (error) {
+              console.error('[MLS-Plugin] Error sending postMessage:', error);
+            }
+
             setIsFavorite(!isFavorite);
             // Here we would trigger an event to inform the parent app
             // For now we just toggle the state locally
@@ -439,9 +461,30 @@ const PropertyCard = ({ property }: { property: Property }) => {
           <div
             onClick={(e) => {
               e.stopPropagation();
-              // Here we would trigger an event to inform the parent app
-              // This is where you'd implement saving functionality
-              alert(`Saving property: ${property.listingId || property.id}`);
+              console.log('[MLS-Plugin] Save button clicked for property:', property.id);
+
+              // Try to notify the parent frame that the save button was clicked
+              try {
+                if (window.parent && window.parent !== window) {
+                  console.log('[MLS-Plugin] Sending postMessage to parent for save');
+                  window.parent.postMessage(
+                    {
+                      action: 'save',
+                      property: property,
+                      type: 'mls-plugin-save',
+                    },
+                    '*',
+                  );
+                } else {
+                  console.log('[MLS-Plugin] No parent window detected for save button');
+                  // Fallback to alert for debugging
+                  alert(`Saving property: ${property.listingId || property.id}`);
+                }
+              } catch (error) {
+                console.error('[MLS-Plugin] Error sending save postMessage:', error);
+                // Fallback to alert
+                alert(`Saving property: ${property.listingId || property.id}`);
+              }
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.backgroundColor = 'var(--color-bg-tertiary, #f5f5f7)';
@@ -803,7 +846,8 @@ const App = () => {
               paddingLeft: '4px',
             }}
           >
-            Showing {getResultsCount()} {Number.parseInt(getResultsCount()) === 1 ? 'result' : 'results'}
+            Showing {getResultsCount()}{' '}
+            {Number.parseInt(getResultsCount()) === 1 ? 'result' : 'results'}
           </h2>
           {Array.isArray(data.data) ? (
             <PropertyList properties={data.data} />
